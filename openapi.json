@@ -1,0 +1,720 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Secondhand OpenAPI.",
+    "version": "1.0.0",
+    "description": "OpenAPI for Secondhand RESTful API.",
+    "license": {
+      "name": "APACHE 2.0",
+      "url": "https://www.apache.org/licenses/LICENSE-2.0"
+    }
+  },
+  "servers": [
+    {
+      "description": "Secondhand localhost API server.",
+      "url": "http://localhost:3001"
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "description": "JWT Authorization",
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  },
+  "paths": {
+    "/api/v1/user/register": {
+      "post": {
+        "tags": ["User"],
+        "summary": "Register.",
+        "description": "Register account to Secondhand Web.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "address": {
+                    "type": "string"
+                  },
+                  "phone": {
+                    "type": "string"
+                  },
+                  "image": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string",
+                    "format": "password"
+                  }
+                }
+              },
+              "examples": {
+                "Dummy": {
+                  "description": "Register dummy.",
+                  "value": {
+                    "name": "Awal",
+                    "address": "Jl. Kaki No. 46",
+                    "phone": "081234567890",
+                    "image": "asdasdasdasd.png",
+                    "email": "awal@gmail.com",
+                    "password": "123456"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Registration success."
+          },
+          "404": {
+            "description": "Page not found."
+          }
+        }
+      }
+    },
+    "/api/v1/user/login": {
+      "post": {
+        "tags": ["User"],
+        "summary": "Login.",
+        "description": "Login to Secondhand web.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "example": "awal@gmail.com"
+                  },
+                  "password": {
+                    "type": "string",
+                    "example": "123456"
+                  }
+                }
+              }, 
+              "examples": {
+                "Dummy 1": {
+                  "description": "Login dummy.",
+                  "value": {
+                    "email": "awal@gmail.com",
+                    "password": "123456"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success login."
+          },
+          "404": {
+            "description": "Data not found."
+          }
+        }
+      }
+    },
+    "/api/v1/user/{userId}/profile": {
+      "get": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": ["User"],
+        "summary": "Get user profile.",
+        "description": "Get current user profile.",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "description": "Get user id.",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "examples": {
+              "Dummy": {
+                "description": "Dummy user id.",
+                "value": "1"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success get profile."
+          },
+          "404": {
+            "description": "Page not found."
+          }
+        }
+      },
+      "put": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": ["User"],
+        "summary": "Edit user profile by id.",
+        "description": "Edit current user profile by id.",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "description": "Get user id.",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "examples": {
+              "Dummy": {
+                "description": "Dummy user id.",
+                "value": "1"
+              }
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "address": {
+                    "type": "string"
+                  },
+                  "phone": {
+                    "type": "string"
+                  },
+                  "image": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string",
+                    "format": "password"
+                  }
+                }
+              },
+              "examples": {
+                "Dummy": {
+                  "description": "Edit user dummy.",
+                  "value": {
+                    "name": "Awwalul",
+                    "address": "Jl. Jalan No. 24",
+                    "phone": "081233211233",
+                    "image": "zxczxczxc.png",
+                    "email": "awwalul@gmail.com",
+                    "password": "654321"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success update user profile."
+          },
+          "404": {
+            "description": "Page not found."
+          }
+        }
+      }
+    },
+    "/api/v1/user/{userId}/seller/product": {
+      "get": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": ["Seller"],
+        "summary": "Get seller product.",
+        "description": "Get all seller product.",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "description": "Get user id.",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "examples": {
+              "Dummy": {
+                "description": "Dummy user id.",
+                "value": "1"
+              }
+            }
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "required": false,
+            "description": "Filter product by name.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "price": {
+                  "type": "integer"
+                },
+                "image": {
+                  "type": "string"
+                },
+                "isSold": {
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success get seller product."
+          },
+          "404": {
+            "description": "Product not found."
+          }
+        }
+      },
+      "post": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": ["Seller"],
+        "summary": "Insert new product.",
+        "description": "Insert new product to database.",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "description": "Get user id.",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "examples": {
+              "Dummy": {
+                "description": "Dummy user id.",
+                "value": "1"
+              }
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "price": {
+                    "type": "integer"
+                  },
+                  "image": {
+                    "type": "string"
+                  }
+                }
+              },
+              "examples": {
+                "Dummy": {
+                  "description": "Example dummy data.",
+                  "value": {
+                    "name": "Blue Jeans",
+                    "description": "Preloved product.",
+                    "price": 500000,
+                    "image": "asdasdasd.png"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success insert new product."
+          },
+          "404": {
+            "description": "Page not found."
+          }
+        }
+      }
+    },
+    "/api/v1/user/{userId}/seller/product/{productId}": {
+      "put": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": ["Seller"],
+        "summary": "Edit user product by id.",
+        "description": "Edit current user product by id.",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "description": "Get user id.",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "examples": {
+              "Dummy": {
+                "description": "Dummy user id.",
+                "value": "1"
+              }
+            }
+          },
+          {
+            "name": "productId",
+            "in": "path",
+            "required": true,
+            "description": "get user product id.",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "examples": {
+              "Dummy": {
+                "description": "Dummy user product id.",
+                "value": "1"
+              }
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "price": {
+                    "type": "integer"
+                  },
+                  "image": {
+                    "type": "string"
+                  }
+                }
+              },
+              "examples": {
+                "Dummy": {
+                  "description": "Example dummy data.",
+                  "value": {
+                    "name": "Red Jeans",
+                    "description": "Useful product.",
+                    "price": 400000,
+                    "image": "zxccxz.png"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success update user product."
+          },
+          "404": {
+            "description": "Page not found."
+          }
+        }
+      },
+      "delete": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": ["Seller"],
+        "summary": "Delete user product.",
+        "description": "Delete user product by id.",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "description": "Get user id.",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "examples": {
+              "Dummy": {
+                "description": "Dummy user id.",
+                "value": "1"
+              }
+            }
+          },
+          {
+            "name": "productId",
+            "in": "path",
+            "required": true,
+            "description": "get user product id.",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "examples": {
+              "Dummy": {
+                "description": "Dummy user product id.",
+                "value": "1"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success delete user product."
+          },
+          "404": {
+            "description": "Page not found."
+          }
+        }
+      }
+    },
+    "/api/v1/product": {
+      "get": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": ["Product"],
+        "summary": "Get all product.",
+        "description": "Get all product in database",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "required": false,
+            "description": "Filter product by name.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "price": {
+                  "type": "integer"
+                },
+                "image": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success get all product from database."
+          },
+          "404": {
+            "description": "Page not found."
+          }
+        }
+      }
+    },
+    "/api/v1/product/{productId}/detail": {
+      "get": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": ["Product"],
+        "summary": "Get product detail.",
+        "description": "Get product detail by id.",
+        "parameters": [
+          {
+            "name": "productId",
+            "in": "path",
+            "required": true,
+            "description": "get user product id.",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "examples": {
+              "Dummy": {
+                "description": "Dummy user product id.",
+                "value": "1"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success get product detail by id."
+          },
+          "404": {
+            "description": "Page not found."
+          }
+        }
+      }
+    },
+    "/api/v1/product/{productId}/bargain": {
+      "post": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": ["Product"],
+        "summary": "Bargain product.",
+        "description": "Bargain product by id",
+        "parameters": [
+          {
+            "name": "productId",
+            "in": "path",
+            "required": true,
+            "description": "get user product id.",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "examples": {
+              "Dummy": {
+                "description": "Dummy user product id.",
+                "value": "1"
+              }
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "price": {
+                    "type": "integer"
+                  }
+                }
+              },
+              "examples": {
+                "Dummy": {
+                  "description": "Example dummy data.",
+                  "value": {
+                    "price": 300000
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success bargain product."
+          },
+          "404": {
+            "description": "Page not found."
+          }
+        }
+      }
+    },
+    "/api/v1/user/{userId}/buyer/bargain/": {
+      "get": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": ["Buyer"],
+        "summary": "Get buyer bargain list",
+        "description": "Get all buyer bargain list from database.",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "description": "Get user id.",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "examples": {
+              "Dummy": {
+                "description": "Dummy user id.",
+                "value": "1"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success get all buyer bargain list from database."
+          },
+          "404": {
+            "description": "Page not found."
+          }
+        }
+      }
+    },
+    "/api/v1/user/{userId}/buyer/bargain/{$bargainId}/": {
+      
+    }
+  }
+}
