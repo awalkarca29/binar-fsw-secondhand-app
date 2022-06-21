@@ -714,7 +714,310 @@
       }
     },
     "/api/v1/user/{userId}/buyer/bargain/{$bargainId}/": {
-      
+      "put": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": ["Buyer"],
+        "summary": "Edit user bargain.",
+        "description": "Edit user bargain by id.",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "description": "Get user id.",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "examples": {
+              "Dummy": {
+                "description": "Dummy user id.",
+                "value": "1"
+              }
+            }
+          },
+          {
+            "name": "bargainId",
+            "in": "path",
+            "required": true,
+            "description": "get user bargain id.",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "examples": {
+              "Dummy": {
+                "description": "Dummy user bargain id.",
+                "value": "1"
+              }
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "price": {
+                    "type": "integer"
+                  }
+                }
+              },
+              "examples": {
+                "Dummy": {
+                  "description": "Example dummy data.",
+                  "value": {
+                    "price": 350000
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success edit user bargain by id."
+          },
+          "404": {
+            "description": "Page not found."
+          }
+        }
+      },
+      "delete": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": ["Buyer"],
+        "summary": "Delete user bargain.",
+        "description": "Delete user bargain by id.",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "description": "Get user id.",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "examples": {
+              "Dummy": {
+                "description": "Dummy user id.",
+                "value": "1"
+              }
+            }
+          },
+          {
+            "name": "bargainId",
+            "in": "path",
+            "required": true,
+            "description": "get user bargain id.",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "examples": {
+              "Dummy": {
+                "description": "Dummy user bargain id.",
+                "value": "1"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success delete user bargain by id."
+          },
+          "404": {
+            "description": "Page not found."
+          }
+        }
+      }
+    },
+    "/api/v1/user/{userId}/buyer/history/": {
+      "get": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": ["Buyer"],
+        "summary": "Get buyer history.",
+        "description": "Get all current buyer history.",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "description": "Get user id.",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "examples": {
+              "Dummy": {
+                "description": "Dummy user id.",
+                "value": "1"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success get all buyer history."
+          },
+          "404": {
+            "description": "Page not found."
+          }
+        }
+      }
+    },
+    "/api/v1/user/{userId}/seller/history/": {
+      "get": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": ["Seller"],
+        "summary": "Get seller history.",
+        "description": "Get all current seller history.",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "description": "Get user id.",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "examples": {
+              "Dummy": {
+                "description": "Dummy user id.",
+                "value": "1"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success get all seller history."
+          },
+          "404": {
+            "description": "Page not found."
+          }
+        }
+      }
+    },
+    "/api/v1/user/{userId}/notification/": {
+      "get": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": ["User"],
+        "summary": "Get user notification.",
+        "description": "Get all current user notification.",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "description": "Get user id.",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "examples": {
+              "Dummy": {
+                "description": "Dummy user id.",
+                "value": "1"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success get all current user notification."
+          },
+          "404": {
+            "description": "Page not found."
+          }
+        }
+      }
+    },
+    "/api/v1/user/{userId}/notification/{notificationId}/": {
+      "delete": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": ["User"],
+        "summary": "Delete user notification.",
+        "description": "Delete current user notification by id.",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "description": "Get user id.",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "examples": {
+              "Dummy": {
+                "description": "Dummy user id.",
+                "value": "1"
+              }
+            }
+          },
+          {
+            "name": "notificationId",
+            "in": "path",
+            "required": true,
+            "description": "Get notification id.",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "examples": {
+              "Dummy": {
+                "description": "Dummy notification id.",
+                "value": "1"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success delete current user notification by id."
+          },
+          "404": {
+            "description": "Page not found."
+          }
+        }
+      }
     }
   }
 }
