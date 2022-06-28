@@ -1,11 +1,12 @@
 import './App.css';
 import 'antd/dist/antd.min.css';
 
-import { CardProduct, CarouselHeadline, ModalNotification, Footer, SideNav } from './components';
+import { Navbar, Buttons, CardProduct, CarouselHeadline,Label, ModalNotification, ModalBuyer, ModalOffer, Footer, SideNav } from './components';
 
 function App() {
   return (
     <div className="App font-body">
+      <Navbar/>
       <SideNav 
         imgSrc='https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80'
       /><br />
@@ -40,6 +41,10 @@ function App() {
       openPrice='600,000'
       finalPrice='500,000'
       />
+      <ModalBuyer/>
+      <ModalOffer/>
+      <Buttons/>
+      <Label/>
     </div>
   );
 }
