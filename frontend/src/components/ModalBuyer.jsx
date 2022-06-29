@@ -7,11 +7,11 @@ export default function ModalBuyer() {
   const [showModal, setShowModal] = React.useState(false);
   return (
     <>
-      <button className="m-5 w-80 bg-medium-purple text-light-grey font-semibold  py-2 px-4 rounded hover:text-dark-purple hover:bg-transparent border border-dark-purple"
+      <button className="m-5 w-80 bg-medium-purple text-light-grey font-semibold  py-2 px-4 rounded hover:text-dark-purple hover:bg-light-grey border border-dark-purple"
         type="button"
         onClick={() => setShowModal(true)} 
         >
-            I am interested and want to negotiate
+            Buy
       </button>
       
       {showModal ? (
@@ -21,7 +21,7 @@ export default function ModalBuyer() {
           >
             <div className="relative max-w-sm ">
               {/*content*/}
-              <div className="bg-white p-3 border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+              <div className="bg-white-normal p-3 border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
                 {/*header*/}
                 <button className="bg-transparent text-black text-sm p-2 ml-auto inline-flex items-center dark:hover:text-light-purple"
                   type="button"
@@ -56,7 +56,7 @@ export default function ModalBuyer() {
 
                 {/*footer*/}
                 <div className="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b">
-                <button className="w-80 bg-medium-purple text-light-grey font-semibold  py-2 px-4 rounded hover:text-dark-purple hover:bg-transparent border border-dark-purple"
+                <button className="w-80 bg-medium-purple text-light-grey font-semibold  py-2 px-4 rounded hover:text-dark-purple hover:bg-light-grey border border-dark-purple"
                   type="button"
                   onClick={() => setShowModal(false)}
                 >
@@ -66,7 +66,7 @@ export default function ModalBuyer() {
               </div>
             </div>
           </div>
-          <div className="opacity-60 fixed inset-0 z-40 bg-black"></div>
+          <div className="opacity-60 fixed inset-0 z-40 bg-black-normal"></div>
         </>
       ) : null}
     </>

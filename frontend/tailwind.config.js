@@ -16,6 +16,7 @@ module.exports = {
       'medium-blue': '#B9DBE6',
       'light-blue': '#D8F2FA',
       'black-normal': '#2D3643',
+      'white-normal': '#FFFFFF',
       'grey': '#ABB5C5',
       'success': '#52BD7D',
       'danger': '#CB4040',

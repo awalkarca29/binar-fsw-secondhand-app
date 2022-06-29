@@ -16,11 +16,11 @@ function Navbar() {
               <input className="pl-16  placeholder:text-gray-300  sm:w-[600px] px-5 py-2  rounded-md outline-none"   placeholder="Placeholder" />                    
           </div>
           <div className='hidden md:flex' >
-            <button class=" bg-transparent text-light-grey font-semibold py-2 px-4 border border-light-grey rounded m-2 hover:text-dark-purple hover:bg-white"> 
+            <button class=" bg-transparent text-light-grey font-semibold py-2 px-4 border border-light-grey rounded m-2 hover:text-dark-purple hover:bg-light-grey"> 
               Login
             </button>
-            <button class="bg-white text-dark-purple font-bold py-2 px-4 m-2  rounded hover:text-primary hover:bg-transparent border border-light-grey" >
-                Register
+            <button className="bg-light-grey text-dark-purple font-semibold py-2 px-4 border border-light-grey rounded m-2 hover:text-light-grey hover:bg-medium-purple">
+              Register
             </button>
           </div>
           <div className="-mr-15 flex md:hidden">

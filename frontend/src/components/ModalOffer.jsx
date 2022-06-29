@@ -7,7 +7,7 @@ export default function ModalOffer() {
   const [showModal, setShowModal] = React.useState(false);
   return (
     <>
-        <button className="bg-medium-purple text-light-grey font-semibold  py-2 px-4  rounded hover:text-dark-purple hover:bg-transparent border border-dark-purple"
+        <button className="bg-medium-purple text-light-grey font-semibold  py-2 px-4  rounded hover:text-dark-purple hover:bg-light-grey border border-dark-purple"
          type="button"
          onClick={() => setShowModal(true)}
         >
@@ -21,7 +21,7 @@ export default function ModalOffer() {
           >
             <div className="relative w-96">
               {/*content*/}
-              <div className="p-4 border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+              <div className="p-4 border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white-normal outline-none focus:outline-none">
                 {/*header*/}
                 <button className="bg-transparent text-black text-sm p-2 ml-auto inline-flex items-center dark:hover:text-light-grey3"
                   type="button"
@@ -60,7 +60,7 @@ export default function ModalOffer() {
 
                 {/*footer*/}
                 <div className="flex items-center justify-end p-6   rounded-b">
-                <button className="w-80 bg-medium-purple text-light-grey font-semibold  py-2 px-4 rounded hover:text-dark-purple hover:bg-transparent border border-dark-purple"
+                <button className="w-80 bg-medium-purple text-light-grey font-semibold  py-2 px-4 rounded hover:text-dark-purple hover:bg-light-grey border border-dark-purple"
                   type="button"
                   onClick={() => setShowModal(false)}
                 >
@@ -70,7 +70,7 @@ export default function ModalOffer() {
               </div>
             </div>
           </div>
-          <div className="opacity-60 fixed inset-0 z-40 bg-black"></div>
+          <div className="opacity-60 fixed inset-0 z-40 bg-black-normal"></div>
         </>
       ) : null}
     </>
