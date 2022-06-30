@@ -1176,7 +1176,97 @@
             "$ref": "#/components/responses/500"
           }
         }
-      }      
+      },
+      "delete": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": ["Seller"],
+        "summary": "Delete user product.",
+        "description": "Delete user product by id.",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "description": "Get user id.",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "examples": {
+              "Dummy": {
+                "description": "Dummy user id.",
+                "value": "1"
+              }
+            }
+          },
+          {
+            "name": "productId",
+            "in": "path",
+            "required": true,
+            "description": "get user product id.",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "examples": {
+              "Dummy": {
+                "description": "Dummy user product id.",
+                "value": "1"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "Dummy": {
+                    "description": "Dummy 200 response.",
+                    "value": {
+                      "code": "200 OK.",
+                      "message": "Delete product success."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
     },
 
     "/api/v1/user/{userId}/seller/history/": {
