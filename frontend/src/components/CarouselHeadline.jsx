@@ -1,4 +1,7 @@
 import { Carousel } from 'antd';
+import CarouselImage1 from '../assets/img_carousel_1.png';
+import CarouselImage2 from '../assets/img_carousel_2.png';
+import CarouselImage3 from '../assets/img_carousel_3.png';
 
 const contentStyle = {
     height: '500px',
@@ -15,19 +18,19 @@ const CarouselHeadline = ({ src }) => (
         <div>
             <img
                 style={contentStyle}
-                src="https://images.unsplash.com/photo-1498598457418-36ef20772bb9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+                src={CarouselImage1}
             />
         </div>
         <div>
             <img
                 style={contentStyle}
-                src="https://images.unsplash.com/photo-1463725876303-ff840e2aa8d5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1332&q=80"
+                src={CarouselImage2}
             />
         </div>
         <div>
             <img
                 style={contentStyle}
-                src="https://images.unsplash.com/photo-1500926165259-30ef3079d477?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+                src={CarouselImage3}
             />
         </div>
     </Carousel>
