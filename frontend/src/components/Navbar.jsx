@@ -19,12 +19,16 @@ function Navbar() {
           <input className="pl-16  placeholder:text-gray-300  sm:w-[600px] px-5 py-2  rounded-md outline-none" placeholder="Placeholder" />
         </div>
         <div className='hidden md:flex' >
+        <Link to="/login" className="nav-link active">
           <button class=" bg-transparent text-light-grey font-semibold py-2 px-4 border border-light-grey rounded m-2 hover:text-dark-purple hover:bg-light-grey">
             Login
           </button>
+        </Link>
+        <Link to="/register" className="nav-link active">
           <button className="bg-light-grey text-dark-purple font-semibold py-2 px-4 border border-light-grey rounded m-2 hover:text-light-grey hover:bg-medium-purple">
             Register
           </button>
+        </Link>
         </div>
         <div className="-mr-15 flex md:hidden">
           <button
