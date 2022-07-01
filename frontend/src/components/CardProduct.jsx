@@ -11,7 +11,7 @@ const CardProduct = ({ imgSrc, category, title, price, location }) => (
             boxShadow: "4px 0 12px 0 rgba(0, 0, 0, 0.1)",
             margin: "48px"
         }}
-        cover={<img alt="example" src={imgSrc} />}
+        cover={<img className="h-60 object-cover" alt="example" src={imgSrc} />}
         className="flex flex-col text-left"
     >
         <span className="text-xs font-semibold inline-block py-1 px-2 mb-4  rounded text-dark-blue bg-light-blue  last:mr-0 mr-1">

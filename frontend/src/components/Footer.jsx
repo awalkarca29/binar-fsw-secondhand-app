@@ -34,11 +34,11 @@ const Footer = () => {
                     </a>
                 </div>
             </Col>
-            <Col span={6} className="flex flex-col justify-start text-light-grey">
-                <p className="text-lg font-semibold">NewsLetter</p>
-                <p className="text-left">Let us know how we can help you</p>
+            <Col span={6} className="flex flex-col justify-start">
+                <p className="text-light-grey text-lg font-semibold">NewsLetter</p>
+                <p className="text-light-grey text-left">Let us know how we can help you</p>
                 <form className="bg-white flex flex-col justify-start">
-                    <input className="border rounded w-full text-gray-700 mb-3 text-sm" id="username" type="text" placeholder="Insert your email here" />
+                    <input className="border rounded w-full mb-3 text-sm" id="username" type="text" placeholder="Insert your email here" />
                     <button className="bg-transparent text-light-grey font-semibold py-2 px-4 border border-light-grey rounded hover:text-light-grey hover:bg-medium-purple">
                         Subscribe
                     </button>
