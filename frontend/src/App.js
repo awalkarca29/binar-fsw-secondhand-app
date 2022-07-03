@@ -3,7 +3,7 @@ import 'antd/dist/antd.min.css';
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Navbar, Buttons, CardProduct, CarouselHeadline, Label, ModalNotification, ModalBuyer, ModalOffer, Footer, SideNav } from './components';
-import { Home, Login, Register } from './pages';
+import { Home, Login, Register, Notifications } from './pages';
 
 function App() {
   return (
@@ -13,6 +13,7 @@ function App() {
           <Route exact path="/" element={<Home />} />
           <Route exact path="/login" element={<Login />} />
           <Route exact path='/register' element={<Register />} />
+          <Route exact path='/notifications' element={<Notifications />} />
         </Routes>
       </BrowserRouter>
     </div>

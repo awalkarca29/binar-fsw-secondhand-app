@@ -30,15 +30,14 @@ function Navbar() {
           </button>
         </Link>
         </div>
-        <div className="-mr-15 flex md:hidden">
+        <div className="sm:ml-[400px] flex md:hidden">
           <button
             onClick={() => setIsOpen(!isOpen)}
             type="button"
-            className="bg-dark-purple inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-light-purple  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-medium-purple focus:ring-white"
+            className="bg-dark-purple inline-flex items-center justify-center p-2 rounded-md hover:bg-light-purple  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-medium-purple focus:ring-dark-purple"
             aria-controls="mobile-menu"
             aria-expanded="false"
           >
-            <span className="sr-only">Open main menu</span>
             {!isOpen ? (
               <List size={24} color="#00000" weight="fill" />
             ) : (
@@ -61,15 +60,17 @@ function Navbar() {
           <div className="md:hidden" id="mobile-menu">
             <div ref={ref} className="px-2 pt-10  pb-5 space-y-1 sm:px-3">
               <div className="md:flex cursor-pointer items-center mb-4 item-center border-r-medium-purple border-solid text-black-400 focus-within:text-black-400">
-                <Faders class="absolute ml-[70px] mt-2" size={24} color="#4d4c7d" weight="fill" />
-                <MagnifyingGlass class="absolute mx-[360px] sm:mx-[500px] mt-2" size={24} color="#4d4c7d" weight="fill" />
-                <input class="pl-16 placeholder:text-gray-300  sm:w-[500px] w-[340px] px-5 py-2  rounded-md outline-none" placeholder="Placeholder" />
+                <Faders class="absolute sm:ml-[34px] mt-2" size={24} color="#4d4c7d" weight="fill" />
+                <MagnifyingGlass class="absolute sm:mx-[540px] mt-2" size={24} color="#4d4c7d" weight="fill" />
+                <input class="pl-16 placeholder:text-grey sm:w-[566px] px-5 py-2  rounded-md outline-none" placeholder="Placeholder" />
               </div>
-
-              <button class="bg-transparent text-white font-semibold py-1 px-3 border border-light-grey rounded m-2 hover:text-dark-purple hover:bg-white">
-                Login
-              </button>
-              <button class="bg-white text-dark-purple font-bold py-1 px-3 m-2  rounded hover:text-light-grey hover:bg-transparent border border-light-grey" >
+              <Link to="/login">
+                <button class="bg-transparent text-light-grey font-semibold py-1 px-3 border border-light-grey rounded sm:m-2 hover:text-dark-purple hover:bg-white-normal">
+                  Login
+                </button>
+              </Link>
+              
+              <button class="bg-white-normal text-dark-purple font-bold py-1 px-3 sm:m-2 rounded hover:text-light-grey hover:bg-purple border border-light-grey sm:mr-[400px]">
                 Register
               </button>
             </div>

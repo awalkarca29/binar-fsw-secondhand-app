@@ -19,7 +19,9 @@ function NavbarLogin() {
           </div>
           <div className='cursor-pointer hidden md:flex items-center' >
             <Storefront size={24} color="#fafafa" weight="fill" className='mr-5' />
+            <Link to="/notifications" className="nav-link active">
             <BellRinging size={24} color="#fafafa" weight="fill" className='mr-5'/>
+            </Link>
             <img src={Placeholder} />
           </div>
           <div className="-mr-15 flex md:hidden">
