@@ -1,7 +1,7 @@
 import { Navbar, CardProduct, MenuFilter, Footer } from '../components';
 import { Col, Row } from 'antd';
 
-const ProductSearch = () => {
+const productSearch = () => {
     return (
         <div>
             <Navbar />
@@ -77,4 +77,4 @@ const ProductSearch = () => {
     )
 }
 
-export default ProductSearch;
+export default productSearch;

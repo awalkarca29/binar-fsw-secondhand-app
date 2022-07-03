@@ -3,7 +3,7 @@ import { Navbar, Footer } from '../components';
 import  IconLogin  from '../assets/il_login.svg'; 
 import Password_Seen from '../assets/Password_Seen.svg';
 
-function Login(type) {
+function login(type) {
   return (
     <div >
       <Navbar />
@@ -34,4 +34,4 @@ function Login(type) {
   )
 }
 
-export default Login
+export default login

@@ -4,7 +4,7 @@ import  Notifications_img  from '../assets/Notifications.svg';
 import Seller from '../assets/il_seller.svg';
 import { Tab } from '@headlessui/react';
 
-function Notifications() {
+function notifications() {
   return (
     <div>
         <NavbarLogin/>
@@ -61,4 +61,4 @@ function Notifications() {
   )
 }
 
-export default Notifications
+export default notifications

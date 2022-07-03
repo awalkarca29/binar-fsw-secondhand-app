@@ -13,4 +13,4 @@ import Footer from "./Footer";
 import SideNav from "./SideNav";
 import MenuFilter from "./MenuFilter";
 
-export { Navbar, NavbarLogin, Buttons, CardProduct, CarouselHeadline, InputForm, ModalNotification, ModalBuyer, ModalOffer, Label, Footer, SideNav, MenuFilter }; 
+export { Navbar, NavbarLogin,NotificationProduct, Buttons, CardProduct, CarouselHeadline, InputForm, ModalNotification, ModalBuyer, ModalOffer, Label, Footer, SideNav, MenuFilter }; 

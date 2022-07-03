@@ -1,6 +1,6 @@
 import { Navbar, CardProduct, CarouselHeadline, Footer } from '../components';
 
-const Home = () => {
+const home = () => {
     return (
         <div>
             <Navbar />
@@ -70,4 +70,4 @@ const Home = () => {
     )
 }
 
-export default Home;
+export default home;
