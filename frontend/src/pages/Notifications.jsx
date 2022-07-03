@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { NavbarLogin, NotificationProduct, ModalNotification } from '../components';
+import { NavbarLogin, NotificationProduct} from '../components';
 import  Notifications_img  from '../assets/Notifications.svg'; 
 import Seller from '../assets/il_seller.svg';
 import { Tab } from '@headlessui/react';
