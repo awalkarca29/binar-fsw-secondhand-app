@@ -3,6 +3,7 @@ import 'antd/dist/antd.min.css';
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Home, ProductSearch, Login, Register } from './pages';
+import { Home, Login, Register, Notifications,ProductSearch } from './pages';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
           <Route exact path="/search" element={<ProductSearch />} />
           <Route exact path="/login" element={<Login />} />
           <Route exact path='/register' element={<Register />} />
+          <Route exact path='/notifications' element={<Notifications />} />
         </Routes>
       </BrowserRouter>
     </div>

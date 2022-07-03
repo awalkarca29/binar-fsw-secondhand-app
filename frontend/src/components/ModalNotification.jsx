@@ -5,11 +5,10 @@ import IconLocation from '../assets/ic_location.svg';
 
 const ModalNotification = ({ imgSrc, productName, seller, locationSeller, date, openPrice, finalPrice }) => {
     const [modalNotificationVisible, setModalNotificationVisible] = useState(false);
-
     return (
         <div>
             <Button onClick={() => setModalNotificationVisible(true)}>
-                Modal Notification
+                Modal
             </Button>
             <Modal
                 style={{
