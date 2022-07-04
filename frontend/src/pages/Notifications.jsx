@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { NavbarLogin, NotificationProduct} from '../components';
 import  Notifications_img  from '../assets/Notifications.svg'; 
 import Seller from '../assets/il_seller.svg';
+import Buyer from '../assets/il_buyer.svg';
 import { Tab } from '@headlessui/react';
 
 function notifications() {
@@ -9,7 +10,7 @@ function notifications() {
     <div>
         <NavbarLogin/>
         <div className="grid grid-cols-4 gap-2 mx-10">
-          <div className="lg:my-40 lg:ml-20 sm:hidden">
+          <div className="lg:my-40 lg:ml-20 ">
             <img src={Notifications_img} />
           </div>
           <div className="col-span-3 lg:mt-28  sm:mt-20 lg:mx-32">
@@ -28,15 +29,17 @@ function notifications() {
                           productName='Yeezy Boots'
                           openPrice='5,800,000'
                           priceOffer='5,000,000'
+                          seller = 'Tokoku'
                           label='Offer Product'
                           date='20 June 2022, 14:04'
                         />
                         <NotificationProduct
-                          imgSrc={Seller}
+                          imgSrc={Buyer}
                           category='Fashion'
                           productName='Yeezy Boots'
                           openPrice='5,800,000'
                           priceOffer='5,000,000'
+                          seller = 'Jastipyn'
                           label='Offer Product'
                           date='20 June 2022, 14:04'
                         />
@@ -48,11 +51,22 @@ function notifications() {
                           productName='Yeezy Boots'
                           openPrice='5,800,000'
                           priceOffer='5,000,000'
+                          seller = 'Jastipyn'
                           label='Offer Product'
                           date='20 June 2022, 14:04'
                         />
                       </Tab.Panel>
-                      <Tab.Panel>Content 3</Tab.Panel>
+                      <Tab.Panel>
+                        <NotificationProduct
+                            imgSrc={Buyer}
+                            category='Fashion'
+                            productName='Yeezy Boots'
+                            openPrice='5,800,000'
+                            priceOffer='5,000,000'
+                            label='Offer Product'
+                            date='20 June 2022, 14:04'
+                          />
+                      </Tab.Panel>
                   </Tab.Panels>
             </Tab.Group>
           </div>

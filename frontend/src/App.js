@@ -1,8 +1,7 @@
 import './App.css';
 import 'antd/dist/antd.min.css';
-
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Navbar, Buttons, CardProduct, CarouselHeadline, Label, ModalNotification, ModalBuyer, ModalOffer, Footer, SideNav } from './components';
+import { Navbar, Buttons, CardProduct, CarouselHeadline, Label, ModalNotification, ModalBuyer, ModalOffer, Footer, SideNav, ListProductSeller } from './components';
 import { Home, Login, Register, Notifications,ProductSearch } from './pages';
 
 function App() {
@@ -16,6 +15,7 @@ function App() {
           <Route exact path='/register' element={<Register />} />
           <Route exact path='/notifications' element={<Notifications />} />
         </Routes>
+        {/* <ListProductSeller/> */}
       </BrowserRouter>
     </div>
   );

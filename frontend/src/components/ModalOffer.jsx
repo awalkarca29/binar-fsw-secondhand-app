@@ -2,7 +2,6 @@ import React from "react";
 import { X } from "phosphor-react";
 import sepatu01 from "../assets/sepatu-01.png";
 
-
 export default function ModalOffer() {
   const [showModal, setShowModal] = React.useState(false);
   return (
@@ -58,7 +57,6 @@ export default function ModalOffer() {
                     </div>
                 </div>
 
-                {/*footer*/}
                 <div className="flex items-center justify-end p-6   rounded-b">
                 <button className="w-80 bg-medium-purple text-light-grey font-semibold  py-2 px-4 rounded hover:text-dark-purple hover:bg-light-grey border border-dark-purple"
                   type="button"
