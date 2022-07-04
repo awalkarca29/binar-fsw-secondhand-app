@@ -19,16 +19,16 @@ function Navbar() {
           <input className="pl-16  placeholder:text-gray-300  sm:w-[600px] px-5 py-2  rounded-md outline-none" placeholder="Placeholder" />
         </div>
         <div className='hidden md:flex' >
-        <Link to="/login" className="nav-link active">
-          <button class=" bg-transparent text-light-grey font-semibold py-2 px-4 border border-light-grey rounded m-2 hover:text-dark-purple hover:bg-light-grey">
-            Login
-          </button>
-        </Link>
-        <Link to="/register" className="nav-link active">
-          <button className="bg-light-grey text-dark-purple font-semibold py-2 px-4 border border-light-grey rounded m-2 hover:text-light-grey hover:bg-medium-purple">
-            Register
-          </button>
-        </Link>
+          <Link to="/login" className="nav-link active">
+            <button class=" bg-transparent text-light-grey font-semibold py-2 px-4 border border-light-grey rounded m-2 hover:text-dark-purple hover:bg-light-grey">
+              Login
+            </button>
+          </Link>
+          <Link to="/register" className="nav-link active">
+            <button className="bg-light-grey text-dark-purple font-semibold py-2 px-4 border border-light-grey rounded m-2 hover:text-light-grey hover:bg-medium-purple">
+              Register
+            </button>
+          </Link>
         </div>
         <div className="sm:ml-[400px] flex md:hidden">
           <button
@@ -61,7 +61,9 @@ function Navbar() {
             <div ref={ref} className="px-2 pt-10  pb-5 space-y-1 sm:px-3">
               <div className="md:flex cursor-pointer items-center mb-4 item-center border-r-medium-purple border-solid text-black-400 focus-within:text-black-400">
                 <Faders class="absolute sm:ml-[34px] mt-2" size={24} color="#4d4c7d" weight="fill" />
-                <MagnifyingGlass class="absolute sm:mx-[540px] mt-2" size={24} color="#4d4c7d" weight="fill" />
+                <Link to="/search">
+                  <MagnifyingGlass class="absolute sm:mx-[540px] mt-2" size={24} color="#4d4c7d" weight="fill" />
+                </Link>
                 <input class="pl-16 placeholder:text-grey sm:w-[566px] px-5 py-2  rounded-md outline-none" placeholder="Placeholder" />
               </div>
               <Link to="/login">
@@ -69,7 +71,7 @@ function Navbar() {
                   Login
                 </button>
               </Link>
-              
+
               <button class="bg-white-normal text-dark-purple font-bold py-1 px-3 sm:m-2 rounded hover:text-light-grey hover:bg-purple border border-light-grey sm:mr-[400px]">
                 Register
               </button>

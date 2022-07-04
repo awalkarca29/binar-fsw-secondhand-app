@@ -1,5 +1,6 @@
-export { default as Home } from './home';
-export { default as ProductSearch } from './productSearch';
-export { default as Login } from './login';
-export { default as Register } from './register';
-export { default as Notifications } from './notifications';
+export { default as Home } from './Home';
+export { default as ProductSearch } from './ProductSearch';
+export { default as Login } from './Login';
+export { default as Register } from './Register';
+export { default as Notifications } from './Notifications';
+export { default as ProductDetail } from './product-detail';
