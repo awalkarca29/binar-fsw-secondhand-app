@@ -51,4 +51,11 @@ db.bargain = require("./bargain.js")(sequelize, Sequelize);
 db.history = require("./history.js")(sequelize, Sequelize);
 db.notification = require("./notification.js")(sequelize, Sequelize);
 
+db.user.associate(db);
+db.category.associate(db);
+db.product.associate(db);
+db.bargain.associate(db);
+db.history.associate(db);
+db.notification.associate(db);
+
 module.exports = db;
