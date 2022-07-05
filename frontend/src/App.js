@@ -15,7 +15,6 @@ function App() {
           <Route exact path='/register' element={<Register />} />
           <Route exact path='/notifications' element={<Notifications />} />
         </Routes>
-        {/* <ListProductSeller/> */}
       </BrowserRouter>
     </div>
   );
