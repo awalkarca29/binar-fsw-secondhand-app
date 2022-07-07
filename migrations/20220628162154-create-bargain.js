@@ -14,6 +14,12 @@ module.exports = {
       status: {
         type: Sequelize.STRING,
       },
+      notificationTime: {
+        type: Sequelize.DATE,
+      },
+      isRead: {
+        type: Sequelize.BOOLEAN,
+      },
       userId: {
         type: Sequelize.INTEGER,
         references: {
