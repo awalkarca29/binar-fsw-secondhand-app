@@ -24,7 +24,9 @@ function NavbarLogin() {
           <Link to="/notifications" className="nav-link active">
             <BellRinging size={24} color="#fafafa" weight="fill" className='mr-5' />
           </Link>
-          <img src={Placeholder} />
+          <Link to="/profile">
+            <img src={Placeholder} />
+          </Link>
         </div>
         <div className="-mr-15 flex md:hidden">
           <button

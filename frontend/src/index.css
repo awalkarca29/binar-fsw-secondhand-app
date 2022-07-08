@@ -28,7 +28,7 @@
 
 * {
   margin: 0;
-  font-family: 'Poppins', BlinkMacSystemFont, 'Segoe UI', 'Roboto' 'Oxygen', 'Helvetica Neue', sans-serif;
+  font-family: 'Poppins', BlinkMacSystemFont, 'Segoe UI', 'Roboto''Oxygen', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -41,4 +41,16 @@
 .ant-modal-title {
   font-size: 30px;
   font-weight: bold;
+}
+
+.side-nav {
+  width: 280px;
+  height: 540px;
+  box-shadow: 4px 0 12px 0 rgba(0, 0, 0, 0.12);
+  border-radius: 12px;
+}
+
+.btn-sidenav:hover {
+  background-color: var(--light-purple);
+  color: var(--light-grey);
 }

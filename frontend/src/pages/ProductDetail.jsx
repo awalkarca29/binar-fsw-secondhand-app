@@ -47,7 +47,7 @@ const productDetail = (imgSrc, type) => {
                             </button> */}
                             <ModalBuyer />
                         </div>
-                        
+                        <ModalBuyer />
                         <div className="container flex flex-row justify-start items-start bg-light-grey drop-shadow-md rounded-md w-96 my-2 p-8">
                             <Image
                                 width={40}
