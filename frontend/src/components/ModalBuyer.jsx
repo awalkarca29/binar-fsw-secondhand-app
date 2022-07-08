@@ -7,7 +7,7 @@ export default function ModalBuyer() {
   const [showModal, setShowModal] = React.useState(false);
   return (
     <>
-      <button className="mt-5 w-full bg-medium-purple text-light-grey font-semibold  py-2 px-4 rounded hover:text-dark-purple hover:bg-light-grey border border-dark-purple"
+      <button className="m-5 w-80 bg-medium-purple text-light-grey font-semibold  py-2 px-4 rounded hover:text-dark-purple hover:bg-light-grey border border-dark-purple"
         type="button"
         onClick={() => setShowModal(true)} 
         >

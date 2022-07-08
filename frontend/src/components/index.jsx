@@ -14,6 +14,6 @@ import SideNav from "./SideNav";
 import SideNavMenu from "./SideNavMenu";
 import MenuFilter from "./MenuFilter";
 import ListProductSeller from "./ListProductSeller";
-import CustomModal from "./CustomModal";
+import ListOffer from "./ListOffer";
 
-export { Navbar, NavbarLogin,NotificationProduct, Buttons, CardProduct, CarouselHeadline, InputForm, ModalNotification, ModalBuyer, ModalOffer, Label, Footer, SideNav, SideNavMenu, MenuFilter, ListProductSeller, CustomModal }; 
+export { Navbar, NavbarLogin, NotificationProduct, Buttons, CardProduct, CarouselHeadline, InputForm, ModalNotification, ModalBuyer, ModalOffer, Label, Footer, SideNav, SideNavMenu, MenuFilter, ListProductSeller, ListOffer }; 
