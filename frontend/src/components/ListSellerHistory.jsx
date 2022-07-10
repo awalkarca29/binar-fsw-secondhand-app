@@ -1,6 +1,6 @@
 import React from 'react';
-import placeholder from "../assets/Placeholder.svg";
-import sepatu_01 from "../assets/sepatu-01.png";
+import placeholder from "../assets/placeholder.svg";
+import sepatu_01 from "../assets/sepatu_1.png";
 
 function ListSellerHistory() {
   return (

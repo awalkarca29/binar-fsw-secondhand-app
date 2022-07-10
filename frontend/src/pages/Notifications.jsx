@@ -1,6 +1,6 @@
 import React from 'react'
 import { NavbarLogin, NotificationProduct} from '../components';
-import  Notifications_img  from '../assets/Notifications.svg'; 
+import  Notifications_img  from '../assets/il_notifications.svg'; 
 import Seller from '../assets/il_seller.svg';
 import Buyer from '../assets/il_buyer.svg';
 import { Tab } from '@headlessui/react';

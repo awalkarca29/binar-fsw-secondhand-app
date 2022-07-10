@@ -1,5 +1,5 @@
 import { Row, Col } from "antd";
-import ImageShoes from "../assets/sepatu-01.png";
+import ImageShoes from "../assets/sepatu_1.png";
 import IconDelete from "../assets/ic_delete.svg";
 import IconEdit from "../assets/ic_edit.svg";
 

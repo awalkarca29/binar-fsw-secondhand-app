@@ -1,6 +1,6 @@
 import { Row, Col, Form, Input } from 'antd';
-import PasswordSeen from '../assets/Password_Seen.svg';
-import sepatu_01 from "../assets/sepatu-01.png";
+import PasswordSeen from '../assets/ic_password_seen.svg';
+import sepatu_01 from "../assets/sepatu_1.png";
 
 const SideNavMenu = ({ menu }) => {
     const onFinish = (values) => {
