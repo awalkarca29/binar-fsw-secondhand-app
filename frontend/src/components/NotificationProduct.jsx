@@ -11,7 +11,7 @@ const NotificationProduct = ({ imgSrc, productName, openPrice, priceOffer,seller
     const [modalNotificationVisible, setModalNotificationVisible] = useState(false);
     return (
         <div>
-        <div class="mt-2 px-6 pb-5 bg-white-normal rounded-lg shadow lg:w-full sm:w-48 cursor-pointer hover:bg-soft-blue" onClick={() => setModalNotificationVisible(true)}>
+        <div class="mt-2 px-6 pb-5 bg-light-grey rounded-lg shadow lg:w-full sm:w-80 cursor-pointer hover:bg-soft-blue" onClick={() => setModalNotificationVisible(true)}>
             <div class="inline-flex items-center justify-between w-full">
                 <div class="inline-flex items-center">
                 <img className='mt-10' src={imgSrc} />

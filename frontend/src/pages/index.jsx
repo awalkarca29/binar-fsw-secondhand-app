@@ -6,3 +6,5 @@ export { default as Notifications } from './Notifications';
 export { default as ProductDetail } from './ProductDetail';
 export { default as Profile } from './Profile';
 export { default as OfferInformation } from './OfferInformation';
+export { default as AddProduct } from './AddProduct';
+export { default as MyProductSeller } from './MyProductSeller';

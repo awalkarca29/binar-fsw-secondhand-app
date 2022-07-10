@@ -1,7 +1,7 @@
 import './App.css';
 import 'antd/dist/antd.min.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Home, Login, Register, Notifications, ProductSearch, ProductDetail, Profile, OfferInformation } from './pages';
+import { Home, Login, Register, Notifications, ProductSearch, ProductDetail, Profile, OfferInformation, AddProduct, MyProductSeller } from './pages';
 
 function App() {
   return (
@@ -16,6 +16,8 @@ function App() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/notifications" element={<Notifications />} />
           <Route path="/offer-information" element={<OfferInformation />} />
+          <Route path="/add-product" element={<AddProduct />} />
+          <Route path="/myproduct-seller" element={<MyProductSeller />} />
         </Routes>
       </BrowserRouter>
     </div>

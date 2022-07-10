@@ -5,7 +5,7 @@ import sepatu_01 from "../assets/sepatu-01.png";
 function ListProductSeller() {
   return (
     <div class="mt-2 shadow w-[1039px] inline-block bg-light-grey">
-      <div class="inline-flex border-2 border-grey items-center justify-between w-full ">
+      <div class="inline-flex items-center justify-between w-full ">
         <div class="inline-flex items-center my-1 mx-3">
           <img className='pr-4 w-12' src={placeholder} />
           <h3 class="font-semibold text-sm mt-2 text-black-normal">Nama Pembeli</h3>

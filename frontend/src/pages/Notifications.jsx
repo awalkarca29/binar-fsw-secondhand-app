@@ -1,6 +1,6 @@
 import React from 'react'
 import { NavbarLogin, NotificationProduct} from '../components';
-import  Notifications_img  from '../assets/Notifications.svg'; 
+import  Notifications_img  from '../assets/il_notifications.svg'; 
 import Seller from '../assets/il_seller.svg';
 import Buyer from '../assets/il_buyer.svg';
 import { Tab } from '@headlessui/react';
@@ -10,7 +10,7 @@ function notifications() {
     <div>
         <NavbarLogin/>
         <div className="grid grid-cols-4 gap-2 mx-10">
-          <div className="lg:my-40 lg:ml-20 ">
+          <div className="my-40 lg:ml-20 ">
             <img src={Notifications_img} />
           </div>
           <div className="col-span-3 lg:mt-28  sm:mt-20 lg:mx-32">

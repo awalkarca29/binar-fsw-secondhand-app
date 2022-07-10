@@ -20,7 +20,9 @@ function NavbarLogin() {
           <input className="pl-16  placeholder:text-gray-300  sm:w-[600px] px-5 py-2  rounded-md outline-none" placeholder="Placeholder" />
         </div>
         <div className='cursor-pointer hidden md:flex items-center' >
-          <Storefront size={24} color="#fafafa" weight="fill" className='mr-5' />
+          <Link to="/myproduct-seller">
+            <Storefront size={24} color="#fafafa" weight="fill" className='mr-5' />
+          </Link>
           <Link to="/notifications" className="nav-link active">
             <BellRinging size={24} color="#fafafa" weight="fill" className='mr-5' />
           </Link>
