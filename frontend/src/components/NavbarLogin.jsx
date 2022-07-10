@@ -1,9 +1,9 @@
 import React from 'react';
-import logo from '../assets/logo.png';
+import logo from '../assets/Logo.png';
 import { useState } from 'react';
 import { Faders, List, MagnifyingGlass, X, BellRinging, Storefront } from 'phosphor-react';
 import { Transition } from "@headlessui/react";
-import Placeholder from '../assets/placeholder.svg';
+import Placeholder from '../assets/Placeholder.svg';
 import { Link } from 'react-router-dom';
 
 function NavbarLogin() {
@@ -20,7 +20,9 @@ function NavbarLogin() {
           <input className="pl-16  placeholder:text-gray-300  sm:w-[600px] px-5 py-2  rounded-md outline-none" placeholder="Placeholder" />
         </div>
         <div className='cursor-pointer hidden md:flex items-center' >
-          <Storefront size={24} color="#fafafa" weight="fill" className='mr-5' />
+          <Link to="/myproduct-seller">
+            <Storefront size={24} color="#fafafa" weight="fill" className='mr-5' />
+          </Link>
           <Link to="/notifications" className="nav-link active">
             <BellRinging size={24} color="#fafafa" weight="fill" className='mr-5' />
           </Link>
