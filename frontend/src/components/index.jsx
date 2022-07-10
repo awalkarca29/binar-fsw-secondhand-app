@@ -16,5 +16,6 @@ import MenuFilter from "./MenuFilter";
 import ListSellerHistory from "./ListSellerHistory";
 import ListSellerProduct from "./ListSellerProduct";
 import ListOffer from "./ListOffer";
+import ListBuyerHistory from "./ListBuyerHistory";
 
-export { Navbar, NavbarLogin, NotificationProduct, Buttons, CardProduct, CarouselHeadline, InputForm, ModalNotification, ModalBuyer, ModalOffer, Label, Footer, SideNav, SideNavMenu, MenuFilter, ListSellerHistory, ListSellerProduct, ListOffer }; 
+export { Navbar, NavbarLogin, NotificationProduct, Buttons, CardProduct, CarouselHeadline, InputForm, ModalNotification, ModalBuyer, ModalOffer, Label, Footer, SideNav, SideNavMenu, MenuFilter, ListSellerHistory, ListSellerProduct, ListOffer, ListBuyerHistory }; 

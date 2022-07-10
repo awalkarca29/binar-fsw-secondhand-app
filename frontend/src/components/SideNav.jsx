@@ -71,7 +71,7 @@ const SideNav = (imgSrc) => {
             </Col>
             <Col span={12} className="mx-12">
                 <SideNavMenu
-                    menu={menuOption}
+                    menu='history'
                 />
             </Col>
         </Row>
