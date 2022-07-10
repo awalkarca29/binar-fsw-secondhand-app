@@ -1,6 +1,6 @@
 import React from "react";
 import { X } from "phosphor-react";
-import sepatu01 from "../assets/sepatu-01.png";
+import sepatu01 from "../assets/sepatu_1.png";
 
 export default function ModalOffer() {
   const [showModal, setShowModal] = React.useState(false);

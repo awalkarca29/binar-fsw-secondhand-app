@@ -1,7 +1,7 @@
 import React from 'react';
 import { Navbar, Footer } from '../components';
 import  IconLogin  from '../assets/il_login.svg'; 
-import Password_Seen from '../assets/Password_Seen.svg';
+import Password_Seen from '../assets/ic_password_seen.svg';
 
 function login(type) {
   return (
