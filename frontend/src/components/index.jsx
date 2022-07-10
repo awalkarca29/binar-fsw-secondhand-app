@@ -5,7 +5,6 @@ import Buttons from "./Buttons";
 import CardProduct from "./CardProduct";
 import CarouselHeadline from "./CarouselHeadline";
 import InputForm from "./InputForm";
-import CustomModal from "./CustomModal";
 import ModalNotification from "./ModalNotification";
 import Label from "./Label";
 import ModalBuyer from "./ModalBuyer";
@@ -19,4 +18,4 @@ import ListSellerProduct from "./ListSellerProduct";
 import ListOffer from "./ListOffer";
 import ListBuyerHistory from "./ListBuyerHistory";
 
-export { Navbar, NavbarLogin, NotificationProduct, Buttons, CardProduct, CarouselHeadline, InputForm, CustomModal, ModalNotification, ModalBuyer, ModalOffer, Label, Footer, SideNav, SideNavMenu, MenuFilter, ListSellerHistory, ListSellerProduct, ListOffer, ListBuyerHistory }; 
+export { Navbar, NavbarLogin, NotificationProduct, Buttons, CardProduct, CarouselHeadline, InputForm, ModalNotification, ModalBuyer, ModalOffer, Label, Footer, SideNav, SideNavMenu, MenuFilter, ListSellerHistory, ListSellerProduct, ListOffer, ListBuyerHistory }; 

@@ -10,13 +10,13 @@ function notifications() {
     <div>
       <NavbarLogin />
       <div className="grid grid-cols-4 gap-2 mx-10">
-        <div className="lg:my-40 lg:ml-20 ">
+        <div className="my-40 lg:ml-20 ">
           <img src={ImageNotifications} />
         </div>
-        <div className="col-span-3 lg:mt-28  sm:mt-20 lg:mx-32">
+        <div className="col-span-3 lg:mt-28 sm:mt-20 lg:mx-32">
           <h1 className='text-dark-purple font-bold lg:text-2xl sm:text-sm text-left p-3'>Notifications</h1>
           <Tab.Group>
-            <Tab.List className='lg:w-[700px] sm:w-80 flex flex-col sm:flex-row bg-white-normal drop-shadow-lg rounded-t-lg'>
+            <Tab.List className='lg:w-full sm:w-80 flex flex-col sm:flex-row bg-white-normal drop-shadow-lg rounded-t-lg'>
               <Tab className='px-4 py-2 -mb-px font-semibold text-purple border-b-2 border-dark-purple rounded-t opacity-50'> All</Tab>
               <Tab className='text-purple py-4 px-6 block hover:text-medium-blue focus:outline-none'>Seller</Tab>
               <Tab className='text-purple py-4 px-6 block hover:text-medium-blue focus:outline-none'>Buyer</Tab>

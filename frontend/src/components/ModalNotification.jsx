@@ -6,16 +6,8 @@ import IconStore from '../assets/ic_store.svg';
 import IconLocation from '../assets/ic_location.svg';
 
 const ModalNotification = ({ modalNotificationVisible, setModalNotificationVisible, imgSrc, productName, seller, locationSeller, date, openPrice, finalPrice }) => {
-    // const [modalNotificationVisible, setModalNotificationVisible] = useState(false);
     return (
         <div>
-            {/* <button
-                className="bg-medium-purple text-light-grey active:bg-dark-purple font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                type="button"
-                onClick={() => setModalNotificationVisible(true)}
-            >
-                Open Modal
-            </button> */}
             {modalNotificationVisible ? (
                 <div>
                     <div
