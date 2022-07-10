@@ -2,7 +2,7 @@ import React from 'react';
 import placeholder from "../assets/Placeholder.svg";
 import sepatu_01 from "../assets/sepatu-01.png";
 
-function ListProductSeller() {
+function ListSellerHistory() {
   return (
     <div class="mt-2 shadow w-[1039px] inline-block bg-light-grey">
       <div class="inline-flex border-2 border-grey items-center justify-between w-full ">
@@ -36,4 +36,4 @@ function ListProductSeller() {
   )
 }
 
-export default ListProductSeller
+export default ListSellerHistory

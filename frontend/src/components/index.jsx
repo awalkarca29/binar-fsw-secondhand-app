@@ -13,7 +13,8 @@ import Footer from "./Footer";
 import SideNav from "./SideNav";
 import SideNavMenu from "./SideNavMenu";
 import MenuFilter from "./MenuFilter";
-import ListProductSeller from "./ListProductSeller";
+import ListSellerHistory from "./ListSellerHistory";
+import ListSellerProduct from "./ListSellerProduct";
 import ListOffer from "./ListOffer";
 
-export { Navbar, NavbarLogin, NotificationProduct, Buttons, CardProduct, CarouselHeadline, InputForm, ModalNotification, ModalBuyer, ModalOffer, Label, Footer, SideNav, SideNavMenu, MenuFilter, ListProductSeller, ListOffer }; 
+export { Navbar, NavbarLogin, NotificationProduct, Buttons, CardProduct, CarouselHeadline, InputForm, ModalNotification, ModalBuyer, ModalOffer, Label, Footer, SideNav, SideNavMenu, MenuFilter, ListSellerHistory, ListSellerProduct, ListOffer }; 

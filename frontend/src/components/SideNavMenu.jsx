@@ -1,8 +1,5 @@
 import { Row, Col, Form, Input } from 'antd';
 import PasswordSeen from '../assets/Password_Seen.svg';
-import Label from './Label';
-import ListProductSeller from './ListProductSeller';
-import placeholder from "../assets/Placeholder.svg";
 import sepatu_01 from "../assets/sepatu-01.png";
 
 const SideNavMenu = ({ menu }) => {
