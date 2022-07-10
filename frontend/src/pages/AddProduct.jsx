@@ -4,6 +4,7 @@ import { Select } from 'antd';
 import { Upload, Button } from 'antd';
 import ic_image from '../assets/ic_image.svg';
 import Arrow_left from "../assets/ic_arrow_left.svg";
+import { Link } from 'react-router-dom';
 
 const { Option } = Select;
 
@@ -14,7 +15,9 @@ function AddProduct() {
   return (
     <div>
         <NavbarLogin/>
-        <img className='lg:mt-40 sm:mt-36 lg:mx-12 sm:mx-5 absolute' src={Arrow_left}/>
+        <Link to="/myproduct-seller">
+          <img className='lg:mt-40 sm:mt-36 lg:mx-12 sm:mx-5 absolute cursor-pointer' src={Arrow_left}/>
+        </Link>
         <div className="grid md:grid-cols-3 md:gap-2 mx-10 ">
           <div className=" lg:my-48 sm:mt-40 sm:mb-10 lg:ml-20 lg:mx-60 sm:mx-16 rounded-lg shadow-lg bg-light-grey lg:h-72 sm:h-56 lg:w-full sm:w-80"> 
             <Upload.Dragger 

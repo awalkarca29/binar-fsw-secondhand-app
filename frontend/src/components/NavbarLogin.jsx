@@ -1,9 +1,9 @@
 import React from 'react';
-import logo from '../assets/logo.png';
+import logo from '../assets/Logo.png';
 import { useState } from 'react';
 import { Faders, List, MagnifyingGlass, X, BellRinging, Storefront } from 'phosphor-react';
 import { Transition } from "@headlessui/react";
-import Placeholder from '../assets/placeholder.svg';
+import Placeholder from '../assets/Placeholder.svg';
 import { Link } from 'react-router-dom';
 
 function NavbarLogin() {
