@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from '../assets/il_logo.png';
+import logo from '../assets/logo.png';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { Faders, List, MagnifyingGlass, X } from 'phosphor-react';

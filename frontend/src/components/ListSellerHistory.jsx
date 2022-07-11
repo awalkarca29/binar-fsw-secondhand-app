@@ -1,5 +1,5 @@
 import React from 'react';
-import placeholder from "../assets/il_placeholder.svg";
+import placeholder from "../assets/placeholder.svg";
 import sepatu_01 from "../assets/sepatu_1.png";
 
 const ListSellerHistory = ({ type, buyerName, productName, openPrice, priceOffer, date }) => {

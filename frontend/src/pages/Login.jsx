@@ -7,7 +7,7 @@ function login(type) {
   return (
     <div >
       <Navbar />
-      <div className="mx-20 my-24 p-3 border-0 rounded-lg shadow-lg  flex flex-col lg:w-[1184px] sm:w-[450px] lg:h-[508px]bg-white-normal  outline-none focus:outline-none">
+      <div className="mx-20 my-24 p-3 border-0 rounded-lg shadow-lg  flex flex-col lg:w-[1184px] sm:w-[450px] lg:h-[508px] bg-white-normal  outline-none focus:outline-none">
         <div class="grid md:grid-cols-2 md:gap-2">
           <div className='lg:mx-20 lg:my-20 sm:mx-32 sm:my-5 lg:w-[400px] sm:w-40'> 
             <img src={IconLogin} /></div>
