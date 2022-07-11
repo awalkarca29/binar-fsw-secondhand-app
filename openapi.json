@@ -1,0 +1,1907 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Secondhand OpenAPI.",
+    "version": "1.0.0",
+    "description": "OpenAPI for Secondhand RESTful API.",
+    "license": {
+      "name": "APACHE 2.0",
+      "url": "https://www.apache.org/licenses/LICENSE-2.0"
+    }
+  },
+  "servers": [
+    {
+      "description": "Secondhand localhost API server.",
+      "url": "http://localhost:3001"
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "description": "JWT Authorization",
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "responses": {
+      "400": {
+        "description": "Bad Request.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "string"
+                },
+                "message": {
+                  "type": "string"
+                }
+              }
+            },
+            "examples": {
+              "Dummy": {
+                "description": "Dummy 400 response",
+                "value": {
+                  "code": "400 Bad Request.",
+                  "message": "The server cannot or will not process the request due to something that is perceived to be a client error."
+                }
+              }
+            }
+          }
+        }
+      },
+      "401": {
+        "description": "Unauthorized.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "string"
+                },
+                "message": {
+                  "type": "string"
+                }
+              }
+            },
+            "examples": {
+              "Dummy": {
+                "description": "Dummy 401 response",
+                "value": {
+                  "code": "401 Unauthorized.",
+                  "message": "The client request has not been completed because it lacks valid authentication credentials for the requested resource."
+                }
+              }
+            }
+          }
+        }
+      },
+      "403": {
+        "description": "Forbidden.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "string"
+                },
+                "message": {
+                  "type": "string"
+                }
+              }
+            },
+            "examples": {
+              "Dummy": {
+                "description": "Dummy 403 response",
+                "value": {
+                  "code": "403 Forbidden.",
+                  "message": "The server understands the request but refuses to authorize it."
+                }
+              }
+            }
+          }
+        }
+      },
+      "404": {
+        "description": "Not found.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "string"
+                },
+                "message": {
+                  "type": "string"
+                }
+              }
+            },
+            "examples": {
+              "Dummy": {
+                "description": "Dummy 404 response",
+                "value": {
+                  "code": "404 Not Found.",
+                  "message": "The server cannot find the requested resource."
+                }
+              }
+            }
+          }
+        }
+      },
+      "500": {
+        "description": "Internal server error.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "string"
+                },
+                "message": {
+                  "type": "string"
+                }
+              }
+            },
+            "examples": {
+              "Dummy": {
+                "description": "Dummy 500 response",
+                "value": {
+                  "code": "500 Internal Server Error.",
+                  "message": "The server encountered an unexpected condition that prevented it from fulfilling the request."
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "paths": {
+    "/api/v1/user/register": {
+      "post": {
+        "tags": ["User"],
+        "summary": "Register.",
+        "description": "Register account to Secondhand Web.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string",
+                    "format": "password"
+                  }
+                }
+              },
+              "examples": {
+                "Dummy": {
+                  "description": "Register dummy request body.",
+                  "value": {
+                    "name": "Awal",
+                    "email": "awal@gmail.com",
+                    "password": "123456"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "Dummy": {
+                    "description": "Dummy 200 response.",
+                    "value": {
+                      "code": "200 OK.",
+                      "message": "Registration success."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    },
+
+    "/api/v1/user/login": {
+      "post": {
+        "tags": ["User"],
+        "summary": "Login.",
+        "description": "Login to Secondhand web.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "example": "awal@gmail.com"
+                  },
+                  "password": {
+                    "type": "string",
+                    "example": "123456"
+                  }
+                }
+              }, 
+              "examples": {
+                "Dummy 1": {
+                  "description": "Login dummy.",
+                  "value": {
+                    "email": "awal@gmail.com",
+                    "password": "123456"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "Dummy": {
+                    "description": "Dummy 200 response.",
+                    "value": {
+                      "code": "200 OK.",
+                      "message": "Login success."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    },
+
+    "/api/v1/user/{userId}/profile": {
+      "get": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": ["User"],
+        "summary": "Get user profile.",
+        "description": "Get current user profile.",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "description": "Get user id.",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "examples": {
+              "Dummy": {
+                "description": "Dummy user id.",
+                "value": "1"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                "properties": {
+                  "code": {
+                    "type": "string"
+                  },
+                  "message": {
+                    "type": "string"
+                  },
+                  "name": {
+                      "type": "string"
+                  },
+                  "address": {
+                      "type": "string"
+                  },
+                  "phone": {
+                      "type": "string"
+                  },
+                  "image": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  }
+                }
+                },
+                "examples": {
+                  "Dummy": {
+                    "description": "Dummy 200 response.",
+                    "value": {
+                      "code": "200 OK.",
+                      "message": "Get profile success.",
+                      "name": "Awal",
+                      "address": "Jl. Kaki No. 46",
+                      "phone": "081234567890",
+                      "image": "asdasdasdasd.png",
+                      "email": "awal@gmail.com"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      },
+      "put": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": ["User"],
+        "summary": "Edit user profile by id.",
+        "description": "Edit current user profile.",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "description": "Get user id.",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "examples": {
+              "Dummy": {
+                "description": "Dummy user id.",
+                "value": "1"
+              }
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "address": {
+                    "type": "string"
+                  },
+                  "phone": {
+                    "type": "string"
+                  },
+                  "image": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  }
+                }
+              },
+              "examples": {
+                "Dummy": {
+                  "description": "Edit user dummy.",
+                  "value": {
+                    "name": "Awwalul",
+                    "address": "Jl. Jalan No. 24",
+                    "phone": "081233211233",
+                    "image": "zxczxczxc.png",
+                    "email": "awwalul@gmail.com"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "Dummy": {
+                    "description": "Dummy 200 response.",
+                    "value": {
+                      "code": "200 OK.",
+                      "message": "Edit profile success."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    },
+
+    "/api/v1/user/{userId}/resetPassword": {
+      "put": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": ["User"],
+        "summary": "Reset password user.",
+        "description": "Reset password user by user id.",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "description": "Get user id.",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "examples": {
+              "Dummy": {
+                "description": "Dummy user id.",
+                "value": "1"
+              }
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "oldPass": {
+                    "type": "string"
+                  },
+                  "newPass": {
+                    "type": "string"
+                  },
+                  "confirmNewPass": {
+                    "type": "string"
+                  }
+                }
+              },
+              "examples": {
+                "Dummy": {
+                  "description": "Reset password dummy.",
+                  "value": {
+                    "oldPass": "123456",
+                    "newPass": "654321",
+                    "confirmNewPass": "654321"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "Dummy": {
+                    "description": "Dummy 200 response.",
+                    "value": {
+                      "code": "200 OK.",
+                      "message": "Reset password success."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    },
+
+    "/api/v1/user/{userId}/notification/": {
+      "get": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": ["User"],
+        "summary": "Get user notification.",
+        "description": "Get all current user notification.",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "description": "Get user id.",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "examples": {
+              "Dummy": {
+                "description": "Dummy user id.",
+                "value": "1"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "notification": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "integer"
+                          },
+                          "name": {
+                            "type": "string"
+                          },
+                          "description": {
+                            "type": "string"
+                          },
+                          "price": {
+                            "type": "integer"
+                          },
+                          "dateTime": {
+                            "type": "string"
+                          },
+                          "bargain": {
+                            "type": "integer"
+                          },
+                          "buyerName": {
+                            "type": "string"
+                          },
+                          "buyerAddress": {
+                            "type": "string"
+                          },
+                          "status": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Dummy": {
+                    "description": "Dummy 200 response.",
+                    "value": {
+                      "code": "200 OK.",
+                      "message": "Get all notification success.",
+                      "notification": [
+                        {
+                          "id": 1,
+                          "name": "Blue Jeans",
+                          "description": "Preloved product.",
+                          "price": 500000,
+                          "dateTime": "20 June 2022, 14:04",
+                          "bargain": 400000,
+                          "buyerName": "Ajeng",
+                          "buyerAddress": "Jl. Spontan Uhuy No. 46",
+                          "status": "Pending."
+                        },
+                        {
+                          "id": 2,
+                          "name": "Red Jacket",
+                          "description": "Very good product.",
+                          "price": 250000,
+                          "dateTime": "20 June 2022, 14:04",
+                          "bargain": 50000,
+                          "buyerName": "Maysha",
+                          "buyerAddress": "Jl. Ke Mana Aja No. 45",
+                          "status": "Pending."
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    },
+
+    "/api/v1/user/{userId}/seller/product": {
+      "get": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": ["Seller"],
+        "summary": "Get seller product.",
+        "description": "Get all current seller product.",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "description": "Get user id.",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "examples": {
+              "Dummy": {
+                "description": "Dummy user id.",
+                "value": "1"
+              }
+            } 
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "required": false,
+            "description": "Filter product by name.",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "price": {
+                    "type": "integer"
+                  },
+                  "image": {
+                    "type": "string"
+                  },
+                  "isSold": {
+                    "type": "boolean"
+                  }
+                }
+              }
+            },
+            "examples": {
+              "Dummy": {
+                "description": "Dummy filter example.",
+                "value": [
+                  {
+                    "name": "Blue Jeans",
+                    "price": 500000,
+                    "image": "asdawqexzc.png",
+                    "isSold": false
+                  },
+                  {
+                    "name": "Red Jacket",
+                    "price": 250000,
+                    "image": "dfsgsdfgdfg.png",
+                    "isSold": false
+                  }
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "product": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "name": {
+                            "type": "string"
+                          },
+                          "price": {
+                            "type": "integer"
+                          },
+                          "image": {
+                            "type": "string"
+                          },
+                          "isSold": {
+                            "type": "boolean"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Dummy": {
+                    "description": "Dummy 200 response.",
+                    "value": {
+                      "code": "200 OK.",
+                      "message": "Get all seller product success.",
+                      "product": [
+                        {
+                          "name": "Blue Jeans",
+                          "price": 500000,
+                          "image": "asdawqexzc.png",
+                          "isSold": false
+                        },
+                        {
+                          "name": "Red Jacket",
+                          "price": 250000,
+                          "image": "dfsgsdfgdfg.png",
+                          "isSold": false
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      },
+      "post": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": ["Seller"],
+        "summary": "Insert new product.",
+        "description": "Insert new seller product to database.",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "description": "Get user id.",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "examples": {
+              "Dummy": {
+                "description": "Dummy user id.",
+                "value": "1"
+              }
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "price": {
+                    "type": "integer"
+                  },
+                  "category": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "image": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "examples": {
+                "Dummy": {
+                  "description": "Example dummy data.",
+                  "value": {
+                    "name": "Blue Jeans",
+                    "description": "Preloved product.",
+                    "price": 500000,
+                    "category": ["Men", "Clothes"],
+                    "image": ["asdasdasd.png", "asdasdwerrg.png", "asdewfgdfg.png"]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "Dummy": {
+                    "description": "Dummy 200 response.",
+                    "value": {
+                      "code": "200 OK.",
+                      "message": "Insert new product success."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    },
+
+    "/api/v1/user/{userId}/seller/product/{productId}": {
+      "put": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": ["Seller"],
+        "summary": "Edit user product.",
+        "description": "Edit current user product by product id.",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "description": "Get user id.",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "examples": {
+              "Dummy": {
+                "description": "Dummy user id.",
+                "value": "1"
+              }
+            }
+          },
+          {
+            "name": "productId",
+            "in": "path",
+            "required": true,
+            "description": "get user product id.",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "examples": {
+              "Dummy": {
+                "description": "Dummy user product id.",
+                "value": "1"
+              }
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "price": {
+                    "type": "integer"
+                  },
+                  "image": {
+                    "type": "string"
+                  }
+                }
+              },
+              "examples": {
+                "Dummy": {
+                  "description": "Example dummy data.",
+                  "value": {
+                    "name": "Red Jeans",
+                    "description": "Useful product.",
+                    "price": 400000,
+                    "image": "zxccxz.png"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "Dummy": {
+                    "description": "Dummy 200 response.",
+                    "value": {
+                      "code": "200 OK.",
+                      "message": "Edit product success."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      },
+      "delete": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": ["Seller"],
+        "summary": "Delete user product.",
+        "description": "Delete user product by id.",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "description": "Get user id.",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "examples": {
+              "Dummy": {
+                "description": "Dummy user id.",
+                "value": "1"
+              }
+            }
+          },
+          {
+            "name": "productId",
+            "in": "path",
+            "required": true,
+            "description": "get user product id.",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "examples": {
+              "Dummy": {
+                "description": "Dummy user product id.",
+                "value": "1"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "Dummy": {
+                    "description": "Dummy 200 response.",
+                    "value": {
+                      "code": "200 OK.",
+                      "message": "Delete product success."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    },
+
+    "/api/v1/user/{userId}/seller/history/": {
+      "get": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": ["Seller"],
+        "summary": "Get seller history.",
+        "description": "Get all current seller history.",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "description": "Get user id.",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "examples": {
+              "Dummy": {
+                "description": "Dummy user id.",
+                "value": "1"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "history": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string"
+                          },
+                          "name": {
+                            "type": "string"
+                          },
+                          "price": {
+                            "type": "integer"
+                          },
+                          "bargain": {
+                            "type": "integer"
+                          },
+                          "category": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          },
+                          "dateTime": {
+                            "type": "string"
+                          },
+                          "image": {
+                            "type": "string"
+                          },
+                          "buyerName": {
+                            "type": "string"
+                          },
+                          "status": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Dummy": {
+                    "description": "Dummy 200 response.",
+                    "value": {
+                      "code": "200 OK.",
+                      "message": "Get all current seller history success.",
+                      "history": [
+                        {
+                          "id": 1,
+                          "name": "Blue Jeans",
+                          "price": 500000,
+                          "bargain": 400000,
+                          "category": ["Men", "Clothes"],
+                          "dateTime": "19 June 2022, 13:11",
+                          "image": "asdrgxvc.png",
+                          "buyerName": "Ajeng",
+                          "status": "Completed"
+                        },
+                        {
+                          "id": 2,
+                          "name": "Red Jacket",
+                          "price": 250000,
+                          "bargain": 50000,
+                          "category": ["Men", "Pants"],
+                          "dateTime": "18 June 2022, 12:10",
+                          "image": "asddfsec.png",
+                          "buyerName": "Maysha",
+                          "status": "Canceled"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    },
+
+    "/api/v1/product": {
+      "get": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": ["Product"],
+        "summary": "Get all product.",
+        "description": "Get all product in database",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "required": false,
+            "description": "Filter product by name.",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "price": {
+                    "type": "integer"
+                  },
+                  "category": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "address": {
+                    "type": "string"
+                  },
+                  "image": {
+                    "type": "string"
+                  },
+                  "isSold": {
+                    "type": "boolean"
+                  }
+                }
+              }
+            },
+            "examples": {
+              "Dummy": {
+                "description": "Dummy filter example.",
+                "value": [
+                  {
+                    "name": "Blue Jeans",
+                    "price": 500000,
+                    "category": ["Men", "Pants"],
+                    "address": "Jl. Kaki No. 2",
+                    "image": "asdawqexzc.png",
+                    "isSold": false
+                  },
+                  {
+                    "name": "Red Jacket",
+                    "price": 250000,
+                    "category": ["Men", "Clothes"],
+                    "address": "Jl. Jalan No. 3",
+                    "image": "dfsgsdfgdfg.png",
+                    "isSold": false
+                  }
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "product": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "name": {
+                            "type": "string"
+                          },
+                          "price": {
+                            "type": "integer"
+                          },
+                          "category": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          },
+                          "address": {
+                            "type": "string"
+                          },
+                          "image": {
+                            "type": "string"
+                          },
+                          "isSold": {
+                            "type": "boolean"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Dummy": {
+                    "description": "Dummy 200 response.",
+                    "value": {
+                      "code": "200 OK.",
+                      "message": "Get all product from database success.",
+                      "product": [
+                        {
+                          "name": "Blue Jeans",
+                          "price": 500000,
+                          "category": ["Men", "Pants"],
+                          "address": "Jl. Kaki No. 2",
+                          "image": "asdawqexzc.png",
+                          "isSold": false
+                        },
+                        {
+                          "name": "Red Jacket",
+                          "price": 250000,
+                          "category": ["Men", "Clothes"],
+                          "address": "Jl. Jalan No. 3",
+                          "image": "dfsgsdfgdfg.png",
+                          "isSold": false
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    },
+
+    "/api/v1/product/{productId}/detail": {
+      "get": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": ["Product"],
+        "summary": "Get product detail.",
+        "description": "Get product detail by product id.",
+        "parameters": [
+          {
+            "name": "productId",
+            "in": "path",
+            "required": true,
+            "description": "get user product id.",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "examples": {
+              "Dummy": {
+                "description": "Dummy user product id.",
+                "value": "1"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "price": {
+                        "type": "integer"
+                    },
+                    "image": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "sellerName": {
+                      "type": "string"
+                    },
+                    "sellerAddress": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "Dummy": {
+                    "description": "Dummy 200 response.",
+                    "value": {
+                      "code": "200 OK.",
+                      "message": "Get detail product success.",
+                      "name": "Red Jacket",
+                      "description": "Preloved product.",
+                      "price": "250000",
+                      "image": ["qweqweqwe.png", "asdasdasd.png", "cvdfsdgfsdfg.png"],
+                      "sellerName": "Yuda",
+                      "sellerAddress": "Jl. In Aja Dulu No. 14"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      },
+      "post": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": ["Product"],
+        "summary": "Bargain product.",
+        "description": "Bargain product by product id",
+        "parameters": [
+          {
+            "name": "productId",
+            "in": "path",
+            "required": true,
+            "description": "get user product id.",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "examples": {
+              "Dummy": {
+                "description": "Dummy user product id.",
+                "value": "1"
+              }
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "price": {
+                    "type": "integer"
+                  }
+                }
+              },
+              "examples": {
+                "Dummy": {
+                  "description": "Example dummy data.",
+                  "value": {
+                    "price": 300000
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "Dummy": {
+                    "description": "Dummy 200 response.",
+                    "value": {
+                      "code": "200 OK.",
+                      "message": "Bargain product success."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    },
+
+    "/api/v1/user/{userId}/bargainHistory/": {
+      "get": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": ["User"],
+        "summary": "Get user bargain history",
+        "description": "Get current user all bargain history from database.",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "description": "Get user id.",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "examples": {
+              "Dummy": {
+                "description": "Dummy user id.",
+                "value": "1"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "bargain": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "integer"
+                          },
+                          "name": {
+                            "type": "string"
+                          },
+                          "description": {
+                            "type": "string"
+                          },
+                          "category": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          },
+                          "bargainPrice": {
+                            "type": "integer"
+                          },
+                          "dateTime": {
+                            "type": "string"
+                          },
+                          "image": {
+                            "type": "string"
+                          },
+                          "status": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Dummy": {
+                    "description": "Dummy 200 response.",
+                    "value": {
+                      "code": "200 OK.",
+                      "message": "Get all bargain list success.",
+                      "bargain": [
+                        {
+                          "id": 1,
+                          "name": "Blue Jeans",
+                          "description": "Preloved product.",
+                          "category": ["Men", "Clothes"],
+                          "bargainPrice": 400000,
+                          "dateTime": "19 June 2022, 13:11",
+                          "image": "asdrgxvc.png",
+                          "status": "Completed"
+                        },
+                        {
+                          "id": 2,
+                          "name": "Red Jacket",
+                          "description": "Very good product.",
+                          "category": ["Men", "Pants"],
+                          "bargainPrice": 50000,
+                          "dateTime": "18 June 2022, 12:10",
+                          "image": "asddfsec.png",
+                          "status": "Canceled"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    }
+
+  }
+}
