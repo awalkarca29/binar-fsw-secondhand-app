@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Row, Col } from 'antd';
 
 import IconClose from '../assets/ic_close.svg';

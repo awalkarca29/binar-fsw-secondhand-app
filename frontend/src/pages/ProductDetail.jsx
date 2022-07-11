@@ -1,4 +1,5 @@
-import { Navbar, Footer, Buttons, ModalBuyer } from '../components';
+import React, { useState } from 'react';
+import { Navbar, Footer, ModalBuyer } from '../components';
 import { Col, Row, Image } from 'antd';
 import ImageProductDetail1 from '../assets/img_product_detail_1.png';
 import ImageProductDetail2 from '../assets/img_product_detail_2.png';
@@ -6,7 +7,9 @@ import ImageProductDetail3 from '../assets/img_product_detail_3.png';
 import ImageProductDetail4 from '../assets/img_product_detail_4.png';
 import ImageProfile from '../assets/img_profile.png';
 
-const productDetail = (imgSrc, type) => {
+const ProductDetail = (imgSrc, type) => {
+    const [modalNotificationVisible, setModalNotificationVisible] = useState(false);
+
     return (
         <div>
             <Navbar />
@@ -42,12 +45,10 @@ const productDetail = (imgSrc, type) => {
                             <p className="text-black-normal text-lg font-bold">Rp. 950.000</p>
                             <p className="text-black-normal font-semibold">Description Product</p>
                             <p className="text-left w-11/12">Size 7/25 CM/Eur 40. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed pellentesque morbi donec senectus egestas viverra ut. Sagittis porta tortor augue at morbi pulvinar. Pellentesque enim mauris dui molestie et at. Ullamcorper posuere arcu molestie erat tristique enim, eu morbi. </p>
-                            {/* <button className={`${type = 'light-grey' ? 'bg-medium-purple text-light-grey' : 'bg-transparent text-dark-purple'} text-center items-center md:w-80 w-full sm:text-sm hover:text-dark-purple hover:bg-light-grey border border-dark-purple font-bold py-2 md:px-4 rounded flex justify-center mt-4`}>
+                            <button onClick={() => setModalNotificationVisible(true)} className={`${type = 'light-grey' ? 'bg-medium-purple text-light-grey' : 'bg-transparent text-dark-purple'} text-center items-center md:w-80 w-full sm:text-sm hover:text-dark-purple hover:bg-light-grey border border-dark-purple font-bold py-2 md:px-4 rounded flex justify-center mt-4`}>
                                 <span>Buy</span>
-                            </button> */}
-                            <ModalBuyer />
+                            </button>
                         </div>
-                        <ModalBuyer />
                         <div className="container flex flex-row justify-start items-start bg-light-grey drop-shadow-md rounded-md w-96 my-2 p-8">
                             <Image
                                 width={40}
@@ -64,8 +65,16 @@ const productDetail = (imgSrc, type) => {
             </Row>
             <br /><br /><br /><br />
             <Footer />
+            {
+                modalNotificationVisible ? (
+                    <ModalBuyer
+                    modalNotificationVisible={modalNotificationVisible}
+                    setModalNotificationVisible={setModalNotificationVisible}
+                    />
+                ) : null
+            }
         </div>
     )
 }
 
-export default productDetail;
+export default ProductDetail;
