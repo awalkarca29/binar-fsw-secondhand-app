@@ -1,7 +1,7 @@
 import React from 'react';
 import { Navbar, Footer, ListOffer } from '../components';
 import sepatu01 from "../assets/sepatu_1.png";
-import Placeholder from "../assets/Placeholder.svg";
+import Placeholder from "../assets/placeholder.svg";
 import Arrow_left from "../assets/ic_arrow_left.svg";
 import { Link } from 'react-router-dom';
 
