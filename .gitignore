@@ -1,2 +1,5 @@
+config/
+node_modules/
+package-lock.json
+coverage
 .env
-node_modules

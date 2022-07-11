@@ -10,6 +10,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       this.belongsTo(models.User, { foreignKey: "userId" });
       this.belongsTo(models.Product, { foreignKey: "productId" });
+      this.belongsTo(models.Status, { foreignKey: "statusId" });
       this.hasOne(models.History, { foreignKey: "bargainId" });
     }
   }
@@ -17,8 +18,11 @@ module.exports = (sequelize, DataTypes) => {
     {
       price: DataTypes.INTEGER,
       status: DataTypes.STRING,
+      notificationTime: DataTypes.DATE,
+      isRead: DataTypes.BOOLEAN,
       userId: DataTypes.INTEGER,
       productId: DataTypes.INTEGER,
+      statusId: DataTypes.INTEGER,
     },
     {
       sequelize,
