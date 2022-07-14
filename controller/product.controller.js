@@ -1,8 +1,8 @@
 const db = require("../models");
-const Product = db.Product;
-const productService = require("../service/product.service.js");
-const userRepository = require("../repository/users.repository.js");
 const jwtUtil = require("../util/jwt.util.js");
+const productService = require("../service/product.service.js");
+const userRepository = require("../repository/user.repository.js");
+const Product = db.product;
 
 exports.findAllProductApi = async (req, res) => {
   const products = await productService.findAllProducts();
@@ -28,7 +28,7 @@ exports.findProductByUserIdApi = async (req, res) => {
   const decodedToken = await jwtUtil.decodeToken(token);
   const user = await userRepository.findById(decodedToken.id);
 
-  console.log(`CONTROLLER User detected is `, user.id);
+  // console.log(`CONTROLLER User detected is `, user.id);
 
   const products = await productService.findProductByUserId(req, user.id);
 
@@ -68,21 +68,6 @@ exports.updateProductApi = async (request, response) => {
       .json({ error: `Products not found with ids : ${request.params.id}` });
   } else {
     response.status(200).json({ message: "Updated successfully" });
-  }
-};
-
-exports.updateBargainApi = async (req, res) => {
-  const products = await productService.updateProductBargain(
-    req,
-    req.params.id
-  );
-
-  if (products == null) {
-    res
-      .status(404)
-      .json({ error: `Products not found with id : ${req.params.id}` });
-  } else {
-    res.json({ message: "Updated successfully" });
   }
 };
 

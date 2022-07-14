@@ -1,20 +1,22 @@
-const express = require("express");
-const app = express.Router();
-const port = 3000;
+// const express = require("express");
+// const cors = require("cors");
+// const router = express.Router();
+// const notificationController = require("../controller/notification.controller.js");
+// const bargainController = require("../controller/bargain.controller.js");
 
-const {
-  getNotification,
-  createNewBargainApi,
-} = require("../controller/notification.controller");
+// const authMiddleware = require("../middleware/middleware.js");
+
+// const corsOptions = {
+//   origin: "*",
+// };
 
 // app.get(
-//   "/api/v1/user/:userId/:productId/:bargainId/notification/",
-//   notification
+//   "/api/v1/user/:userId/notification/",
+//   notificationController.getNotification
 // );
-app.get("/api/v1/user/:userId/notification/", getNotification);
-app.post("/api/v1/product/:productId/detail", createNewBargainApi);
+// app.post(
+//   "/api/v1/product/:productId/detail",
+//   bargainController.createNewBargainApi
+// );
 
-// app.get("/api/v1/user/:userId/notification/", notifSeller);
-// app.get("/api/v1/user/:userId/notification/", notifBuyer);
-
-module.exports = app;
+// module.exports = app;

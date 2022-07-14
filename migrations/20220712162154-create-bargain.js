@@ -11,12 +11,6 @@ module.exports = {
       price: {
         type: Sequelize.INTEGER,
       },
-      status: {
-        type: Sequelize.STRING,
-      },
-      notificationTime: {
-        type: Sequelize.DATE,
-      },
       isRead: {
         type: Sequelize.BOOLEAN,
       },

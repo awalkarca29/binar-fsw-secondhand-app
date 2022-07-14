@@ -48,14 +48,12 @@ db.user = require("./user.js")(sequelize, Sequelize);
 db.category = require("./category.js")(sequelize, Sequelize);
 db.product = require("./product.js")(sequelize, Sequelize);
 db.bargain = require("./bargain.js")(sequelize, Sequelize);
-db.history = require("./history.js")(sequelize, Sequelize);
 db.status = require("./status.js")(sequelize, Sequelize);
 
 db.user.associate(db);
 db.category.associate(db);
 db.product.associate(db);
 db.bargain.associate(db);
-db.history.associate(db);
 db.status.associate(db);
 
 module.exports = db;

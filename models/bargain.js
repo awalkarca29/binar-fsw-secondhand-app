@@ -11,13 +11,11 @@ module.exports = (sequelize, DataTypes) => {
       this.belongsTo(models.User, { foreignKey: "userId" });
       this.belongsTo(models.Product, { foreignKey: "productId" });
       this.belongsTo(models.Status, { foreignKey: "statusId" });
-      this.hasOne(models.History, { foreignKey: "bargainId" });
     }
   }
   Bargain.init(
     {
       price: DataTypes.INTEGER,
-      status: DataTypes.STRING,
       notificationTime: DataTypes.DATE,
       isRead: DataTypes.BOOLEAN,
       userId: DataTypes.INTEGER,
