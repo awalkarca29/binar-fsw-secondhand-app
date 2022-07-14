@@ -20,7 +20,7 @@ module.exports = {
         image:
           "https://res.cloudinary.com/dcisuvowd/image/upload/v1656515022/jam1_blzizc.jpg",
         isSold: false,
-        userId: 2,
+        userId: 1,
         categoryId: 2,
         createdAt: new Date(),
         updatedAt: new Date(),
@@ -33,7 +33,7 @@ module.exports = {
         image:
           "https://res.cloudinary.com/dcisuvowd/image/upload/v1656515085/jam2_yth6jk.jpg",
         isSold: false,
-        userId: 3,
+        userId: 2,
         categoryId: 2,
         createdAt: new Date(),
         updatedAt: new Date(),
