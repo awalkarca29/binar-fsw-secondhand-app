@@ -1,0 +1,29 @@
+{
+  "development": {
+    "username": "finalproject",
+    "password": "123456",
+    "database": "finalproject_development",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "root",
+    "password": null,
+    "database": "database_test",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "ewlucmgxxqsfbj",
+    "password": "5f2a139fc0eea8a56afb4bfeb7e9362c08062a2649ab224419164efaff67ba06",
+    "database": "dpcl7778pvpa1",
+    "host": "ec2-54-152-28-9.compute-1.amazonaws.com",
+    "dialect": "postgres",
+    "dialectOptions": {
+      "ssl": {
+          "require": true,
+          "rejectUnauthorized": false
+      }
+    }
+  }
+}
