@@ -3,8 +3,8 @@ import {  ModalOffer } from '../components';
 
 const ListOffer= ({ imgSrc, nameOrder, phone, address, priceOffer }) => {
   return (
-    <div>
-        <div class="lg:mt-2 sm:mt-1 lg:mx-56 sm:mx-24 my-5 px-6 pb-5 bg-light-grey rounded-lg shadow lg:w-[913px] sm:w-[500px]">
+    <div className='flex justify-center'>
+        <div class="lg:mt-2 sm:mt-1 my-5 px-6 pb-5 bg-light-grey rounded-lg shadow lg:w-[913px] sm:w-[500px]">
             <div class="inline-flex items-center justify-between w-full">
                 <img className='mt-14 cursor-pointer' src={imgSrc} />
                 <h3 class="absolute font-semibold lg:text-base sm:text-sm text-black-normal ml-16">{nameOrder}</h3>

@@ -9,7 +9,7 @@ function OfferInformation() {
   return (
     <div>
       <Navbar/>
-      <div className='inline-flex'>
+      <div className='inline-flex items-center'>
         <Link to="/myproduct-seller">
         <img className='lg:mt-28 sm:mt-28 cursor-pointer' src={Arrow_left}/>
         </Link>

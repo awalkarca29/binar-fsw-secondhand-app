@@ -1,19 +1,61 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Navbar, Footer } from '../components';
 import  IconLogin  from '../assets/il_login.svg'; 
 import Password_Seen from '../assets/ic_password_seen.svg';
+import { GoogleLogin, GoogleLogout } from 'react-google-login';
 
-function login(type) {
+
+
+function Login(type) {
+  const clientId = "611886207269-f6kj1vnntottsk1mbbpd5vvvu1286krp.apps.googleusercontent.com" ;
+  const [ showLoginButton, setShowLoginButton ] = useState(true);
+  const [ showLogoutButton, setShowLogoutButton ] = useState(false);
+
+  const onLoginSuccess = (res) => {
+    console.log('Login Success:', res.profileObj);
+    setShowLoginButton(false);
+    setShowLogoutButton(true);
+  }
+
+  const onFailureSuccess = (res) => {
+    console.log('Login Failed:', res);
+  }
+
+  const onSignoutSuccess = () => {
+    alert("You have signed out successfully");
+    setShowLoginButton(true);
+    setShowLogoutButton(false);
+  }
+
   return (
-    <div >
+    <div>
       <Navbar />
-      <div className="mx-20 my-24 p-3 border-0 rounded-lg shadow-lg  flex flex-col lg:w-[1184px] sm:w-[450px] lg:h-[508px] bg-white-normal  outline-none focus:outline-none">
+      <div className="mx-auto my-24 p-3 border-0 rounded-lg shadow-lg  flex flex-col lg:w-[1184px] sm:w-[450px] lg:h-auto bg-white-normal  outline-none focus:outline-none">
         <div class="grid md:grid-cols-2 md:gap-2">
           <div className='lg:mx-20 lg:my-20 sm:mx-32 sm:my-5 lg:w-[400px] sm:w-40'> 
             <img src={IconLogin} /></div>
-          <div className="p-10 lg:w-[500px] sm:w-[300px] lg:h-96 bg-gradient-to-r from-light-grey to-light-grey lg:mx-9 lg:my-16 sm:mx-14 rounded-lg shadow-lg">
+          <div className="p-10 lg:w-[500px] sm:w-[300px] lg:h-auto bg-gradient-to-r from-light-grey to-light-grey lg:mx-9 lg:my-16 sm:mx-14 rounded-lg shadow-lg">
             <h1 className='md:text-3xl text-black-normal font-bold md:ml-7 md:mb-10'>Welcome Back !</h1>
+            
             <label className="block ml-4 my-1 ">
+            {showLoginButton ?
+              <GoogleLogin
+                clientId={clientId}
+                buttonText="Login With Google"
+                onSuccess={onLoginSuccess}
+                onFailure={onFailureSuccess}
+                cookiePolicy={'single_host_origin'}
+              /> : null
+            }
+
+            {showLogoutButton ?
+              <GoogleLogout
+                clientId={clientId}
+                buttonText="Logout"
+                onLogoutSuccess={onSignoutSuccess}
+              >
+              </GoogleLogout> : null
+            } 
               <input type="email" name="email" className="md:w-96 mt-1 md:px-3 md:py-3 bg-white border shadow-sm border-slate-300 placeholder-black-normal focus:outline-none focus:border-sky-500 focus:ring-sky-500 block rounded-md sm:text-sm focus:ring-1" placeholder="Email" />
               <div className="relative flex w-full flex-wrap items-stretch mb-3">
                 <input type="password" name="password" className="md:w-96 mt-5 md:px-3 md:py-3 bg-white border shadow-sm border-slate-300 placeholder-black-normal focus:outline-none focus:border-sky-500 focus:ring-sky-500 block rounded-md sm:text-sm focus:ring-1" placeholder="Password" />
@@ -26,12 +68,15 @@ function login(type) {
             <button className= {`${type='light-grey' ? 'bg-medium-purple text-light-grey' : 'bg-transparent text-dark-purple'} text-center items-center md:w-80 w-52 sm:text-sm hover:text-dark-purple hover:bg-light-grey border border-dark-purple font-bold py-2 md:px-4 rounded md:my-10 md:mx-10 `}>
               <span>Log In</span>
             </button>
+            
           </div>
+          
         </div>
+        
       </div>
       <Footer/>
     </div>
   )
 }
 
-export default login
+export default Login
