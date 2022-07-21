@@ -1,8 +1,31 @@
 const bargainRepository = require("../repository/bargain.repository.js");
 const productRepository = require("../repository/product.repository.js");
 
-exports.findNotificationByUserId = async (id) => {
-  return await bargainRepository.findByUserId(id);
+exports.findNotificationByUserIdSeller = async (id) => {
+  try {
+    // console.log(`SERVICE User detected is `, id);
+    return await bargainRepository.findByUserIdSeller(id);
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+exports.findNotificationByUserIdBuyer = async (id) => {
+  try {
+    // console.log(`SERVICE User detected is `, id);
+    return await bargainRepository.findByUserIdBuyer(id);
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+exports.findBargainSoldByUserId = async (id) => {
+  try {
+    // console.log(`SERVICE User detected is `, id);
+    return await bargainRepository.findByUserIdSold(id);
+  } catch (err) {
+    console.error(err);
+  }
 };
 
 exports.createBargain = async (payload, userId) => {
@@ -10,7 +33,6 @@ exports.createBargain = async (payload, userId) => {
 
   const bargain = {
     price: payload.fields.price,
-    // notificationTime: payload.fields.notificationTime,
     isRead: false,
     userId: userId,
     productId: payload.fields.productId,
@@ -52,6 +74,24 @@ exports.updateStatusRejected = async (payload, ids) => {
   try {
     const bargain = {
       statusId: 3,
+    };
+
+    const bargainById = await bargainRepository.findById(ids);
+
+    if (bargainById == null) {
+      return null;
+    } else {
+      return await bargainRepository.update(bargain, ids);
+    }
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+exports.updateStatusSold = async (payload, ids) => {
+  try {
+    const bargain = {
+      statusId: 4,
     };
 
     const bargainById = await bargainRepository.findById(ids);

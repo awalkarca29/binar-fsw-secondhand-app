@@ -15,7 +15,6 @@ exports.createNewBargainApi = async (req, res) => {
   const user = await userRepository.findById(decodedToken.id);
 
   const userId = user.id;
-  // const userId = 1;
 
   const bargain = await bargainService.createBargain(req, userId);
 
@@ -57,5 +56,40 @@ exports.updateBargainApiReject = async (req, res) => {
       .json({ error: `Bargain not found with id : ${req.params.id}` });
   } else {
     res.json({ message: "Updated successfully" });
+  }
+};
+
+exports.updateBargainApiSold = async (req, res, next) => {
+  const bargains = await bargainService.updateStatusSold(req, req.params.id);
+
+  if (bargains == null) {
+    res
+      .status(404)
+      .json({ error: `Bargain not found with id : ${req.params.id}` });
+  } else {
+    res.json({ message: "Updated successfully" });
+  }
+
+  next();
+};
+
+exports.findBargainSold = async (req, res) => {
+  const token = req.headers.authorization.substring(
+    7,
+    req.headers.authorization.length
+  );
+  const decodedToken = await jwtUtil.decodeToken(token);
+  const user = await userRepository.findById(decodedToken.id);
+
+  // console.log(`CONTROLLER User detected is `, user.id);
+
+  const bargain = await bargainService.findBargainSoldByUserId(user.id);
+
+  if (bargain == null) {
+    res
+      .status(404)
+      .json({ error: `Transaction not found with userId : ${user.id}` });
+  } else {
+    res.json({ data: bargain });
   }
 };

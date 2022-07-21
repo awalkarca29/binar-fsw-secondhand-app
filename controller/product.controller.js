@@ -14,7 +14,7 @@ exports.findProductByIdApi = async (req, res) => {
   const products = await productService.findProductById(req.params.id);
 
   if (products !== null) {
-    res.json({ data: products, owner: "owner id is " + products.userId });
+    res.json({ data: products });
   } else {
     res.status(404).json({ error: "Data not found" });
   }
@@ -81,4 +81,14 @@ exports.deleteProduct = (req, res) => {
       res.status(404).json({ error: "Data not found" });
     }
   });
+};
+
+exports.updateProductSold = async (req, res) => {
+  const products = await productService.updateIsSold(req, req.params.id);
+
+  if (products == null) {
+    res.status(404);
+  } else {
+    res.status(200);
+  }
 };

@@ -11,34 +11,38 @@ const corsOptions = {
 router.use(cors(corsOptions));
 
 // All products in home
-router.get("/api/v1/product", productController.findAllProductApi);
+router.get("/product", productController.findAllProductApi);
 
 // Buyer
 // Buyer can see detail product by id product
-router.get("/api/v1/product/:id", productController.findProductByIdApi);
+router.get(
+  "/product/:id",
+  authMiddleware.authorizationToken,
+  productController.findProductByIdApi
+);
 
 // Seller
 // Seller list products by userId
 router.get(
-  "/api/v1/seller/product/0",
+  "/seller/product/0",
   authMiddleware.authorizationToken,
   productController.findProductByUserIdApi
 );
 // Seller create a new product
 router.post(
-  "/api/v1/seller/product",
+  "/seller/product",
   authMiddleware.authorizationToken,
   productController.createNewProductApi
 );
 // Seller update product
 router.put(
-  "/api/v1/seller/product/:id",
+  "/seller/product/:id",
   authMiddleware.authorizationToken,
   productController.updateProductApi
 );
 // Seller delete product
 router.delete(
-  "/api/v1/seller/product/:id",
+  "/seller/product/:id",
   authMiddleware.authorizationToken,
   productController.deleteProduct
 );

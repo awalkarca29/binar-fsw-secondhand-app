@@ -55,12 +55,13 @@ exports.currentUser = async (req) => {
 exports.updateUser = async (payload, id) => {
   try {
     const uploadProfile = await cloudinaryConfig.uploader.upload(
-      payload.files.images.path
+      payload.files.image.path
     );
 
     const user = {
       name: payload.fields.name,
       address: payload.fields.address,
+      city: payload.fields.city,
       phone: payload.fields.phone,
       image: uploadProfile.secure_url,
     };

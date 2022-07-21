@@ -74,3 +74,21 @@ exports.updateProduct = async (payload, ids) => {
 exports.deleteProduct = async (product) => {
   productRepository.delete(product);
 };
+
+exports.updateIsSold = async (payload, ids) => {
+  try {
+    const product = {
+      isSold: true,
+    };
+
+    const productById = await productRepository.findById(ids);
+
+    if (productById == null) {
+      return null;
+    } else {
+      return await productRepository.update(product, ids);
+    }
+  } catch (err) {
+    console.error(err);
+  }
+};

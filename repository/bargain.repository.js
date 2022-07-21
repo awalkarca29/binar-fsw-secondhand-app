@@ -4,16 +4,37 @@ const Bargain = db.bargain;
 const User = db.user;
 const Status = db.status;
 
-exports.findByUserId = async (id) => {
+exports.findByUserIdSeller = async (id) => {
   const ByUserId = await Bargain.findAll({
-    where: { userId: id },
-    // include: {
-    //   model: Bargain,
-    //   required: true,
-    include: {
-      model: Product,
-      required: true,
+    where: {
+      userId: id,
+      statusId: 1,
     },
+    include: [{ model: Product }, { model: User }, { model: Status }],
+  });
+
+  return ByUserId;
+};
+
+exports.findByUserIdBuyer = async (id) => {
+  const ByUserId = await Bargain.findAll({
+    where: {
+      userId: id,
+      statusId: 2,
+    },
+    include: [{ model: Product }, { model: User }, { model: Status }],
+  });
+
+  return ByUserId;
+};
+
+exports.findByUserIdSold = async (id) => {
+  const ByUserId = await Bargain.findAll({
+    where: {
+      userId: id,
+      statusId: 4,
+    },
+    include: [{ model: Product }, { model: User }, { model: Status }],
   });
 
   return ByUserId;

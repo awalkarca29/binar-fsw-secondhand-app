@@ -38,22 +38,37 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date(),
       },
+      {
+        name: "Mobil Toyota Fortuner",
+        price: 55000000,
+        description:
+          "lorem ipsum Elit eu voluptate sunt aute aute dolore. Eu aliqua laborum veniam quis cillum deserunt amet elit ullamco esse qui. Nostrud incididunt incididunt occaecat tempor.",
+        image:
+          "https://res.cloudinary.com/dcisuvowd/image/upload/v1656511507/car1_n2phhe.jpg",
+        isSold: false,
+        userId: 1,
+        categoryId: 3,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        name: "Mobil Honda Civic",
+        price: 52000000,
+        description:
+          "lorem ipsum Elit eu voluptate sunt aute aute dolore. Eu aliqua laborum veniam quis cillum deserunt amet elit ullamco esse qui. Nostrud incididunt incididunt occaecat tempor.",
+        image:
+          "https://res.cloudinary.com/dcisuvowd/image/upload/v1656511940/car3_ml9n9n.jpg",
+        isSold: false,
+        userId: 2,
+        categoryId: 3,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
       // {
       //   name: 'Jam Tangan Casio MTP',
       //   price: 320000,
       //   description: "lorem ipsum Elit eu voluptate sunt aute aute dolore. Eu aliqua laborum veniam quis cillum deserunt amet elit ullamco esse qui. Nostrud incididunt incididunt occaecat tempor.",
       //   images: "https://res.cloudinary.com/dcisuvowd/image/upload/v1656513577/jam3_vbhrd6.jpg",
-      //   categoryId: 1,
-      //   userId: 1,
-      //   createdAt: new Date(),
-      //   updatedAt: new Date()
-      // },
-      // {
-      //   name: 'Mobil Toyota Fortuner',
-      //   price: 55000000,
-      //   description: "lorem ipsum Elit eu voluptate sunt aute aute dolore. Eu aliqua laborum veniam quis cillum deserunt amet elit ullamco esse qui. Nostrud incididunt incididunt occaecat tempor.",
-      //   categories: "Kendaraan",
-      //   images: "https://res.cloudinary.com/dcisuvowd/image/upload/v1656511507/car1_n2phhe.jpg",
       //   categoryId: 1,
       //   userId: 1,
       //   createdAt: new Date(),
@@ -67,17 +82,6 @@ module.exports = {
       //   images: "https://res.cloudinary.com/dcisuvowd/image/upload/v1656511749/car2_cwgenm.png",
       //   categoryId: 1,
       //   userId: 2,
-      //   createdAt: new Date(),
-      //   updatedAt: new Date()
-      // },
-      // {
-      //   name: 'Mobil Honda Civic',
-      //   price: 52000000,
-      //   description: "lorem ipsum Elit eu voluptate sunt aute aute dolore. Eu aliqua laborum veniam quis cillum deserunt amet elit ullamco esse qui. Nostrud incididunt incididunt occaecat tempor.",
-      //   categories: "Kendaraan",
-      //   images: "https://res.cloudinary.com/dcisuvowd/image/upload/v1656511940/car3_ml9n9n.jpg",
-      //   categoryId: 1,
-      //   userId: 1,
       //   createdAt: new Date(),
       //   updatedAt: new Date()
       // },

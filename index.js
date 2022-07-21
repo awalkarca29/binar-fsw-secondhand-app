@@ -3,7 +3,7 @@ const dotenv = require("dotenv");
 const cors = require("cors");
 const app = express();
 const formidable = require("express-formidable-v2");
-// const notifRouter = require("./routes/notif.routes.js");
+const notifRouter = require("./routes/notif.routes.js");
 const userRoutes = require("./routes/user.routes.js");
 const productRoutes = require("./routes/product.routes.js");
 const bargainRoutes = require("./routes/bargain.routes.js");
@@ -15,7 +15,7 @@ const corsOptions = {
 
 app.use(formidable());
 
-// app.use(notifRouter);
+app.use(notifRouter);
 
 app.use(userRoutes);
 

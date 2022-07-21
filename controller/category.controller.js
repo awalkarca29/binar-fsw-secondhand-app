@@ -16,17 +16,3 @@ exports.findCategoryById = (req, res) => {
     res.json({ data: result });
   });
 };
-
-// exports.createCategory = (req, res) => {
-//     if (req.body === null) {
-//         res.status(400).json({ message: "Body can't be null" });
-//     }
-
-//     const category = {
-//         category: req.body.category,
-//     };
-
-//     Category.create(category).then(data => {
-//         res.json(data);
-//     });
-// };

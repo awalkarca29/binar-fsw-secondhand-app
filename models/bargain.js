@@ -16,7 +16,6 @@ module.exports = (sequelize, DataTypes) => {
   Bargain.init(
     {
       price: DataTypes.INTEGER,
-      notificationTime: DataTypes.DATE,
       isRead: DataTypes.BOOLEAN,
       userId: DataTypes.INTEGER,
       productId: DataTypes.INTEGER,
