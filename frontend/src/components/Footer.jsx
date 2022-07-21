@@ -16,8 +16,8 @@ const Footer = () => {
                 <p className="text-lg font-semibold">Links</p>
                 <div className="flex flex-col">
                     <a href="/" className="text-light-grey hover:text-light-blue font-semibold p-1">Home</a>
-                    <a className="text-light-grey hover:text-light-blue font-semibold p-1">About</a>
-                    <a href="https://wa.me/6281213145381" target="_blank" className="text-light-grey hover:text-light-blue font-semibold p-1">Contact</a>
+                    <a href="/about" className="text-light-grey hover:text-light-blue font-semibold p-1">About</a>
+                    <a href="/contact-us" className="text-light-grey hover:text-light-blue font-semibold p-1">Contact</a>
                 </div>
             </Col>
             <Col span={6} className="flex flex-col justify-center text-light-grey">

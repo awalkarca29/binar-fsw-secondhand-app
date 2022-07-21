@@ -2,7 +2,7 @@ import React from "react";
 import { X } from "phosphor-react";
 import sepatu01 from "../assets/sepatu_1.png";
 
-const ModalBuyer = ({ modalNotificationVisible, setModalNotificationVisible }) => {
+const ModalBuyer = ({ modalNotificationVisible, setModalNotificationVisible, image, name, price }) => {
   return (
     <div>
       {modalNotificationVisible ? (
@@ -34,10 +34,10 @@ const ModalBuyer = ({ modalNotificationVisible, setModalNotificationVisible }) =
                   </p>
                   <div className="relative mx-2 bg-light-grey w-72 h-20 rounded-2xl text-black p-2  shadow-md ">
                     <div class="mb-4">
-                      <img src={sepatu01} className="absolute ml-3 my-2 w-12 h-12 rounded-lg" alt="sepatu01" />
+                      <img src={image} className="absolute ml-3 my-2 w-12 h-12 rounded-lg" alt="sepatu01" />
                     </div>
-                    <h3 className="text-dark-purple absolute mx-20 -my-2">Nike shoes</h3>
-                    <h1 className="absolute mx-20 text-base mt-4">Rp. 950.000</h1>
+                    <h3 className="text-dark-purple w-full text-left absolute mx-20 -my-2">{name}</h3>
+                    <h1 className="absolute mx-20 text-base mt-4">Rp. {price}</h1>
                   </div>
                   <div className="m-2 pt-4 text-left">
                     <h1 className="text-xs -ml-2">Bargain Price</h1>

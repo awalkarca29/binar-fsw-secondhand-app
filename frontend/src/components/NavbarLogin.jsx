@@ -16,7 +16,9 @@ function NavbarLogin() {
         </Link>
         <div className="hidden cursor-pointer md:flex items-center item-center border-r border-r-dark-purple border-solid text-black-400 focus-within:text-black-400">
           <Faders class="absolute  sm:ml-3 sm:mt-[1]" size={24} color="#4d4c7d" weight="fill" />
-          <MagnifyingGlass class="absolute mx-[560px] mt-[1]" size={24} color="#4d4c7d" weight="fill" />
+          <Link to="/search">
+            <MagnifyingGlass class="absolute mx-[560px] my-0 top-7" size={24} color="#4d4c7d" weight="fill" />
+          </Link>
           <input className="pl-16  placeholder:text-gray-300  sm:w-[600px] px-5 py-2  rounded-md outline-none" placeholder="Placeholder" />
         </div>
         <div className='cursor-pointer hidden md:flex items-center' >
@@ -62,7 +64,9 @@ function NavbarLogin() {
             <div ref={ref} className="px-2 pt-10  pb-5 space-y-1 sm:px-3">
               <div className="md:flex cursor-pointer items-center mb-4 item-center border-r-medium-purple border-solid text-black-400 focus-within:text-black-400">
                 <Faders class="absolute ml-[70px] mt-2" size={24} color="#4d4c7d" weight="fill" />
-                <MagnifyingGlass class="absolute mx-[360px] sm:mx-[500px] mt-2" size={24} color="#4d4c7d" weight="fill" />
+                <Link to="/search">
+                  <MagnifyingGlass class="absolute mx-[360px] sm:mx-[500px]" size={24} color="#4d4c7d" weight="fill" />
+                </Link>
                 <input class="pl-16 placeholder:text-gray-300  sm:w-[500px] w-[340px] px-5 py-2  rounded-md outline-none" placeholder="Placeholder" />
               </div>
 

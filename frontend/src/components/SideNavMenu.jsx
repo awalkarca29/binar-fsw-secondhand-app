@@ -102,13 +102,13 @@ const SideNavMenu = ({ menu }) => {
                     >
                         <div className="flex flex-col justify-start text-left mb-4">
                             <label className="text-medium-purple px-2">Full Name</label>
-                            <input type="name" name="name" className="md:w-auto md:mt-3 md:mb-5 md:px-3 md:py-3 bg-light-grey border border-slate-600 shadow-sm placeholder-grey block rounded-md sm:text-sm focus:ring-1 focus:ring-gray-200" placeholder="John Doe" />
+                            <input type="text" name="name" className="md:w-auto md:mt-3 md:mb-5 md:px-3 md:py-3 bg-light-grey border border-slate-600 shadow-sm placeholder-grey block rounded-md sm:text-sm focus:ring-1 focus:ring-gray-200" placeholder="John Doe" />
                         </div>
                         <div className="flex flex-col justify-start text-left mb-4">
                             <label className="text-medium-purple px-2">Email</label>
                             <input type="email" name="email" className="md:w-auto md:mt-3 md:mb-5 md:px-3 md:py-3 bg-light-grey border border-slate-600 shadow-sm placeholder-grey block rounded-md sm:text-sm focus:ring-1 focus:ring-gray-200" placeholder="john.doe@mail.com" />
                         </div>
-                        <div className="flex flex-col justify-start text-left mb-4">
+                        <div className="flex flex-col justify-start text-left mb-8">
                             <label className="p-2">Phone Number</label>
                             <Input.Group compact>
                                 <Input
@@ -125,6 +125,10 @@ const SideNavMenu = ({ menu }) => {
                                     placeholder="81234567890"
                                 />
                             </Input.Group>
+                        </div>
+                        <div className="flex flex-col justify-start text-left my-4">
+                            <label className="text-medium-purple px-2">City</label>
+                            <input type="text" name="city" className="md:w-auto md:mt-3 md:mb-5 md:px-3 md:py-3 bg-light-grey border border-slate-600 shadow-sm placeholder-grey block rounded-md sm:text-sm focus:ring-1 focus:ring-gray-200" placeholder="South Jakarta" />
                         </div>
                         <div className="flex flex-col justify-start text-left mb-4">
                             <label className="p-2">Address</label>
