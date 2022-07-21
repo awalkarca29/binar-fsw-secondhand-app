@@ -1,32 +1,35 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Navbar, Footer } from '../components';
 import  IconLogin  from '../assets/il_login.svg'; 
 import Password_Seen from '../assets/ic_password_seen.svg';
-import { GoogleLogin, GoogleLogout } from 'react-google-login';
+import axios from 'axios';
+import { Navigate } from 'react-router-dom';
+import { message } from "antd";
 
+function Login(type) { 
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [navigate, setNavigate] = useState(false); 
 
-
-function Login(type) {
-  const clientId = "611886207269-f6kj1vnntottsk1mbbpd5vvvu1286krp.apps.googleusercontent.com" ;
-  const [ showLoginButton, setShowLoginButton ] = useState(true);
-  const [ showLogoutButton, setShowLogoutButton ] = useState(false);
-
-  const onLoginSuccess = (res) => {
-    console.log('Login Success:', res.profileObj);
-    setShowLoginButton(false);
-    setShowLogoutButton(true);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    await axios.post('https://final-project-fsw-3-kel-1.herokuapp.com/api/v1/user/login', {
+      email: email,
+      password: password
+  }).then( res => {
+    message.success('login was successful')
+    console.log(res.data);
+    localStorage.setItem('token', res.data.token)
   }
-
-  const onFailureSuccess = (res) => {
-    console.log('Login Failed:', res);
+  ).catch (
+    err => {
+      console.log(err);
+    }) 
+    setNavigate(true)
   }
-
-  const onSignoutSuccess = () => {
-    alert("You have signed out successfully");
-    setShowLoginButton(true);
-    setShowLogoutButton(false);
+  if (navigate) {
+    return <Navigate to="/"/>
   }
-
   return (
     <div>
       <Navbar />
@@ -38,41 +41,27 @@ function Login(type) {
             <h1 className='md:text-3xl text-black-normal font-bold md:ml-7 md:mb-10'>Welcome Back !</h1>
             
             <label className="block ml-4 my-1 ">
-            {showLoginButton ?
-              <GoogleLogin
-                clientId={clientId}
-                buttonText="Login With Google"
-                onSuccess={onLoginSuccess}
-                onFailure={onFailureSuccess}
-                cookiePolicy={'single_host_origin'}
-              /> : null
-            }
-
-            {showLogoutButton ?
-              <GoogleLogout
-                clientId={clientId}
-                buttonText="Logout"
-                onLogoutSuccess={onSignoutSuccess}
-              >
-              </GoogleLogout> : null
-            } 
-              <input type="email" name="email" className="md:w-96 mt-1 md:px-3 md:py-3 bg-white border shadow-sm border-slate-300 placeholder-black-normal focus:outline-none focus:border-sky-500 focus:ring-sky-500 block rounded-md sm:text-sm focus:ring-1" placeholder="Email" />
-              <div className="relative flex w-full flex-wrap items-stretch mb-3">
-                <input type="password" name="password" className="md:w-96 mt-5 md:px-3 md:py-3 bg-white border shadow-sm border-slate-300 placeholder-black-normal focus:outline-none focus:border-sky-500 focus:ring-sky-500 block rounded-md sm:text-sm focus:ring-1" placeholder="Password" />
-                <span className="z-9 lg:mr-6 h-full leading-snug font-normal absolute text-center text-slate-300  bg-transparent rounded text-base items-center justify-center w-8 right-0 pr-3 py-8">
-                  <img src={Password_Seen} />
-                </span>
-              </div>
+              <form onSubmit={handleSubmit}>
+                <input type="email" name='email' 
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="md:w-96 mt-1 md:px-3 md:py-3 bg-white border shadow-sm border-slate-300 placeholder-black-normal focus:outline-none focus:border-sky-500 focus:ring-sky-500 block rounded-md sm:text-sm focus:ring-1" placeholder="Email"/>
+                  
+                <div className="relative flex w-full flex-wrap items-stretch mb-3">
+                  <input type="password" name='password'
+                      onChange={(e) => setPassword(e.target.value)}
+                      className="md:w-96 mt-5 md:px-3 md:py-3 bg-white border shadow-sm border-slate-300 placeholder-black-normal focus:outline-none focus:border-sky-500 focus:ring-sky-500 block rounded-md sm:text-sm focus:ring-1" placeholder="Password" />
+                  <span className="z-9 lg:mr-6 h-full leading-snug font-normal absolute text-center text-slate-300  bg-transparent rounded text-base items-center justify-center w-8 right-0 pr-3 py-8">
+                    <img src={Password_Seen} />
+                  </span>
+                </div>
+                <button className= {`${type='light-grey' ? 'bg-medium-purple text-light-grey' : 'bg-transparent text-dark-purple'} text-center items-center md:w-80 w-52 sm:text-sm hover:text-dark-purple hover:bg-light-grey border border-dark-purple font-bold py-2 md:px-4 rounded md:my-10 md:mx-10 `}>
+                <span>Log In</span>
+                </button>
+              </form>
             </label>
-            <h2 className='lg:ml-56 sm:ml-20 sm:text-xs text-dark-purple'>Forgot Password?</h2>
-            <button className= {`${type='light-grey' ? 'bg-medium-purple text-light-grey' : 'bg-transparent text-dark-purple'} text-center items-center md:w-80 w-52 sm:text-sm hover:text-dark-purple hover:bg-light-grey border border-dark-purple font-bold py-2 md:px-4 rounded md:my-10 md:mx-10 `}>
-              <span>Log In</span>
-            </button>
-            
+            <h2 className='lg:ml-56 sm:ml-20 sm:text-xs text-dark-purple'>Forgot Password?</h2> 
           </div>
-          
         </div>
-        
       </div>
       <Footer/>
     </div>

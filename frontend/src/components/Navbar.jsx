@@ -14,7 +14,9 @@ function Navbar() {
           <img src={logo} alt='logo' className='md:cursor-pointer h-9' />
         </Link>
         <div className="hidden cursor-pointer md:flex items-center item-center border-r border-r-dark-purple border-solid text-black-400 focus-within:text-black-400">
+          <Link to="/search" className='mb-6'>
           <Faders class="absolute  sm:ml-3 sm:mt-[1]" size={24} color="#4d4c7d" weight="fill" />
+          </Link>
           <MagnifyingGlass class="absolute mx-[560px] mt-[1]" size={24} color="#4d4c7d" weight="fill" />
           <input className="pl-16  placeholder:text-gray-300  sm:w-[600px] px-5 py-2  rounded-md outline-none" placeholder="Placeholder" />
         </div>

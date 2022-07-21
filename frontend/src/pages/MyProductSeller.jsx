@@ -42,10 +42,22 @@ function MyProductSeller() {
                         </div>
                       </Tab.Panel>
                       <Tab.Panel>
-                        <h1>tabs 2</h1>
+                        <ListSellerHistory
+                          buyerName = 'John '
+                          date = '19 June 2022, 13:11'
+                          productName = 'Nike Shoes' 
+                          openPrice = 'Rp.1.500.000' 
+                          priceOffer = 'Rp. 1.000.000'
+                        />
                       </Tab.Panel>
                       <Tab.Panel>
-                        <h1>tabs 3</h1>
+                        <ListSellerHistory
+                            buyerName = 'John '
+                            date = '19 June 2022, 13:11'
+                            productName = 'Nike Shoes' 
+                            openPrice = 'Rp.1.500.000' 
+                            priceOffer = 'Rp. 1.000.000'
+                          />
                       </Tab.Panel>
                       <Tab.Panel>
                         <ListSellerHistory
