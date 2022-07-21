@@ -1,8 +1,10 @@
-import { useState, useEffect } from 'react';
-import { Navbar, CardProduct, CarouselHeadline, Footer, ModalNotification } from '../components';
+import { Navbar,NavbarLogin, CardProduct, CarouselHeadline, Footer, ModalNotification } from '../components';
+import React, { useEffect, useState } from 'react';
+import { Link, useHistory } from 'react-router-dom';
 import axios from 'axios';
 
 const Home = () => {
+    const [isLogin, setIsLogin] = useState(false);
     const [products, setProducts] = useState([]);
 
     const getProduct = () => {
@@ -15,10 +17,23 @@ const Home = () => {
     };
 
     useEffect(() => getProduct(), []);
-    
+
+    useEffect(() => {
+        let token = localStorage.getItem('token')
+        if (token) {
+            setIsLogin(true);
+        }else {
+            setIsLogin(false);
+        }
+    }, []);
     return (
         <div>
-            <Navbar />
+            {isLogin ?(
+                <NavbarLogin />
+            ) : (
+                <Navbar/>
+            )
+            }
             <br /><br /><br />
             <CarouselHeadline />
             <h2 className="text-3xl text-dark-purple font-bold my-8">Explore Our Valuable Products</h2>
@@ -35,17 +50,6 @@ const Home = () => {
                 ))
                 }
             </div>
-            <ModalNotification
-                imgSrc='https://images.unsplash.com/photo-1657438224944-f357bd0b0254?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=772&q=80'
-                category='Fashion'
-                productName='Yeezy Boost'
-                openPrice='5,800,000'
-                finalPrice='5,000,000'
-                seller='Tokoku'
-                locationSeller='Semarang'
-                label='Offer Product'
-                date='20 June 2022, 14:04'
-            />
             <Footer />
         </div>
     )

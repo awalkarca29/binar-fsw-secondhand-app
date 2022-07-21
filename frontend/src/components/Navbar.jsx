@@ -14,6 +14,7 @@ function Navbar() {
           <img src={logo} alt='logo' className='md:cursor-pointer h-9' />
         </Link>
         <div className="hidden cursor-pointer md:flex items-center item-center border-r border-r-dark-purple border-solid text-black-400 focus-within:text-black-400">
+          <Link to="/search" className='mb-6'/>
           <Faders class="absolute  sm:ml-3 sm:mt-[1]" size={24} color="#4d4c7d" weight="fill" />
           <Link to="/search">
             <MagnifyingGlass class="absolute mx-[560px] my-0 top-7" size={24} color="#4d4c7d" weight="fill" />

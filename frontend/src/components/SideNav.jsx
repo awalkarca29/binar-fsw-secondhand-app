@@ -4,6 +4,7 @@ import IconEditProfile from '../assets/ic_edit_profile.svg';
 import IconResetPassword from '../assets/ic_reset_password.svg';
 import IconOrderHistory from '../assets/ic_order_history.svg';
 import IconLogout from '../assets/ic_logout.svg';
+import { Navigate, useNavigate } from 'react-router-dom';
 import '../index.css';
 import { useState } from 'react';
 
@@ -19,6 +20,17 @@ const SideNav = (imgSrc) => {
         backgroundColor: 'var(--light-purple)',
         color: 'white'
     }
+
+    const [navigate, setNavigate] = useState(false); 
+
+    function logOut() {
+        localStorage.removeItem('token');
+        setNavigate(true)
+    }
+    
+    if (navigate) {
+        return <Navigate to="/"/>
+      }
 
     return (
         <Row className="flex flex-row my-24">
@@ -55,7 +67,7 @@ const SideNav = (imgSrc) => {
                             </Col>
                         </Row>
                     </div>
-                    <div className="flex flex-row justify-center items-center w-auto h-auto bg-danger text-light-grey font-semibold mx-4 my-4 py-2 px-4 rounded cursor-pointer">
+                    <div onClick={logOut} className="flex flex-row justify-center items-center w-auto h-auto bg-danger text-light-grey font-semibold mx-4 my-4 py-2 px-4 rounded cursor-pointer">
                         <img src={IconLogout}></img>
                         <p className="ml-2 mb-0">Log Out</p>
                     </div>
