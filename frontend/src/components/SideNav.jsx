@@ -5,27 +5,19 @@ import IconResetPassword from '../assets/ic_reset_password.svg';
 import IconOrderHistory from '../assets/ic_order_history.svg';
 import IconLogout from '../assets/ic_logout.svg';
 import '../index.css';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 const SideNav = (imgSrc) => {
 
-    const [isActive, setIsActive] = useState(false);
-    const [menuOption, setMenuOption] = useState('');
+    const [menuOption, setMenuOption] = useState('edit');
 
-    // useEffect(() => {
-    //     console.log("Is Active", isActive);
-    // }, [isActive]);
-
-    const handleMenuClick = (menu) => {
-        setIsActive(true);
-        menu = menu.toString();
-        setMenuOption(menu);
-        console.log("menu option: ", menuOption);
+    const handleMenuClick = (option) => {
+        setMenuOption(option);
     }
 
     const styleActive = {
-        backgroundColor: isActive ? 'var(--light-purple)' : '',
-        color: isActive ? 'white' : ''
+        backgroundColor: 'var(--light-purple)',
+        color: 'white'
     }
 
     return (
@@ -40,24 +32,24 @@ const SideNav = (imgSrc) => {
                         </Row>
                         <Row className="flex flex-col justify-center">
                             <Col className="flex flex-row justify-start items-center w-56 h-2 hover:bg-light-purple hover:text-light-grey px-4 py-6 rounded-lg cursor-pointer"
-                                style={styleActive}
-                                onSubmit={!isActive ? handleMenuClick : null}>
+                                style={menuOption === 'edit' && styleActive}
+                                onClick={() => handleMenuClick('edit')}>
                                 <img src={IconEditProfile}></img>
                                 <p className="m-0 pl-2">Edit Profile</p>
                             </Col>
                         </Row>
                         <Row className="flex flex-col justify-center">
                             <Col className="btn-sidenav flex flex-row justify-start items-center w-56 h-2 px-4 py-6 rounded-lg cursor-pointer"
-                                style={styleActive}
-                                onSubmit={!isActive ? handleMenuClick : null}>
+                                style={menuOption === 'reset' && styleActive}
+                                onClick={() => handleMenuClick('reset')}>
                                 <img src={IconResetPassword} className="icon"></img>
                                 <p className="m-0 pl-2">Reset Password</p>
                             </Col>
                         </Row>
                         <Row className="flex flex-col justify-center">
                             <Col className="btn-sidenav flex flex-row justify-start items-center w-56 h-2 px-4 py-6 rounded-lg cursor-pointer"
-                                style={styleActive}
-                                onSubmit={!isActive ? handleMenuClick : null}>
+                                style={menuOption === 'history' && styleActive}
+                                onClick={() => handleMenuClick('history')}>
                                 <img src={IconOrderHistory} className="icon"></img>
                                 <p className="m-0 pl-2">Order History</p>
                             </Col>
@@ -71,7 +63,7 @@ const SideNav = (imgSrc) => {
             </Col>
             <Col span={12} className="mx-12">
                 <SideNavMenu
-                    menu='history'
+                    menu={menuOption}
                 />
             </Col>
         </Row>

@@ -4,7 +4,7 @@ import IconDelete from "../assets/ic_delete.svg";
 import IconEdit from "../assets/ic_edit.svg";
 import { Link } from "react-router-dom"
 
-const ListSellerProduct = ({ type, price, productName, openPrice }) => {
+const ListSellerProduct = ({ productName, openPrice, image }) => {
     return (
         <div className="flex flex-row items-center justify-between text-left bg-light-grey rounded-xl p-4 m-4 border border-grey">
             <div className="flex flex-row items-center">

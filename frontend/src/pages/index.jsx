@@ -8,4 +8,5 @@ export { default as Profile } from './Profile';
 export { default as OfferInformation } from './OfferInformation';
 export { default as AddProduct } from './AddProduct';
 export { default as MyProductSeller } from './MyProductSeller';
+export { default as About } from './About';
 export { default as ContactUs } from './ContactUs';
