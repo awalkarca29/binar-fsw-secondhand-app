@@ -13,7 +13,7 @@ function Login(type) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await axios.post('https://final-project-fsw-3-kel-1.herokuapp.com/api/v1/user/login', {
+    await axios.post('https://final-project-fsw-3-kel-1.herokuapp.com/user/login', {
       email: email,
       password: password
   }).then( res => {

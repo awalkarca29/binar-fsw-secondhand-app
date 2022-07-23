@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 function NavbarLogin() {
   const [isOpen, setIsOpen] = useState(false);
   return (
-    <nav class="z-10 fixed top-0 left-0 px-2 py-3 w-full shadow bg-gradient-to-r from-dark-purple to-purple" >
+    <nav class="z-10 fixed top-0 left-0 mb-8 px-2 py-5 w-full shadow bg-gradient-to-r from-dark-purple to-purple" >
       <div class="container m-auto flex justify-around items-center text-gray-700">
         <Link to="/">
           <img src={logo} alt='logo' className='md:cursor-pointer h-9' />
