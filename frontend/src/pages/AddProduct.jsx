@@ -39,7 +39,6 @@ function AddProduct() {
         console.log(err);
       })
   }
-  console.log("NEW PRODUCT: ", newProduct);
 
   if (navigate) {
     return (

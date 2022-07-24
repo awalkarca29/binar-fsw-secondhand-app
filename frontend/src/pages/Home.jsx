@@ -1,24 +1,25 @@
 import { Navbar, CardProduct, CarouselHeadline, Footer } from '../components';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
 
 const Home = () => {
     const [products, setProducts] = useState([]);
 
-    useEffect(() => {
-        const getProduct = async () => {
-            await axios({
-                url: "https://final-project-fsw-3-kel-1.herokuapp.com/product/",
-                method: "GET"
+    const getProduct = async () => {
+        await axios({
+            url: "https://final-project-fsw-3-kel-1.herokuapp.com/product/",
+            method: "GET"
+        })
+            .then(res => {
+                setProducts(res.data.data);
+            }).catch(err => {
+                console.log(err);
             })
-                .then(res => {
-                    setProducts(res.data.data);
-                }).catch(err => {
-                    console.log(err);
-                })
-        };
-        getProduct();
-    }, []);
+    };
+
+    const ref = useRef(getProduct);
+
+    useEffect(() => { ref.current() }, []);
 
     return (
         <div>
