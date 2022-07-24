@@ -66,6 +66,7 @@ const ProductDetail = () => {
                                 type="primary-large"
                                 text="Buy"
                                 action={() => setModalNotificationVisible(true)}
+                                isSold={product.isSold}
                             />
                         </div>
                         <div className="container flex flex-row justify-start items-start bg-light-grey drop-shadow-md rounded-md w-96 my-2 p-8">

@@ -8,30 +8,17 @@ import { Link, Navigate } from 'react-router-dom';
 
 const { Option } = Select;
 
-function AddProduct() {
+function UpdateProduct() {
   // const [newProduct, setNewProduct] = useState([]);
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [price, setPrice] = useState('');
   const [categoryId, setCategoryId] = useState('');
-  const [image, setImage] = useState(null);
+  const [image, setImage] = useState('https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,b_rgb:f5f5f5/5d8ef7e0-690b-4284-bd8b-6529dc44f309/kyrie-infinity-ep-basketball-shoes-QJ01t9.png');
   const [navigate, setNavigate] = useState(false);
-
-  const handleFile = (e) => {
-    let file = e.target.files[0];
-    setImage({ file })
-  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    let file = image.file
-
-    let formData = new FormData();
-
-    formData.append('image', file);
-
-    console.log('FILE: ', formData);
 
     await axios.post(`https://final-project-fsw-3-kel-1.herokuapp.com/seller/product/`, {
       headers: {
@@ -43,7 +30,7 @@ function AddProduct() {
       description,
       price,
       categoryId: Number(categoryId),
-      image: formData
+      image
     })
       .then(() => {
         // setNewProduct(formData);
@@ -55,6 +42,11 @@ function AddProduct() {
       })
 
     console.log('IMAGE: ', image);
+  }
+
+  const handleFileUpload = (e) => {
+    console.log('FILE: ', e.file.originFileObj);
+    setImage(e.file.originFileObj);
   }
 
   console.log('CATEGORYID INPUT: ', categoryId);
@@ -86,7 +78,7 @@ function AddProduct() {
                 console.log({ file });
                 return false;
               }}
-              onChange={handleFile}
+              onChange={handleFileUpload}
               iconRender={() => {
                 return (
                   <Spin />
@@ -146,4 +138,4 @@ function AddProduct() {
   )
 }
 
-export default AddProduct
+export default UpdateProduct

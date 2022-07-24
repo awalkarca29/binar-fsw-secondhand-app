@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 import { Faders, List, MagnifyingGlass, X, BellRinging, Storefront } from 'phosphor-react';
 import { Transition } from "@headlessui/react";
 import Placeholder from '../assets/placeholder.svg';
+import ButtonCustom from './ButtonCustom';
 
 function Navbar() {
   const [isLogin, setIsLogin] = useState(false);
@@ -83,12 +84,14 @@ function Navbar() {
                     <input class="pl-16 placeholder:text-gray-300  sm:w-[500px] w-[340px] px-5 py-2  rounded-md outline-none" placeholder="Placeholder" />
                   </div>
 
-                  <button class="bg-transparent text-white font-semibold py-1 px-3 border border-light-grey rounded m-2 hover:text-dark-purple hover:bg-white">
-                    Login
-                  </button>
-                  <button class="bg-white text-dark-purple font-bold py-1 px-3 m-2  rounded hover:text-light-grey hover:bg-transparent border border-light-grey" >
-                    Register
-                  </button>
+                  <ButtonCustom
+                    type="secondary-light"
+                    text="Login"
+                  />
+                  <ButtonCustom
+                    type="primary-light"
+                    text="Register"
+                  />
                 </div>
               </div>
             )}
@@ -110,14 +113,16 @@ function Navbar() {
             </div>
             <div className='hidden md:flex' >
               <Link to="/login" className="nav-link active">
-                <button class=" bg-transparent text-light-grey font-semibold py-2 px-4 border border-light-grey rounded m-2 hover:text-dark-purple hover:bg-light-grey">
-                  Login
-                </button>
+                <ButtonCustom
+                  type="secondary-light"
+                  text="Login"
+                />
               </Link>
               <Link to="/register" className="nav-link active">
-                <button className="bg-light-grey text-dark-purple font-semibold py-2 px-4 border border-light-grey rounded m-2 hover:text-light-grey hover:bg-medium-purple">
-                  Register
-                </button>
+                <ButtonCustom
+                  type="primary-light"
+                  text="Register"
+                />
               </Link>
             </div>
             <div className="sm:ml-[400px] flex md:hidden">
@@ -157,14 +162,16 @@ function Navbar() {
                     <input class="pl-16 placeholder:text-grey sm:w-[566px] px-5 py-2  rounded-md outline-none" placeholder="Placeholder" />
                   </div>
                   <Link to="/login">
-                    <button class="bg-transparent text-light-grey font-semibold py-1 px-3 border border-light-grey rounded sm:m-2 hover:text-dark-purple hover:bg-white-normal">
-                      Login
-                    </button>
+                    <ButtonCustom
+                      type="secondary-light"
+                      text="Login"
+                    />
                   </Link>
 
-                  <button class="bg-white-normal text-dark-purple font-bold py-1 px-3 sm:m-2 rounded hover:text-light-grey hover:bg-purple border border-light-grey sm:mr-[400px]">
-                    Register
-                  </button>
+                  <ButtonCustom
+                    type="primary-light"
+                    text="Register"
+                  />
                 </div>
               </div>
             )}
