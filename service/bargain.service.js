@@ -28,23 +28,36 @@ exports.findBargainSoldByUserId = async (id) => {
   }
 };
 
-exports.createBargain = async (payload, userId) => {
-  // console.log(`USER id detected is ${userId}`);
+exports.createBargain = async (payload, buyerId) => {
+  try {
+    // console.log(`SERVICE User detected is `, id);
+    return await bargainRepository.findByUserIdBuyer(id);
+  } catch (err) {
+    console.error(err);
+  }
+  // console.log(`SERVICE BUYER id detected is ${buyerId}`);
+
+  const productById = await productRepository.findById(
+    payload.fields.productId
+  );
+  const sellerId = productById.userId;
+  // console.log(`SERVICE PRODUCT BY ID : ${sellerId}`);
 
   const bargain = {
     price: payload.fields.price,
     isRead: false,
-    userId: userId,
+    buyerId: buyerId,
+    sellerId: sellerId,
     productId: payload.fields.productId,
     statusId: 1,
   };
 
   console.log(bargain);
 
-  if (bargain != null) {
+  if (bargain != null && sellerId != productById.userId) {
     return await bargainRepository.save(bargain);
   } else {
-    return null;
+    return "ERROR: Cannot buy your own product!";
   }
 };
 

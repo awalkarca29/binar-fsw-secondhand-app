@@ -14,11 +14,20 @@ module.exports = {
       isRead: {
         type: Sequelize.BOOLEAN,
       },
-      userId: {
+      buyerId: {
         type: Sequelize.INTEGER,
         references: {
           model: {
             tableName: "Users",
+          },
+          key: "id",
+        },
+      },
+      sellerId: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: {
+            tableName: "Products",
           },
           key: "id",
         },

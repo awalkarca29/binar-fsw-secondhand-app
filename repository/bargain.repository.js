@@ -7,7 +7,7 @@ const Status = db.status;
 exports.findByUserIdSeller = async (id) => {
   const ByUserId = await Bargain.findAll({
     where: {
-      userId: id,
+      sellerId: id,
       statusId: 1,
     },
     include: [{ model: Product }, { model: User }, { model: Status }],
@@ -19,7 +19,7 @@ exports.findByUserIdSeller = async (id) => {
 exports.findByUserIdBuyer = async (id) => {
   const ByUserId = await Bargain.findAll({
     where: {
-      userId: id,
+      buyerId: id,
       statusId: 2,
     },
     include: [{ model: Product }, { model: User }, { model: Status }],
@@ -31,7 +31,7 @@ exports.findByUserIdBuyer = async (id) => {
 exports.findByUserIdSold = async (id) => {
   const ByUserId = await Bargain.findAll({
     where: {
-      userId: id,
+      buyerId: id,
       statusId: 4,
     },
     include: [{ model: Product }, { model: User }, { model: Status }],

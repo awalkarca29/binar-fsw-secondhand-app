@@ -14,9 +14,11 @@ exports.createNewBargainApi = async (req, res) => {
   const decodedToken = await jwtUtil.decodeToken(token);
   const user = await userRepository.findById(decodedToken.id);
 
-  const userId = user.id;
+  const buyerId = user.id;
 
-  const bargain = await bargainService.createBargain(req, userId);
+  // console.log(`CONTROLLER BUYER ID : ${buyerId}`);
+
+  const bargain = await bargainService.createBargain(req, buyerId);
 
   res.status(201).json({ data: bargain });
 };

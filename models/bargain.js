@@ -8,7 +8,8 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      this.belongsTo(models.User, { foreignKey: "userId" });
+      this.belongsTo(models.User, { foreignKey: "buyerId" });
+      this.belongsTo(models.User, { foreignKey: "sellerId" });
       this.belongsTo(models.Product, { foreignKey: "productId" });
       this.belongsTo(models.Status, { foreignKey: "statusId" });
     }
@@ -17,7 +18,8 @@ module.exports = (sequelize, DataTypes) => {
     {
       price: DataTypes.INTEGER,
       isRead: DataTypes.BOOLEAN,
-      userId: DataTypes.INTEGER,
+      buyerId: DataTypes.INTEGER,
+      sellerId: DataTypes.INTEGER,
       productId: DataTypes.INTEGER,
       statusId: DataTypes.INTEGER,
     },

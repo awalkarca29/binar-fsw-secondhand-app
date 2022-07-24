@@ -11,8 +11,11 @@ const corsOptions = {
 
 router.use(cors(corsOptions));
 
+// debug get all bargain by user id
+router.get("/buyer/bargain", bargainController.findAllBargainApi);
+
 // Create a new transaction
-router.post("/buyer/bargain/", bargainController.createNewBargainApi);
+router.post("/buyer/bargain", bargainController.createNewBargainApi);
 
 // Edit bargain status accepted
 router.put(
