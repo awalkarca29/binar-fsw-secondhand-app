@@ -6,10 +6,12 @@ import { Faders, List, MagnifyingGlass, X, BellRinging, Storefront } from 'phosp
 import { Transition } from "@headlessui/react";
 import Placeholder from '../assets/placeholder.svg';
 import ButtonCustom from './ButtonCustom';
+import ModalFilter from './ModalFilter';
 
 function Navbar() {
   const [isLogin, setIsLogin] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const [modalFilter, setModalFilter] = useState(false);
 
   useEffect(() => {
     let token = localStorage.getItem('token')
@@ -29,7 +31,7 @@ function Navbar() {
               <img src={logo} alt='logo' className='md:cursor-pointer h-9' />
             </Link>
             <div className="hidden cursor-pointer md:flex items-center item-center border-r border-r-dark-purple border-solid text-black-400 focus-within:text-black-400">
-              <Faders class="absolute  sm:ml-3 sm:mt-[1]" size={24} color="#4d4c7d" weight="fill" />
+              <Faders class="absolute  sm:ml-3 sm:mt-[1]" size={24} color="#4d4c7d" weight="fill" onClick={() => setModalFilter(true)} />
               <Link to="/search">
                 <MagnifyingGlass class="absolute mx-[560px] my-0 top-7" size={24} color="#4d4c7d" weight="fill" />
               </Link>
@@ -64,6 +66,15 @@ function Navbar() {
             </div>
           </div>
 
+          {
+            modalFilter ? (
+              <ModalFilter
+                modalFilter={modalFilter}
+                setModalFilter={setModalFilter}
+              />
+            ) : null
+          }
+
           <Transition
             show={isOpen}
             enter="transition ease-out duration-100 transform"
@@ -77,7 +88,7 @@ function Navbar() {
               <div className="md:hidden" id="mobile-menu">
                 <div ref={ref} className="px-2 pt-10  pb-5 space-y-1 sm:px-3">
                   <div className="md:flex cursor-pointer items-center mb-4 item-center border-r-medium-purple border-solid text-black-400 focus-within:text-black-400">
-                    <Faders class="absolute ml-[70px] mt-2" size={24} color="#4d4c7d" weight="fill" />
+                    <Faders class="absolute ml-[70px] mt-2" size={24} color="#4d4c7d" weight="fill" onClick={() => setModalFilter(true)} />
                     <Link to="/search">
                       <MagnifyingGlass class="absolute mx-[360px] sm:mx-[500px]" size={24} color="#4d4c7d" weight="fill" />
                     </Link>
@@ -95,7 +106,16 @@ function Navbar() {
                 </div>
               </div>
             )}
+            {
+              modalFilter ? (
+                <ModalFilter
+                  modalFilter={modalFilter}
+                  setModalFilter={setModalFilter}
+                />
+              ) : null
+            }
           </Transition>
+
         </nav>
       ) : (
         <nav class="z-10 fixed top-0 left-0 px-2 py-3 w-full shadow bg-gradient-to-r from-dark-purple to-purple" >
@@ -105,7 +125,7 @@ function Navbar() {
             </Link>
             <div className="hidden cursor-pointer md:flex items-center item-center border-r border-r-dark-purple border-solid text-black-400 focus-within:text-black-400">
               <Link to="/search" className='mb-6' />
-              <Faders class="absolute  sm:ml-3 sm:mt-[1]" size={24} color="#4d4c7d" weight="fill" />
+              <Faders class="absolute  sm:ml-3 sm:mt-[1]" size={24} color="#4d4c7d" weight="fill" onClick={() => setModalFilter(true)} />
               <Link to="/search">
                 <MagnifyingGlass class="absolute mx-[560px] my-0 top-7" size={24} color="#4d4c7d" weight="fill" />
               </Link>
@@ -142,6 +162,15 @@ function Navbar() {
             </div>
           </div>
 
+          {
+            modalFilter ? (
+              <ModalFilter
+                modalFilter={modalFilter}
+                setModalFilter={setModalFilter}
+              />
+            ) : null
+          }
+
           <Transition
             show={isOpen}
             enter="transition ease-out duration-100 transform"
@@ -155,7 +184,7 @@ function Navbar() {
               <div className="md:hidden" id="mobile-menu">
                 <div ref={ref} className="px-2 pt-10  pb-5 space-y-1 sm:px-3">
                   <div className="md:flex cursor-pointer items-center mb-4 item-center border-r-medium-purple border-solid text-black-400 focus-within:text-black-400">
-                    <Faders class="absolute sm:ml-[34px] mt-2" size={24} color="#4d4c7d" weight="fill" />
+                    <Faders class="absolute sm:ml-[34px] mt-2" size={24} color="#4d4c7d" weight="fill" onClick={() => setModalFilter(true)} />
                     <Link to="/search">
                       <MagnifyingGlass class="absolute sm:mx-[540px] mt-2" size={24} color="#4d4c7d" weight="fill" />
                     </Link>
@@ -175,6 +204,14 @@ function Navbar() {
                 </div>
               </div>
             )}
+            {
+              modalFilter ? (
+                <ModalFilter
+                  modalFilter={modalFilter}
+                  setModalFilter={setModalFilter}
+                />
+              ) : null
+            }
           </Transition>
         </nav>
       )}

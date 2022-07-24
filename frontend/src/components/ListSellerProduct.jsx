@@ -55,13 +55,20 @@ const ListSellerProduct = ({ id, productName, openPrice, image }) => {
                 </Col>
             </div>
             <Col className="btn-group flex flex-row justify-center">
-                <button className="bg-danger text-light-grey hover:text-white mr-4 py-2 px-4 rounded" onClick={() => handleDelete(id)}>
-                    <img src={IconDelete} />
-                </button>
-                <Link to="/update-product">
-                    <button className="bg-light-purple text-light-grey hover:text-white mr-4 py-2 px-4 rounded">
-                        <img src={IconEdit} />
-                    </button>
+                <div>
+                    <ButtonCustom
+                        type="icon-only"
+                        bgColor="danger"
+                        icon={IconDelete}
+                        action={() => handleDelete(id)}
+                    />
+                </div>
+                <Link to={`/update-product/${id}`}>
+                    <ButtonCustom
+                        type="icon-only"
+                        bgColor="light-purple"
+                        icon={IconEdit}
+                    />
                 </Link>
                 <Link to="/offer-information">
                     <ButtonCustom

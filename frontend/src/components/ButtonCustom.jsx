@@ -1,4 +1,4 @@
-const ButtonCustom = ({ type, text, icon, action, isSold }) => {
+const ButtonCustom = ({ type, text, icon, bgColor, action, isSold }) => {
   switch (type) {
     case "primary-icon":
       return (
@@ -31,7 +31,14 @@ const ButtonCustom = ({ type, text, icon, action, isSold }) => {
           {text}
         </button>
       )
+    case "icon-only":
+      return (
+        <button className={`bg-${bgColor} h-full hover:opacity-90 text-light-grey hover:text-white mx-2 py-2 px-2 rounded`} onClick={action}>
+          <img className="sm:object-fill" src={icon} />
+        </button>
+      )
     default:
+      // primary button by default
       return (
         <button className="bg-medium-purple text-light-grey font-semibold mx-2 py-2 px-4 border border-dark-purple rounded hover:text-light-grey hover:bg-light-purple">
           {text}

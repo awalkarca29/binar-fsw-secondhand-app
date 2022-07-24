@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
-import { NavbarLogin, Footer, ButtonCustom } from '../components';
+import { NavbarLogin, Footer, ButtonCustom, InputForm } from '../components';
 import { Select, Upload, Button, message, Spin } from 'antd';
 import ic_image from '../assets/ic_image.svg';
 import ic_arrow_left from "../assets/ic_arrow_left.svg";
@@ -9,55 +9,37 @@ import { Link, Navigate } from 'react-router-dom';
 const { Option } = Select;
 
 function AddProduct() {
-  // const [newProduct, setNewProduct] = useState([]);
-  const [name, setName] = useState('');
-  const [description, setDescription] = useState('');
-  const [price, setPrice] = useState('');
-  const [categoryId, setCategoryId] = useState('');
-  const [image, setImage] = useState(null);
-  const [navigate, setNavigate] = useState(false);
+  const [newProduct, setNewProduct] = useState({
+    name: '',
+    description: '',
+    price: '',
+    categoryId: '',
+    image: '',
+  });
 
-  const handleFile = (e) => {
-    let file = e.target.files[0];
-    setImage({ file })
-  }
+  const [navigate, setNavigate] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    let file = image.file
-
-    let formData = new FormData();
-
-    formData.append('image', file);
-
-    console.log('FILE: ', formData);
-
-    await axios.post(`https://final-project-fsw-3-kel-1.herokuapp.com/seller/product/`, {
+    await axios({
+      url: "https://final-project-fsw-3-kel-1.herokuapp.com/seller/product/",
+      method: "POST",
       headers: {
         "Content-Type": "multipart/form-data",
         Authorization: `Bearer ${localStorage.getItem('token')}`
       },
-    }, {
-      name,
-      description,
-      price,
-      categoryId: Number(categoryId),
-      image: formData
+      data: newProduct
     })
       .then(() => {
-        // setNewProduct(formData);
         message.success("Product successfully added!")
-        // console.log("DATA NEW PRODUCT: ", newProduct);
         setNavigate(true);
       }).catch(err => {
+        message.error("Failed to add product!")
         console.log(err);
       })
-
-    console.log('IMAGE: ', image);
   }
-
-  console.log('CATEGORYID INPUT: ', categoryId);
+  console.log("NEW PRODUCT: ", newProduct);
 
   if (navigate) {
     return (
@@ -75,18 +57,16 @@ function AddProduct() {
         <div className="grid md:grid-cols-3 md:gap-2 mx-10">
           <div className=" lg:my-48 sm:mt-40 sm:mb-24 lg:ml-20 lg:mx-60 sm:mx-16 rounded-lg shadow-lg bg-light-grey lg:h-72 sm:h-56 lg:w-full sm:w-80">
             <Upload.Dragger
-              // multiple
               listType="picture"
               maxCount={1}
-              // action={"http://localhost:3000/add-product"}
-              // onChange={(e) => setImage(e.target.files[0])}
               showUploadList={{ showRemoveIcon: true }}
               accept=".png, .jpeg, .jpg"
               beforeUpload={(file) => {
-                console.log({ file });
+                setNewProduct({
+                  ...newProduct, image: file
+                })
                 return false;
               }}
-              onChange={handleFile}
               iconRender={() => {
                 return (
                   <Spin />
@@ -118,15 +98,32 @@ function AddProduct() {
                 border: 100,
                 margin: "12px 48px"
               }}
-              onChange={(value) => setCategoryId(value)}
+              onChange={(value) => setNewProduct({ ...newProduct, categoryId: Number(value) })}
             >
-              <Option value="1">Clothes</Option>
+              <Option value="1">Fashions</Option>
               <Option value="2">Electronics</Option>
               <Option value="3">Spareparts</Option>
+              <Option value="4">Furnitures</Option>
+              <Option value="5">Others</Option>
             </Select>
-            <input type="text" name="name" className="lg:w-4/5 sm:w-4/5 lg:mx-12 sm:mx-8 my-4 px-2 py-2 border shadow-sm placeholder-grey focus:outline-none focus:border-light-grey focus:ring-purple block rounded-md sm:text-sm focus:ring-1" placeholder="Product Name" onChange={(e) => setName(e.target.value)} />
-            <input type="text" name="price" className="lg:w-4/5 sm:w-4/5 lg:mx-12 sm:mx-8 my-4 px-2 py-2 border shadow-sm placeholder-grey focus:outline-none focus:border-light-grey focus:ring-purple block rounded-md sm:text-sm focus:ring-1" placeholder="450000" onChange={(e) => setPrice(Number(e.target.value))} />
-            <textarea name="description" className="lg:w-4/5 sm:w-4/5 lg:h-[180px] sm:h-28 lg:mx-12 sm:mx-8 my-4 px-2 bg-white-normal border border-slate-600 shadow-sm placeholder-grey focus:outline-none focus:border-light-grey block rounded-md sm:text-sm focus:ring-1 resize-none focus:ring-gray-200" placeholder="Description of the product" onChange={(e) => setDescription(e.target.value)} ></textarea>
+            <InputForm
+              type="text"
+              name="name"
+              placeholder="Product Name"
+              action={(e) => setNewProduct({ ...newProduct, name: e.target.value })}
+            />
+            <InputForm
+              type="text"
+              name="price"
+              placeholder="450000"
+              action={(e) => setNewProduct({ ...newProduct, price: Number(e.target.value) })}
+            />
+            <InputForm
+              type="textarea"
+              name="description"
+              placeholder="Description of the product"
+              action={(e) => setNewProduct({ ...newProduct, description: e.target.value })}
+            />
             <div className='my-6 mx-14 flex justify-end'>
               <ButtonCustom
                 type="secondary"

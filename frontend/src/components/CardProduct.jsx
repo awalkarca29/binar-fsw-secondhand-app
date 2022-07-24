@@ -1,10 +1,22 @@
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Card } from 'antd';
 import IconLocation from '../assets/ic_location.svg';
 
 const CardProduct = ({ id, imgSrc, category, title, price, location }) => {
+    const [isLogin, setIsLogin] = useState(false);
+
+    useEffect(() => {
+        let token = localStorage.getItem('token')
+        if (token) {
+            setIsLogin(true);
+        } else {
+            setIsLogin(false);
+        }
+    }, []);
+
     return (
-        <Link to={`/product-detail/${id}`}>
+        <Link to={isLogin ? `/product-detail/${id}` : `/login`}>
             <Card
                 hoverable
                 style={{

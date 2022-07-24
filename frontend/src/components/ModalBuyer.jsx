@@ -1,8 +1,49 @@
-import React from "react";
+import React, { useState } from "react";
+import { Navigate, useParams } from "react-router-dom";
+import axios from "axios";
 import { X } from "phosphor-react";
-import sepatu01 from "../assets/sepatu_1.png";
+import { message } from "antd";
+import ButtonCustom from "./ButtonCustom";
+import InputForm from "./InputForm";
 
 const ModalBuyer = ({ modalNotificationVisible, setModalNotificationVisible, image, name, price }) => {
+  let { id } = useParams();
+
+  const [newBargain, setNewBargain] = useState({
+    price: '',
+    productId: Number(id)
+  })
+
+  const [navigate, setNavigate] = useState(false);
+
+  const handleSubmit = async () => {
+    await axios({
+      url: "https://final-project-fsw-3-kel-1.herokuapp.com/buyer/bargain",
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`
+      },
+      data: newBargain
+    })
+
+      .then(() => {
+        message.success("Product successfully bargained!")
+        setNavigate(true);
+      }).catch(err => {
+        message.error("Bargain failed!")
+        console.log(err);
+        setModalNotificationVisible(false)
+      })
+  }
+
+  console.log('BARGAIN: ', newBargain);
+
+  if (navigate) {
+    return (
+      <Navigate to="/" />
+    )
+  }
+
   return (
     <div>
       {modalNotificationVisible ? (
@@ -41,19 +82,31 @@ const ModalBuyer = ({ modalNotificationVisible, setModalNotificationVisible, ima
                   </div>
                   <div className="m-2 pt-4 text-left">
                     <h1 className="text-xs -ml-2">Bargain Price</h1>
-                    <input type="text" name="text" className="w-72 h-11 shadow-sm mt-1 px-3 py-2 bg-white border drop-shadow-lg placeholder-textcolor1 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block rounded-md sm:text-sm focus:ring-1" placeholder="Rp.0" />
+                    <form onSubmit={handleSubmit}>
+                      <InputForm
+                        type="price"
+                        placeholder="500000"
+                        action={(e) => setNewBargain({ ...newBargain, price: Number(e.target.value) })}
+                      />
+                      <div className="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b">
+                        <ButtonCustom
+                          type="primary-large"
+                          text="Send"
+                        // action={() => createBargain()}
+                        />
+                      </div>
+                    </form>
                   </div>
                 </div>
 
                 {/*footer*/}
-                <div className="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b">
-                  <button className="w-80 bg-medium-purple text-light-grey font-semibold  py-2 px-4 rounded hover:text-dark-purple hover:bg-light-grey border border-dark-purple"
-                    type="button"
-                    onClick={() => setModalNotificationVisible(false)}
-                  >
-                    Send
-                  </button>
-                </div>
+                {/* <div className="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b">
+                  <ButtonCustom
+                    type="primary-large"
+                    text="Send"
+                    // action={() => createBargain()}
+                  />
+                </div> */}
               </div>
             </div>
           </div>

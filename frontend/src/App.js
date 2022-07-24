@@ -17,7 +17,7 @@ function App() {
           <Route path="/notifications" element={<Notifications />} />
           <Route path="/offer-information" element={<OfferInformation />} />
           <Route path="/add-product" element={<AddProduct />} />
-          <Route path="/update-product" element={<UpdateProduct />} />
+          <Route path="/update-product/:id" element={<UpdateProduct />} />
           <Route path="/myproduct-seller" element={<MyProductSeller />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact-us" element={<ContactUs />} />
