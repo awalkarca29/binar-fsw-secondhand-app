@@ -8,7 +8,7 @@ const Home = () => {
     const [products, setProducts] = useState([]);
 
     const getProduct = () => {
-        axios.get('https://final-project-fsw-3-kel-1.herokuapp.com/api/v1/product/')
+        axios.get('https://final-project-fsw-3-kel-1.herokuapp.com/product/')
             .then(res => {
                 setProducts(res.data.data);
             }).catch(err => {

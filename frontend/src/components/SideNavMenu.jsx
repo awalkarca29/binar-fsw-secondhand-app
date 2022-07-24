@@ -1,8 +1,64 @@
 import { Form, Input } from 'antd';
 import PasswordSeen from '../assets/ic_password_seen.svg';
 import ListBuyerHistory from './ListBuyerHistory';
+import React, { useState, useEffect, useRef} from 'react';
+import { message } from "antd";
+import axios from 'axios';
 
 const SideNavMenu = ({ menu }) => {
+    const [status, setStatus] = useState('');
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [phone, setPhone] = useState('');
+    const [city, setCity] = useState('');
+    const [address, setAddress] = useState('');
+    const [image, setImage] = useState('');
+    const [users, setUsers] = useState({
+        name: '',
+        email: '',
+        phone: '',
+        city: '',
+        address: '',
+        image: ''
+    });
+
+    const getUser = () => {
+        axios.get(`https://final-project-fsw-3-kel-1.herokuapp.com/auth/profile`, {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`
+            }
+        })
+        .then(res => {
+            setUsers(res.data.data);
+        }).catch(err => {
+            console.log(err);
+        })
+    };
+    const ref = useRef(getUser)
+    useEffect(() => { ref.current() }, []);
+
+    const handleUpdate = async (e) => {
+        e.preventDefault()
+        const data = {
+            name: name,
+            email: email,
+            phone: phone,
+            city: city,
+            address: address,
+            image: image
+        }
+        await axios.put(`https://final-project-fsw-3-kel-1.herokuapp.com/profile/update`,data)
+        .then(res => {
+            // setStatus(response.users);
+            message.success('Edit was successful')
+            console.log(res.data.data);
+            
+        }).catch(err => {
+            console.log(err);
+        })
+    }
+
+
     const onFinish = (values) => {
         console.log('Success:', values);
     };
@@ -88,7 +144,7 @@ const SideNavMenu = ({ menu }) => {
             return (
                 <div>
                     <h1 className="font-bold text-xl text-left text-dark-purple mb-6">Edit Profile</h1>
-                    <Form
+                    <Form 
                         name="basic"
                         wrapperCol={{
                             span: 12,
@@ -102,20 +158,20 @@ const SideNavMenu = ({ menu }) => {
                     >
                         <div className="flex flex-col justify-start text-left mb-4">
                             <label className="text-medium-purple px-2">Full Name</label>
-                            <input type="text" name="name" className="md:w-auto md:mt-3 md:mb-5 md:px-3 md:py-3 bg-light-grey border border-slate-600 shadow-sm placeholder-grey block rounded-md sm:text-sm focus:ring-1 focus:ring-gray-200" placeholder="John Doe" />
+                            <input type="text" name="name" value={users.name} onChange={(e)=>{setName(e.target.value)}} className="md:w-auto md:mt-3 md:mb-5 md:px-3 md:py-3 bg-light-grey border border-slate-600 shadow-sm placeholder-grey block rounded-md sm:text-sm focus:ring-1 focus:ring-gray-200" placeholder="John Doe" />
                         </div>
                         <div className="flex flex-col justify-start text-left mb-4">
                             <label className="text-medium-purple px-2">Email</label>
-                            <input type="email" name="email" className="md:w-auto md:mt-3 md:mb-5 md:px-3 md:py-3 bg-light-grey border border-slate-600 shadow-sm placeholder-grey block rounded-md sm:text-sm focus:ring-1 focus:ring-gray-200" placeholder="john.doe@mail.com" />
+                            <input type="email" name="email" value={users.email} onChange={(e)=>{setEmail(e.target.value)}} className="md:w-auto md:mt-3 md:mb-5 md:px-3 md:py-3 bg-light-grey border border-slate-600 shadow-sm placeholder-grey block rounded-md sm:text-sm focus:ring-1 focus:ring-gray-200" placeholder="john.doe@mail.com" />
                         </div>
                         <div className="flex flex-col justify-start text-left mb-8">
                             <label className="p-2">Phone Number</label>
-                            <Input.Group compact>
+                            <Input.Group compact value={users.phone} onChange={(e)=>{setPhone(e.target.value)}}>
                                 <Input
                                     style={styleInput}
                                     defaultValue="+62"
                                 />
-                                <Input
+                                <Input 
                                     style={{
                                         width: '85%',
                                         borderRadius: '0 0.375rem 0.375rem 0',
@@ -128,13 +184,13 @@ const SideNavMenu = ({ menu }) => {
                         </div>
                         <div className="flex flex-col justify-start text-left my-4">
                             <label className="text-medium-purple px-2">City</label>
-                            <input type="text" name="city" className="md:w-auto md:mt-3 md:mb-5 md:px-3 md:py-3 bg-light-grey border border-slate-600 shadow-sm placeholder-grey block rounded-md sm:text-sm focus:ring-1 focus:ring-gray-200" placeholder="South Jakarta" />
+                            <input type="text" name="city" value={users.city} onChange={(e)=>{setCity(e.target.value)}} className="md:w-auto md:mt-3 md:mb-5 md:px-3 md:py-3 bg-light-grey border border-slate-600 shadow-sm placeholder-grey block rounded-md sm:text-sm focus:ring-1 focus:ring-gray-200" placeholder="South Jakarta" />
                         </div>
                         <div className="flex flex-col justify-start text-left mb-4">
                             <label className="p-2">Address</label>
-                            <textarea className="md:w-auto md:h-48 md:mt-3 md:mb-5 md:px-3 md:py-3 bg-light-grey border border-slate-600 shadow-sm placeholder-grey block rounded-md sm:text-sm focus:ring-1 resize-none focus:ring-gray-200" placeholder="The Breeze BSD Bumi Serpong, Banten, Indonesia"></textarea>
+                            <textarea value={users.address} onChange={(e)=>{setAddress(e.target.value)}} className="md:w-auto md:h-48 md:mt-3 md:mb-5 md:px-3 md:py-3 bg-light-grey border border-slate-600 shadow-sm placeholder-grey block rounded-md sm:text-sm focus:ring-1 resize-none focus:ring-gray-200" placeholder="The Breeze BSD Bumi Serpong, Banten, Indonesia"></textarea>
                         </div>
-                        <div className="flex flex-row justify-center items-center h-auto bg-medium-purple text-light-grey font-semibold my-4 py-2 px-4 rounded cursor-pointer">
+                        <div type="button" name="update" value="update" onClick={handleUpdate} className="flex flex-row justify-center items-center h-auto bg-medium-purple text-light-grey font-semibold my-4 py-2 px-4 rounded cursor-pointer">
                             <p className="ml-2 mb-0">Save</p>
                         </div>
                     </Form>

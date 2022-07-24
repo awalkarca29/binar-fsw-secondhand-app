@@ -24,7 +24,7 @@ const ProductDetail = (type) => {
     const [modalNotificationVisible, setModalNotificationVisible] = useState(false);
 
     const getSpecificProduct = () => {
-        axios.get(`https://final-project-fsw-3-kel-1.herokuapp.com/api/v1/product/${id}`)
+        axios.get(`https://final-project-fsw-3-kel-1.herokuapp.com/product/${id}`)
             .then(res => {
                 setProduct(res.data.data);
             }).catch(err => {
