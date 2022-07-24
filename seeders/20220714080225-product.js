@@ -64,6 +64,32 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date(),
       },
+      {
+        name: "Hp Samsung Galaxy A10",
+        price: 920000,
+        description:
+          "lorem ipsum Elit eu voluptate sunt aute aute dolore. Eu aliqua laborum veniam quis cillum deserunt amet elit ullamco esse qui. Nostrud incididunt incididunt occaecat tempor.",
+        image:
+          "https://res.cloudinary.com/dcisuvowd/image/upload/v1656510712/elektronik1_qewcfl.jpg",
+        isSold: false,
+        userId: 1,
+        categoryId: 2,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        name: "Alat Pancing 1 Set",
+        price: 70000,
+        description:
+          "lorem ipsum Elit eu voluptate sunt aute aute dolore. Eu aliqua laborum veniam quis cillum deserunt amet elit ullamco esse qui. Nostrud incididunt incididunt occaecat tempor.",
+        image:
+          "https://res.cloudinary.com/dcisuvowd/image/upload/v1656514386/hobi3_gi4bq3.jpg",
+        isSold: false,
+        userId: 2,
+        categoryId: 4,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
       // {
       //   name: 'Jam Tangan Casio MTP',
       //   price: 320000,
@@ -119,17 +145,6 @@ module.exports = {
       //   updatedAt: new Date()
       // },
       // {
-      //   name: 'Hp Samsung Galaxy A10',
-      //   price: 920000,
-      //   description: "lorem ipsum Elit eu voluptate sunt aute aute dolore. Eu aliqua laborum veniam quis cillum deserunt amet elit ullamco esse qui. Nostrud incididunt incididunt occaecat tempor.",
-      //   categories: "Elektronik",
-      //   images: "https://res.cloudinary.com/dcisuvowd/image/upload/v1656510712/elektronik1_qewcfl.jpg",
-      //   categoryId: 1,
-      //   userId: 1,
-      //   createdAt: new Date(),
-      //   updatedAt: new Date()
-      // },
-      // {
       //   name: 'Laptop Acer Aspire V5',
       //   price: 2300000,
       //   description: "lorem ipsum Elit eu voluptate sunt aute aute dolore. Eu aliqua laborum veniam quis cillum deserunt amet elit ullamco esse qui. Nostrud incididunt incididunt occaecat tempor.",
@@ -168,17 +183,6 @@ module.exports = {
       //   description: "lorem ipsum Elit eu voluptate sunt aute aute dolore. Eu aliqua laborum veniam quis cillum deserunt amet elit ullamco esse qui. Nostrud incididunt incididunt occaecat tempor.",
       //   categories: "Hobi",
       //   images: "https://res.cloudinary.com/dcisuvowd/image/upload/v1656514255/hobi2_hevx3g.jpg",
-      //   categoryId: 1,
-      //   userId: 1,
-      //   createdAt: new Date(),
-      //   updatedAt: new Date()
-      // },
-      // {
-      //   name: 'Alat Pancing 1 Set',
-      //   price: 70000,
-      //   description: "lorem ipsum Elit eu voluptate sunt aute aute dolore. Eu aliqua laborum veniam quis cillum deserunt amet elit ullamco esse qui. Nostrud incididunt incididunt occaecat tempor.",
-      //   categories: "Hobi",
-      //   images: "https://res.cloudinary.com/dcisuvowd/image/upload/v1656514386/hobi3_gi4bq3.jpg",
       //   categoryId: 1,
       //   userId: 1,
       //   createdAt: new Date(),

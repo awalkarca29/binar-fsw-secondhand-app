@@ -13,7 +13,7 @@ module.exports = {
      */
     return queryInterface.bulkInsert("Categories", [
       {
-        name: "Clothes",
+        name: "Fashions",
         createdAt: new Date(),
         updatedAt: new Date(),
       },
@@ -24,6 +24,16 @@ module.exports = {
       },
       {
         name: "Spareparts",
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        name: "Furnitures",
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        name: "Others",
         createdAt: new Date(),
         updatedAt: new Date(),
       },
