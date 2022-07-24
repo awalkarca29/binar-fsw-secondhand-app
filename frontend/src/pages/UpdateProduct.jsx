@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
 import { NavbarLogin, Footer, ButtonCustom, InputForm } from '../components';
 import { Select, Upload, Button, message, Spin } from 'antd';
 import ic_image from '../assets/ic_image.svg';
 import ic_arrow_left from "../assets/ic_arrow_left.svg";
-import { Link, Navigate } from 'react-router-dom';
+import { Link, Navigate, useParams } from 'react-router-dom';
 
 const { Option } = Select;
 
-function AddProduct() {
-  const [newProduct, setNewProduct] = useState({
+function UpdateProduct() {
+  const [product, setProduct] = useState({
     name: '',
     description: '',
     price: '',
@@ -19,27 +19,49 @@ function AddProduct() {
 
   const [navigate, setNavigate] = useState(false);
 
+  let { id } = useParams();
+
+  const getSpecificProduct = async () => {
+    await axios({
+      url: `https://final-project-fsw-3-kel-1.herokuapp.com/product/${id}`,
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`
+      }
+    })
+      .then(res => {
+        setProduct(res.data.data);
+      }).catch(err => {
+        console.log(err);
+      })
+  };
+
+  const ref = useRef(getSpecificProduct);
+
+  useEffect(() => { ref.current() }, []);
+
+  console.log("DATA PRODUCT >> ", product);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     await axios({
-      url: "https://final-project-fsw-3-kel-1.herokuapp.com/seller/product/",
-      method: "POST",
+      url: `https://final-project-fsw-3-kel-1.herokuapp.com/seller/product/${id}`,
+      method: "PUT",
       headers: {
         "Content-Type": "multipart/form-data",
         Authorization: `Bearer ${localStorage.getItem('token')}`
       },
-      data: newProduct
+      data: product
     })
       .then(() => {
-        message.success("Product successfully added!")
+        message.success("Product successfully updated!")
         setNavigate(true);
       }).catch(err => {
-        message.error("Failed to add product!")
+        message.error("Failed to update product!")
         console.log(err);
       })
   }
-  console.log("NEW PRODUCT: ", newProduct);
 
   if (navigate) {
     return (
@@ -62,8 +84,8 @@ function AddProduct() {
               showUploadList={{ showRemoveIcon: true }}
               accept=".png, .jpeg, .jpg"
               beforeUpload={(file) => {
-                setNewProduct({
-                  ...newProduct, image: file
+                setProduct({
+                  ...product, image: file
                 })
                 return false;
               }}
@@ -98,7 +120,7 @@ function AddProduct() {
                 border: 100,
                 margin: "12px 48px"
               }}
-              onChange={(value) => setNewProduct({ ...newProduct, categoryId: Number(value) })}
+              onChange={(value) => setProduct({ ...product, categoryId: Number(value) })}
             >
               <Option value="1">Fashions</Option>
               <Option value="2">Electronics</Option>
@@ -110,19 +132,22 @@ function AddProduct() {
               type="text"
               name="name"
               placeholder="Product Name"
-              action={(e) => setNewProduct({ ...newProduct, name: e.target.value })}
+              value={product.name}
+              action={(e) => setProduct({ ...product, name: e.target.value })}
             />
             <InputForm
               type="text"
               name="price"
               placeholder="450000"
-              action={(e) => setNewProduct({ ...newProduct, price: Number(e.target.value) })}
+              value={product.price}
+              action={(e) => setProduct({ ...product, price: Number(e.target.value) })}
             />
             <InputForm
               type="textarea"
               name="description"
+              value={product.description}
               placeholder="Description of the product"
-              action={(e) => setNewProduct({ ...newProduct, description: e.target.value })}
+              action={(e) => setProduct({ ...product, description: e.target.value })}
             />
             <div className='my-6 mx-14 flex justify-end'>
               <ButtonCustom
@@ -131,7 +156,7 @@ function AddProduct() {
               />
               <ButtonCustom
                 type="primary"
-                text="Add Product"
+                text="Update Product"
               />
             </div>
           </div>
@@ -143,4 +168,4 @@ function AddProduct() {
   )
 }
 
-export default AddProduct
+export default UpdateProduct

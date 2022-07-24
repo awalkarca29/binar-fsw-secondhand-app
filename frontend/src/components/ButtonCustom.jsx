@@ -1,4 +1,4 @@
-const ButtonCustom = ({ type, text, icon, action }) => {
+const ButtonCustom = ({ type, text, icon, bgColor, action, isSold }) => {
   switch (type) {
     case "primary-icon":
       return (
@@ -9,19 +9,38 @@ const ButtonCustom = ({ type, text, icon, action }) => {
       )
     case "primary-large":
       return (
-        <button onClick={action} className="bg-medium-purple text-light-grey font-semibold py-2 px-4 border border-dark-purple rounded hover:text-light-grey hover:bg-light-purple text-center items-center md:w-80 w-full sm:text-sm">
+        <button onClick={action} className='bg-medium-purple text-light-grey font-semibold py-2 px-4 border border-dark-purple rounded hover:text-light-grey hover:bg-light-purple text-center items-center md:w-80 w-full sm:text-sm disabled:opacity-50' disabled={isSold}>
+          {text}
+        </button>
+      )
+    case "primary-light":
+      return (
+        <button class="bg-light-grey text-dark-purple font-bold m-2 py-2 px-4 rounded hover:bg-light-blue border border-light-grey" >
           {text}
         </button>
       )
     case "secondary":
       return (
-        <button className="bg-light-grey text-dark-purple font-semibold py-2 px-4 m-2 rounded hover:bg-light-blue border border-dark-purple">
+        <button className="bg-light-grey text-dark-purple font-semibold mx-2 py-2 px-4 rounded hover:bg-light-blue border border-dark-purple">
           {text}
         </button>
       )
-    default:
+    case "secondary-light":
       return (
-        <button className="bg-medium-purple text-light-grey font-semibold py-2 px-4 border border-dark-purple rounded m-2 hover:text-light-grey hover:bg-light-purple">
+        <button class=" bg-transparent text-light-grey font-semibold m-2 py-2 px-4 border border-light-grey rounded hover:text-light-blue hover:border-light-blue">
+          {text}
+        </button>
+      )
+    case "icon-only":
+      return (
+        <button className={`bg-${bgColor} h-full hover:opacity-90 text-light-grey hover:text-white mx-2 py-2 px-2 rounded`} onClick={action}>
+          <img className="sm:object-fill" src={icon} />
+        </button>
+      )
+    default:
+      // primary button by default
+      return (
+        <button className="bg-medium-purple text-light-grey font-semibold mx-2 py-2 px-4 border border-dark-purple rounded hover:text-light-grey hover:bg-light-purple">
           {text}
         </button>
       )

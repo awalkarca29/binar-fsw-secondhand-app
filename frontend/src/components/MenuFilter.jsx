@@ -1,4 +1,4 @@
-import { ManOutlined, WomanOutlined } from '@ant-design/icons';
+import { SkinOutlined, LaptopOutlined, CarOutlined, HomeOutlined, AppstoreOutlined } from '@ant-design/icons';
 import { Menu } from 'antd';
 
 function getItem(label, key, icon, children, type) {
@@ -12,16 +12,11 @@ function getItem(label, key, icon, children, type) {
 }
 
 const items = [
-    getItem('Women\'s Fashion', 'sub1', <WomanOutlined />, [
-        getItem('Clothes', '1'),
-        getItem('Shoes', '2'),
-        getItem('Bag', '3'),
-    ]),
-    getItem('Men\'s Fashion', 'sub2', <ManOutlined />, [
-        getItem('Clothes', '4'),
-        getItem('Shoes', '5'),
-        getItem('Bag', '6'),
-    ]),
+    getItem('Clothes', 'sub1', <SkinOutlined />),
+    getItem('Electronics', 'sub2', <LaptopOutlined />),
+    getItem('Spareparts', 'sub3', <CarOutlined />),
+    getItem('Furniture', 'sub4', <HomeOutlined />),
+    getItem('Others', 'sub5', <AppstoreOutlined />),
 ];
 
 const MenuFilter = (category) => {
@@ -37,7 +32,9 @@ const MenuFilter = (category) => {
             <Menu
                 onClick={onClick}
                 style={{
+                    borderRadius: "12px",
                     width: 256,
+                    boxShadow: "2px 0 4px 0 rgba(0, 0, 0, 0.1)"
                 }}
                 mode="inline"
                 items={items}

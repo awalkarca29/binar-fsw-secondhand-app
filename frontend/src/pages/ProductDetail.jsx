@@ -24,8 +24,10 @@ const ProductDetail = () => {
 
     let { id } = useParams();
 
-    const getSpecificProduct = () => {
-        axios.get(`https://final-project-fsw-3-kel-1.herokuapp.com/product/${id}`, {
+    const getSpecificProduct = async () => {
+        await axios({
+            url: `https://final-project-fsw-3-kel-1.herokuapp.com/product/${id}`,
+            method: "GET",
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('token')}`
             }
@@ -66,6 +68,7 @@ const ProductDetail = () => {
                                 type="primary-large"
                                 text="Buy"
                                 action={() => setModalNotificationVisible(true)}
+                                isSold={product.isSold}
                             />
                         </div>
                         <div className="container flex flex-row justify-start items-start bg-light-grey drop-shadow-md rounded-md w-96 my-2 p-8">
@@ -77,13 +80,12 @@ const ProductDetail = () => {
                             />
                             <div className="flex flex-col items-start px-4">
                                 <p className="font-bold">{product.User.name}</p>
-                                <p className="text-grey m-0">Kota</p>
+                                <p className="text-grey m-0">{product.User.city}</p>
                             </div>
                         </div>
                     </div>
                 </Col>
             </Row>
-            <br /><br /><br /><br />
             <Footer />
             {
                 modalNotificationVisible ? (

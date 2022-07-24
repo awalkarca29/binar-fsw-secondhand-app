@@ -1,22 +1,20 @@
 import React from 'react';
-import { Circle } from 'phosphor-react';
 
-function InputForm() {
-  return (
-    <div>
-        <label className="block ml-10">
-            <input type="email" name="email" className="w-28 h-9 sm:h-15 mt-1 px-3 py-3 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block rounded-md sm:text-sm focus:ring-1" placeholder="placeholder" />
-            <input type="email" name="email" className="w-80 mt-1 px-3 py-3 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block rounded-md sm:text-sm focus:ring-1" placeholder="placeholder" />
-            <Circle className=" ml-72 -mt-9" size={24} color="#d9d9d9" weight="fill" />
-        </label>
-        <br/>
-        <label className="block ml-10">
-            <input type="email" name="email" className="w-28 mt-1 px-3 py-3 bg-white border shadow-sm border-slate-300 placeholder-black focus:outline-none focus:border-sky-500 focus:ring-sky-500 block rounded-md sm:text-sm focus:ring-1" placeholder="placeholder" />
-            <input type="email" name="email" className="w-80 mt-1 px-3 py-3 bg-white border shadow-sm border-slate-300 placeholder-black focus:outline-none focus:border-sky-500 focus:ring-sky-500 block rounded-md sm:text-sm focus:ring-1" placeholder="placeholder" />
-            <Circle className=" ml-72 -mt-9" size={24} color="#d9d9d9" weight="fill" />
-        </label>
-    </div>
-  )
+const InputForm = ({ type, name, placeholder, value, action }) => {
+  switch (type) {
+    case "price":
+      return (
+        <input type="text" name={name} className="w-72 h-11 shadow-sm mt-1 px-3 py-2 bg-white border drop-shadow-lg placeholder-textcolor1 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block rounded-md sm:text-sm focus:ring-1" placeholder={placeholder} value={value} onChange={action} required />
+      )
+    case "textarea":
+      return (
+        <textarea name={name} className="lg:w-4/5 sm:w-4/5 lg:h-[180px] sm:h-28 lg:mx-12 sm:mx-8 my-4 px-2 bg-white-normal border border-slate-600 shadow-sm placeholder-grey focus:outline-none focus:border-light-grey block rounded-md sm:text-sm focus:ring-1 resize-none focus:ring-gray-200" placeholder={placeholder} value={value} onChange={action} required ></textarea>
+      )
+    default:
+      return (
+        <input type="text" name={name} className="lg:w-4/5 sm:w-4/5 lg:mx-12 sm:mx-8 my-4 px-2 py-2 border shadow-sm placeholder-grey focus:outline-none focus:border-light-grey focus:ring-purple block rounded-md sm:text-sm focus:ring-1" placeholder={placeholder} value={value} onChange={action} required />
+      )
+  }
 }
 
 export default InputForm

@@ -7,7 +7,7 @@ import LogoLight from '../assets/logo-light.svg';
 
 const Footer = () => {
     return (
-        <Row className="flex flex-row p-8 bg-gradient-to-b from-dark-purple to-purple">
+        <Row className="flex flex-row mt-12 p-8 bg-gradient-to-b from-dark-purple to-purple">
             <Col span={6} className="flex flex-col justify-start text-light-grey">
                 <img src={LogoLight} />
                 <p className="text-left my-4">Lorem ipsum dolor sit amet consectetur adipiscing elit sed diam nonummy nibh euismod tincidunt ut</p>

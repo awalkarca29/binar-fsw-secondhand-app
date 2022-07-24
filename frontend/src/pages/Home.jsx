@@ -7,7 +7,10 @@ const Home = () => {
 
     useEffect(() => {
         const getProduct = async () => {
-            await axios.get('https://final-project-fsw-3-kel-1.herokuapp.com/product/')
+            await axios({
+                url: "https://final-project-fsw-3-kel-1.herokuapp.com/product/",
+                method: "GET"
+            })
                 .then(res => {
                     setProducts(res.data.data);
                 }).catch(err => {

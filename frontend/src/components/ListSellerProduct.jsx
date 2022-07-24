@@ -4,6 +4,7 @@ import IconEdit from "../assets/ic_edit.svg";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import ButtonCustom from "./ButtonCustom";
 
 const ListSellerProduct = ({ id, productName, openPrice, image }) => {
     const [products, setProducts] = useState([]);
@@ -49,21 +50,31 @@ const ListSellerProduct = ({ id, productName, openPrice, image }) => {
                     <img className='rounded-md my-5 ml-5 w-20 h-20 object-fill' src={image} />
                 </Col>
                 <Col span="auto" className="mr-6">
-                    <p className="font-semibold text- my-2">{productName}</p>
-                    <h4 className="text-lg">{openPrice}</h4>
+                    <p className="font-semibold text-lg my-2">{productName}</p>
+                    <h4 className="text-lg">Rp {openPrice}</h4>
                 </Col>
             </div>
             <Col className="btn-group flex flex-row justify-center">
-                <button className="bg-danger text-light-grey hover:text-white mr-4 py-2 px-4 rounded" onClick={() => handleDelete(id)}>
-                    <img src={IconDelete} />
-                </button>
-                <button className="bg-light-purple text-light-grey hover:text-white mr-4 py-2 px-4 rounded">
-                    <img src={IconEdit} />
-                </button>
+                <div>
+                    <ButtonCustom
+                        type="icon-only"
+                        bgColor="danger"
+                        icon={IconDelete}
+                        action={() => handleDelete(id)}
+                    />
+                </div>
+                <Link to={`/update-product/${id}`}>
+                    <ButtonCustom
+                        type="icon-only"
+                        bgColor="light-purple"
+                        icon={IconEdit}
+                    />
+                </Link>
                 <Link to="/offer-information">
-                    <button className="bg-medium-purple text-light-grey hover:text-white mr-4 py-2 px-4 rounded">
-                        Bid Info
-                    </button>
+                    <ButtonCustom
+                        type="primary"
+                        text="Bid Info"
+                    />
                 </Link>
             </Col>
         </div>
