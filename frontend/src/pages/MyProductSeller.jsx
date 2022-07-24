@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { NavbarLogin, Footer } from '../components';
+import { NavbarLogin, Footer, ButtonCustom } from '../components';
 import { Tab } from '@headlessui/react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
@@ -8,16 +8,21 @@ import { ListSellerProduct, ListSellerHistory } from '../components';
 function MyProductSeller() {
   const [products, setProducts] = useState([]);
 
-  const getProducts = () => {
-    axios.get('https://final-project-fsw-3-kel-1.herokuapp.com/api/v1/product/')
-      .then(res => {
-        setProducts(res.data.data);
-      }).catch(err => {
-        console.log(err);
+  useEffect(() => {
+    const getProductsByUserId = async () => {
+      await axios.get(`https://final-project-fsw-3-kel-1.herokuapp.com/seller/product/0`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`
+        }
       })
-  };
-
-  useEffect(() => getProducts(), []);
+        .then(res => {
+          setProducts(res.data.data);
+        }).catch(err => {
+          console.log(err);
+        })
+    };
+    getProductsByUserId();
+  }, []);
 
   return (
     <div>
@@ -27,29 +32,29 @@ function MyProductSeller() {
           <Tab.List className='lg:w-auto sm:mx-14 sm:w-[540px] flex flex-col sm:flex-row bg-white-normal drop-shadow-lg rounded-lg'>
             <Tab className='px-4 py-2 -mb-px font-semibold text-purple border-b-2 border-dark-purple rounded-t opacity-50'> All Products</Tab>
             <Tab className='text-purple py-4 px-6 block hover:text-medium-blue focus:outline-none'>Sold Out</Tab>
-            <Tab className='text-purple py-4 px-6 block hover:text-medium-blue focus:outline-none'>Reiviewing</Tab>
+            <Tab className='text-purple py-4 px-6 block hover:text-medium-blue focus:outline-none'>Reviewing</Tab>
             <Tab className='text-purple py-4 px-6 block hover:text-medium-blue focus:outline-none'>History Seller</Tab>
           </Tab.List>
           <Tab.Panels>
             <Tab.Panel>
               <div className='mx-16 my-8'>
                 <div className='flex justify-between'>
-                  <h1 className='font-bold text-lg'>40 product</h1>
+                  <h1 className='font-bold text-lg'>{products.length} product</h1>
                   <Link to="/add-product">
-                    <button className="bg-medium-purple text-light-grey font-semibold  lg:py-2 lg:px-4 sm:py-1 sm:px-2 text-sm rounded-lg hover:text-dark-purple hover:bg-light-grey border border-dark-purple"
-                      type="button"
-                    >
-                      Add New Product
-                    </button>
+                    <ButtonCustom
+                    type="primary"
+                    text="Add New Product"
+                    />
                   </Link>
                 </div>
-                {products.map(product => {
+                {products.map((products) => (
                   <ListSellerProduct
-                    productName={product.name}
-                    openPrice={product.price}
-                    image={product.image}
+                    id={products.id}
+                    productName={products.name}
+                    openPrice={products.price}
+                    image={products.image}
                   />
-                })}
+                ))}
 
               </div>
             </Tab.Panel>

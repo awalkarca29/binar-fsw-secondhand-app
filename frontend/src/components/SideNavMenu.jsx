@@ -6,6 +6,7 @@ import { message } from "antd";
 import axios from 'axios';
 
 const SideNavMenu = ({ menu }) => {
+    const [products, setHistory] = useState([]);
     const [status, setStatus] = useState('');
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
@@ -37,6 +38,26 @@ const SideNavMenu = ({ menu }) => {
     const ref = useRef(getUser)
     useEffect(() => { ref.current() }, []);
 
+    useEffect(() => {
+        const getHistory = async () => {
+            await axios.get('https://final-project-fsw-3-kel-1.herokuapp.com/history/')
+            // await axios({
+            //         url: `https://final-project-fsw-3-kel-1.herokuapp.com/auth/history/`,
+            //         method: "GET",
+            //         headers: {
+            //             Authorization: `Bearer ${localStorage.getItem('token')}`
+            //         },
+            //         data: products
+            //     })
+            .then(res => {
+                setHistory(res.data.data);
+            }).catch(err => {
+                console.log(err);
+            })
+        };
+        getHistory();
+    }, []);
+
     const handleUpdate = async (e) => {
         e.preventDefault()
         const data = {
@@ -47,12 +68,20 @@ const SideNavMenu = ({ menu }) => {
             address: address,
             image: image
         }
-        await axios.put(`https://final-project-fsw-3-kel-1.herokuapp.com/profile/update`,data)
+    
+        // await axios.put(`https://final-project-fsw-3-kel-1.herokuapp.com/profile/update`,data)
+        await axios({
+            url: `https://final-project-fsw-3-kel-1.herokuapp.com/profile/update`,
+            method: "PUT",
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`
+            },
+            data: users
+        })
         .then(res => {
             // setStatus(response.users);
             message.success('Edit was successful')
-            console.log(res.data.data);
-            
+            console.log(res.status);
         }).catch(err => {
             console.log(err);
         })
@@ -136,8 +165,17 @@ const SideNavMenu = ({ menu }) => {
                             Rejected
                         </div>
                     </div>
-                    <ListBuyerHistory />
-                    <ListBuyerHistory />
+                    {products.map((products) => (
+                        <ListBuyerHistory
+                            id={products.id}
+                            imgSrc={products.image}
+                            category={products.Category.name}
+                            title={products.title}
+                            price={products.price}
+                            description={products.description}
+                        />
+                    ))
+                    }
                 </div>
             )
         default:
@@ -158,37 +196,23 @@ const SideNavMenu = ({ menu }) => {
                     >
                         <div className="flex flex-col justify-start text-left mb-4">
                             <label className="text-medium-purple px-2">Full Name</label>
-                            <input type="text" name="name" value={users.name} onChange={(e)=>{setName(e.target.value)}} className="md:w-auto md:mt-3 md:mb-5 md:px-3 md:py-3 bg-light-grey border border-slate-600 shadow-sm placeholder-grey block rounded-md sm:text-sm focus:ring-1 focus:ring-gray-200" placeholder="John Doe" />
+                            <input type="text" name="name" value={users.name} onChange={(e)=>{setUsers({...users,name:e.target.value})}} className="md:w-auto md:mt-3 md:mb-5 md:px-3 md:py-3 bg-light-grey border border-slate-600 shadow-sm placeholder-grey block rounded-md sm:text-sm focus:ring-1 focus:ring-gray-200" placeholder="John Doe" />
                         </div>
                         <div className="flex flex-col justify-start text-left mb-4">
                             <label className="text-medium-purple px-2">Email</label>
-                            <input type="email" name="email" value={users.email} onChange={(e)=>{setEmail(e.target.value)}} className="md:w-auto md:mt-3 md:mb-5 md:px-3 md:py-3 bg-light-grey border border-slate-600 shadow-sm placeholder-grey block rounded-md sm:text-sm focus:ring-1 focus:ring-gray-200" placeholder="john.doe@mail.com" />
+                            <input type="email" name="email" value={users.email} onChange={(e)=>{setUsers({...users,email:e.target.value})}} className="md:w-auto md:mt-3 md:mb-5 md:px-3 md:py-3 bg-light-grey border border-slate-600 shadow-sm placeholder-grey block rounded-md sm:text-sm focus:ring-1 focus:ring-gray-200" placeholder="john.doe@mail.com" />
                         </div>
                         <div className="flex flex-col justify-start text-left mb-8">
                             <label className="p-2">Phone Number</label>
-                            <Input.Group compact value={users.phone} onChange={(e)=>{setPhone(e.target.value)}}>
-                                <Input
-                                    style={styleInput}
-                                    defaultValue="+62"
-                                />
-                                <Input 
-                                    style={{
-                                        width: '85%',
-                                        borderRadius: '0 0.375rem 0.375rem 0',
-                                        backgroundColor: '#F9F9F9',
-                                        height: '46px'
-                                    }}
-                                    placeholder="81234567890"
-                                />
-                            </Input.Group>
+                            <input type="text" name="city" value={users.phone} onChange={(e)=>{setUsers({...users,phone:e.target.value})}} className="md:w-auto md:mt-3 md:mb-5 md:px-3 md:py-3 bg-light-grey border border-slate-600 shadow-sm placeholder-grey block rounded-md sm:text-sm focus:ring-1 focus:ring-gray-200" placeholder="08212463792" />
                         </div>
                         <div className="flex flex-col justify-start text-left my-4">
                             <label className="text-medium-purple px-2">City</label>
-                            <input type="text" name="city" value={users.city} onChange={(e)=>{setCity(e.target.value)}} className="md:w-auto md:mt-3 md:mb-5 md:px-3 md:py-3 bg-light-grey border border-slate-600 shadow-sm placeholder-grey block rounded-md sm:text-sm focus:ring-1 focus:ring-gray-200" placeholder="South Jakarta" />
+                            <input type="text" name="city" value={users.city} onChange={(e)=>{setUsers({...users,city:e.target.value})}} className="md:w-auto md:mt-3 md:mb-5 md:px-3 md:py-3 bg-light-grey border border-slate-600 shadow-sm placeholder-grey block rounded-md sm:text-sm focus:ring-1 focus:ring-gray-200" placeholder="South Jakarta" />
                         </div>
                         <div className="flex flex-col justify-start text-left mb-4">
                             <label className="p-2">Address</label>
-                            <textarea value={users.address} onChange={(e)=>{setAddress(e.target.value)}} className="md:w-auto md:h-48 md:mt-3 md:mb-5 md:px-3 md:py-3 bg-light-grey border border-slate-600 shadow-sm placeholder-grey block rounded-md sm:text-sm focus:ring-1 resize-none focus:ring-gray-200" placeholder="The Breeze BSD Bumi Serpong, Banten, Indonesia"></textarea>
+                            <textarea value={users.address} onChange={(e)=>{setUsers({...users,address:e.target.value})}} className="md:w-auto md:h-48 md:mt-3 md:mb-5 md:px-3 md:py-3 bg-light-grey border border-slate-600 shadow-sm placeholder-grey block rounded-md sm:text-sm focus:ring-1 resize-none focus:ring-gray-200" placeholder="The Breeze BSD Bumi Serpong, Banten, Indonesia"></textarea>
                         </div>
                         <div type="button" name="update" value="update" onClick={handleUpdate} className="flex flex-row justify-center items-center h-auto bg-medium-purple text-light-grey font-semibold my-4 py-2 px-4 rounded cursor-pointer">
                             <p className="ml-2 mb-0">Save</p>

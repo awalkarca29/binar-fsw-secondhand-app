@@ -1,12 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
-import { Navbar, Footer, ModalBuyer } from '../components';
+import { Navbar, Footer, ModalBuyer, ButtonCustom } from '../components';
 import { Col, Row, Image } from 'antd';
 import { useParams } from 'react-router-dom';
 
-const ProductDetail = (type) => {
-    let { id } = useParams();
-
+const ProductDetail = () => {
     const [product, setProduct] = useState({
         id: '',
         name: '',
@@ -21,10 +19,17 @@ const ProductDetail = (type) => {
             name: ''
         }
     });
+
     const [modalNotificationVisible, setModalNotificationVisible] = useState(false);
 
+    let { id } = useParams();
+
     const getSpecificProduct = () => {
-        axios.get(`https://final-project-fsw-3-kel-1.herokuapp.com/product/${id}`)
+        axios.get(`https://final-project-fsw-3-kel-1.herokuapp.com/product/${id}`, {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`
+            }
+        })
             .then(res => {
                 setProduct(res.data.data);
             }).catch(err => {
@@ -39,8 +44,7 @@ const ProductDetail = (type) => {
     return (
         <div>
             <Navbar />
-            <br /><br /><br /><br />
-            <Row className="flex flex-row flex-wrap justify-center">
+            <Row className="flex flex-row flex-wrap justify-center mt-24">
                 <Col flex="auto">
                     <div className="flex flex-col justify-center items-center">
                         <Image
@@ -58,13 +62,16 @@ const ProductDetail = (type) => {
                             <p className="text-black-normal text-lg font-bold">Rp. {product.price}</p>
                             <p className="text-black-normal font-semibold">Description Product</p>
                             <p className="text-left w-11/12">{product.description}</p>
-                            <button onClick={() => setModalNotificationVisible(true)} className={`${type = 'light-grey' ? 'bg-medium-purple text-light-grey' : 'bg-transparent text-dark-purple'} text-center items-center md:w-80 w-full sm:text-sm hover:text-dark-purple hover:bg-light-grey border border-dark-purple font-bold py-2 md:px-4 rounded flex justify-center mt-4`}>
-                                <span>Buy</span>
-                            </button>
+                            <ButtonCustom
+                                type="primary-large"
+                                text="Buy"
+                                action={() => setModalNotificationVisible(true)}
+                            />
                         </div>
                         <div className="container flex flex-row justify-start items-start bg-light-grey drop-shadow-md rounded-md w-96 my-2 p-8">
                             <Image
                                 width={40}
+                                height={40}
                                 src={product.User.image}
                                 className="object-fill rounded-full"
                             />

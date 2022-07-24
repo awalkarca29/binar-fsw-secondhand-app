@@ -1,100 +1,56 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
-import { NavbarLogin, Footer } from '../components';
-import { Select } from 'antd';
+import { NavbarLogin, Footer, ButtonCustom } from '../components';
+import { Select, message } from 'antd';
 import { Upload, Button } from 'antd';
 import ic_image from '../assets/ic_image.svg';
 import Arrow_left from "../assets/ic_arrow_left.svg";
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 
 const { Option } = Select;
 
 function AddProduct() {
-  const [newProduct, setNewProduct] = useState([]);
+  // const [newProduct, setNewProduct] = useState([]);
+  const [name, setName] = useState('');
+  const [price, setPrice] = useState('');
+  const [category, setCategory] = useState('');
+  const [image, setImage] = useState('https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,b_rgb:f5f5f5/5d8ef7e0-690b-4284-bd8b-6529dc44f309/kyrie-infinity-ep-basketball-shoes-QJ01t9.png');
+  const [description, setDescription] = useState('');
+  const [navigate, setNavigate] = useState(false);
 
-  const [isUpdate, setIsUpdate] = useState({
-    id: null,
-    status: false
-  });
-
-  const [formData, setFormData] = useState({
-    id: '',
-    name: '',
-    price: '',
-    category: '',
-    image: '',
-    description: ''
-  })
-
-  useEffect(() => {
-    // fetch data from API
-    axios.get('https://final-project-fsw-3-kel-1.herokuapp.com/api/v1/product')
-      .then((res) => {
-        console.log(res.data);
-        setNewProduct(res?.data ?? []);
-      });
-  }, [])
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    alert("Successful!");
-
-    let data = [...newProduct];
-
-    // check is data update
-    if (isUpdate.status) {
-      data.forEach((newProduct) => {
-        if (newProduct.id === isUpdate.id) {
-          newProduct.name = formData.name;
-          newProduct.price = formData.price;
-          newProduct.category = formData.category;
-          newProduct.image = formData.image;
-          newProduct.description = formData.description;
-        }
+    await axios.post(`https://final-project-fsw-3-kel-1.herokuapp.com/seller/product/`, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+        Authorization: `Bearer ${localStorage.getItem('token')}`
+      },
+    }, {
+      name,
+      price,
+      category,
+      image,
+      description
+    })
+      .then(() => {
+        // setNewProduct(formData);
+        message.success("Product successfully added!")
+        // console.log("DATA NEW PRODUCT: ", newProduct);
+        setNavigate(true);
+      }).catch(err => {
+        console.log(err);
       })
-      axios.put(`https://final-project-fsw-3-kel-1.herokuapp.com/api/v1/seller/product/${isUpdate.id}`,
-        {
-          name: formData.name,
-          price: formData.price,
-          category: formData.category,
-          description: formData.description
-        })
-        .then((res) => {
-          alert("Successfully updated data!");
-        })
-    } else {
-      let newData = {
-        id: 2,
-        name: formData.name,
-        price: formData.price,
-        category: formData.category,
-        description: formData.description
-      }
-      data.push(newData);
 
-      axios.post("https://final-project-fsw-3-kel-1.herokuapp.com/api/v1/seller/product", newData)
-        .then((res) => {
-          alert("Successfully saved data!");
-        })
-    }
-
-    // add product's data
-    setIsUpdate({ id: null, status: false });
-    setNewProduct(data);
-    setFormData({
-      name: '',
-      price: '',
-      category: '',
-      description: ''
-    });
+    console.log('IMAGE: ', image);
   }
 
-  const handleChange = (e, value) => {
-    console.log(`selected ${value}`);
-    let data = { ...formData };
-    data[e.target.name] = e.target.value;
-    setFormData(data);
-  };
+  console.log('FORM DATA AWAL', image);
+
+  if (navigate) {
+    return (
+      <Navigate to="/myproduct-seller" />
+    )
+  }
 
   return (
     <div>
@@ -108,7 +64,8 @@ function AddProduct() {
             <Upload.Dragger
               multiple
               listType="picture"
-              action={"http://localhost:3000/add-product"}
+              // action={"http://localhost:3000/add-product"}
+              // onChange={(e) => setImage(e.target.files[0])}
               showUploadList={{ showRemoveIcon: true }}
               accept=".png, .jpeg, .jpg"
               beforeUpload={(file) => {
@@ -124,34 +81,38 @@ function AddProduct() {
               <p className='text-grey text-sm'>Up max 4 photos</p>
             </Upload.Dragger>
           </div>
-          <div className="lg:col-span-2 lg:my-40 lg:mx-32 sm:w-96 lg:w-auto sm:mx-8 rounded-lg shadow-lg bg-light-grey py-6 h-auto ">
+          <div className="lg:col-span-2 lg:my-40 lg:mx-32 sm:w-96 lg:w-auto sm:mx-8 rounded-lg shadow-lg bg-light-grey py-6 h-auto flex flex-col justify-center items-center">
+            <h1 className='text-dark-purple font-bold lg:text-lg sm:text-base text-start lg:ml-14 sm:ml-8'>Item Details</h1>
             <Select
               defaultValue="Select a Category"
               style={{
-                width: 490, border: 100
+                width: '80%',
+                border: 100,
+                margin: "12px 48px"
               }}
-              onChange={handleChange}
+              onChange={(e) => setCategory(e.target.value)}
             >
               <Option value="clothes">Clothes</Option>
               <Option value="shoe">shoe</Option>
               <Option value="Yiminghe">yiminghe</Option>
             </Select>
-            <input type="text" name="text" className="lg:w-[486px] sm:w-80 lg:mx-12 sm:mx-8 my-7 px-2 py-2 border shadow-sm placeholder-grey focus:outline-none focus:border-light-grey focus:ring-purple block rounded-md sm:text-sm focus:ring-1" placeholder="listing title" />
-            <h1 className='font-bold lg:text-lg sm:text-base text-start lg:ml-14 sm:ml-8'>About the item</h1>
-            <input type="text" name="text" className="lg:w-[486px] sm:w-80 lg:mx-12 sm:mx-8 my-7 px-2 py-2 border shadow-sm placeholder-grey focus:outline-none focus:border-light-grey focus:ring-purple block rounded-md sm:text-sm focus:ring-1" placeholder="Rp. Price" />
-            <h1 className="font-semibold text-sm text-start lg:ml-14 sm:ml-8">Description</h1>
-            <textarea className="lg:w-[480px] sm:w-72 lg:h-[180px] sm:h-28 mx-12 bg-white-normal border border-slate-600 shadow-sm placeholder-grey block rounded-md sm:text-sm focus:ring-1 resize-none focus:ring-gray-200" placeholder=""></textarea>
+            <input type="text" name="name" className="lg:w-4/5 sm:w-4/5 lg:mx-12 sm:mx-8 my-4 px-2 py-2 border shadow-sm placeholder-grey focus:outline-none focus:border-light-grey focus:ring-purple block rounded-md sm:text-sm focus:ring-1" placeholder="Product Name" onChange={(e) => setName(e.target.value)} />
+            <input type="text" name="price" className="lg:w-4/5 sm:w-4/5 lg:mx-12 sm:mx-8 my-4 px-2 py-2 border shadow-sm placeholder-grey focus:outline-none focus:border-light-grey focus:ring-purple block rounded-md sm:text-sm focus:ring-1" placeholder="450000" onChange={(e) => setPrice(Number(e.target.value))} />
+            <textarea name="description" className="lg:w-4/5 sm:w-4/5 lg:h-[180px] sm:h-28 lg:mx-12 sm:mx-8 my-4 px-2 bg-white-normal border border-slate-600 shadow-sm placeholder-grey focus:outline-none focus:border-light-grey block rounded-md sm:text-sm focus:ring-1 resize-none focus:ring-gray-200" placeholder="Description of the product" onChange={(e) => setDescription(e.target.value)} ></textarea>
             <div className='my-6 mx-14 flex justify-end'>
-              <button className="bg-transparent text-dark-purple font-semibold lg:py-2 lg:px-4 sm:py-1 sm:px-2 border mx-3 border-dark-purple rounded-lg text-sm hover:text-light-grey hover:bg-medium-purple">
-                Cancel
-              </button>
-              <button type="submit" className="bg-medium-purple text-light-grey font-semibold  lg:py-2 lg:px-4 sm:py-1 sm:px-2 text-sm rounded-lg hover:text-dark-purple hover:bg-light-grey border border-dark-purple">
-                Add Product
-              </button>
+              <ButtonCustom
+                type="secondary"
+                text="Cancel"
+              />
+              <ButtonCustom
+                type="primary"
+                text="Add Product"
+              />
             </div>
           </div>
         </div>
       </form>
+
       <Footer />
     </div>
   )

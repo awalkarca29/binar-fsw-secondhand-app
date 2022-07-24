@@ -5,7 +5,6 @@ import IconLocation from '../assets/ic_location.svg';
 const CardProduct = ({ id, imgSrc, category, title, price, location }) => {
     return (
         <Link to={`/product-detail/${id}`}>
-            {localStorage.setItem('currentId', id)}
             <Card
                 hoverable
                 style={{
