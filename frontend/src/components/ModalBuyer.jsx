@@ -88,25 +88,16 @@ const ModalBuyer = ({ modalNotificationVisible, setModalNotificationVisible, ima
                         placeholder="500000"
                         action={(e) => setNewBargain({ ...newBargain, price: Number(e.target.value) })}
                       />
-                      <div className="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b">
+                      <div className="flex items-center justify-center p-6 mt-2 rounded-b">
                         <ButtonCustom
                           type="primary-large"
                           text="Send"
-                        // action={() => createBargain()}
                         />
                       </div>
                     </form>
                   </div>
                 </div>
-
-                {/*footer*/}
-                {/* <div className="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b">
-                  <ButtonCustom
-                    type="primary-large"
-                    text="Send"
-                    // action={() => createBargain()}
-                  />
-                </div> */}
+                
               </div>
             </div>
           </div>

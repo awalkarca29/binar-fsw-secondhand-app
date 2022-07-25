@@ -33,7 +33,7 @@ const Home = () => {
                         id={products.id}
                         imgSrc={products.image}
                         category={products.Category.name}
-                        title={products.name}
+                        title={products.title}
                         price={products.price}
                         location={products.User.city}
                     />
