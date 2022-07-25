@@ -6,13 +6,39 @@ import IconOrderHistory from '../assets/ic_order_history.svg';
 import IconLogout from '../assets/ic_logout.svg';
 import { Navigate, useNavigate } from 'react-router-dom';
 import '../index.css';
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import SkeletonImage from 'antd/lib/skeleton/Image';
+import axios from 'axios';
 
 const SideNav = (imgSrc) => {
 
     const [menuOption, setMenuOption] = useState('edit');
     const [image, setImage] = useState('');
+    const [user, setUser] = useState({
+        name: '',
+        address: '',
+        city: '',
+        phone: '',
+        image: ''
+    });
+
+    const getUser = async () => {
+        await axios({
+            url: `https://final-project-fsw-3-kel-1.herokuapp.com/auth/profile`,
+            method: "GET",
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`
+            }
+        })
+            .then(res => {
+                setUser(res.data.data);
+            }).catch(err => {
+                console.log(err);
+            })
+    };
+
+    const ref = useRef(getUser)
+    useEffect(() => { ref.current() }, []);
 
     const handleMenuClick = (option) => {
         setMenuOption(option);
@@ -23,21 +49,17 @@ const SideNav = (imgSrc) => {
         color: 'white'
     }
 
-    const [navigate, setNavigate] = useState(false); 
+    const [navigate, setNavigate] = useState(false);
 
     function logOut() {
         localStorage.removeItem('token');
         setNavigate(true)
     }
-    
-    if (navigate) {
-        return <Navigate to="/"/>
-      }
 
-    const handleChange = (e) => {
-       console.log(e.target.files)
-       setImage(e.target.files[0])
+    if (navigate) {
+        return <Navigate to="/" />
     }
+
     return (
         <Row className="flex flex-row my-32 xl:justify-start sm:justify-center">
             <Col span="auto">
@@ -45,8 +67,7 @@ const SideNav = (imgSrc) => {
                     <div>
                         <Row>
                             <Col>
-                                {/* <img src={currentUser?.photoURL} className="rounded-full object-cover h-160 w-160 p-6" /> */}
-                                
+                                <img src={user.image} className="rounded-full object-fit h-160 w-160 p-6" />
                             </Col>
                         </Row>
                         <Row className="flex flex-col justify-center">

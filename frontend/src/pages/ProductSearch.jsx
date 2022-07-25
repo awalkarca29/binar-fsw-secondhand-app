@@ -24,13 +24,13 @@ const ProductSearch = () => {
 
     const ref = useRef(getProduct);
 
-    useEffect(() => { ref.current() }, [keyword]);
+    useEffect(() => { ref.current() }, []);
 
     return (
         <div>
             <Navbar />
             <br /><br /><br /><br />
-            <h3 className="text-xl text-black-normal font-semibold mt-8 mx-8">This is the result for <span className="text-light-purple">"{keyword}"</span> product.</h3>
+            <h3 className="text-xl text-black-normal font-semibold mt-8 mx-8">This is the result for your wanted product.</h3>
             <Row className="flex flex-wrap">
                 <Col flex="auto">
                     <MenuFilter />
