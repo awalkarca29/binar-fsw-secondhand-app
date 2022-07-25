@@ -7,10 +7,12 @@ import IconLogout from '../assets/ic_logout.svg';
 import { Navigate, useNavigate } from 'react-router-dom';
 import '../index.css';
 import { useState } from 'react';
+import SkeletonImage from 'antd/lib/skeleton/Image';
 
 const SideNav = (imgSrc) => {
 
     const [menuOption, setMenuOption] = useState('edit');
+    const [image, setImage] = useState('');
 
     const handleMenuClick = (option) => {
         setMenuOption(option);
@@ -32,6 +34,10 @@ const SideNav = (imgSrc) => {
         return <Navigate to="/"/>
       }
 
+    const handleChange = (e) => {
+       console.log(e.target.files)
+       setImage(e.target.files[0])
+    }
     return (
         <Row className="flex flex-row my-24">
             <Col span="auto">
@@ -39,7 +45,8 @@ const SideNav = (imgSrc) => {
                     <div>
                         <Row>
                             <Col>
-                                <img src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80" className="rounded-full object-cover h-160 w-160 p-6" />
+                                {/* <img src={currentUser?.photoURL} className="rounded-full object-cover h-160 w-160 p-6" /> */}
+                                
                             </Col>
                         </Row>
                         <Row className="flex flex-col justify-center">

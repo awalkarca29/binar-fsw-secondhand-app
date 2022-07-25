@@ -74,6 +74,7 @@ const SideNavMenu = ({ menu }) => {
             url: `https://final-project-fsw-3-kel-1.herokuapp.com/profile/update`,
             method: "PUT",
             headers: {
+                "Content-Type": "multipart/form-data",
                 Authorization: `Bearer ${localStorage.getItem('token')}`
             },
             data: users
@@ -210,10 +211,12 @@ const SideNavMenu = ({ menu }) => {
                             <label className="text-medium-purple px-2">City</label>
                             <input type="text" name="city" value={users.city} onChange={(e)=>{setUsers({...users,city:e.target.value})}} className="md:w-auto md:mt-3 md:mb-5 md:px-3 md:py-3 bg-light-grey border border-slate-600 shadow-sm placeholder-grey block rounded-md sm:text-sm focus:ring-1 focus:ring-gray-200" placeholder="South Jakarta" />
                         </div>
+                        <input type="file" value={users.image} onChange={(e)=>{setUsers({...users,image:e.target.value})}} />
                         <div className="flex flex-col justify-start text-left mb-4">
                             <label className="p-2">Address</label>
                             <textarea value={users.address} onChange={(e)=>{setUsers({...users,address:e.target.value})}} className="md:w-auto md:h-48 md:mt-3 md:mb-5 md:px-3 md:py-3 bg-light-grey border border-slate-600 shadow-sm placeholder-grey block rounded-md sm:text-sm focus:ring-1 resize-none focus:ring-gray-200" placeholder="The Breeze BSD Bumi Serpong, Banten, Indonesia"></textarea>
                         </div>
+
                         <div type="button" name="update" value="update" onClick={handleUpdate} className="flex flex-row justify-center items-center h-auto bg-medium-purple text-light-grey font-semibold my-4 py-2 px-4 rounded cursor-pointer">
                             <p className="ml-2 mb-0">Save</p>
                         </div>
