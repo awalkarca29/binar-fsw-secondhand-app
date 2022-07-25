@@ -17,7 +17,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/notifications" element={<Notifications />} />
-          <Route path="/offer-information" element={<OfferInformation />} />
+          <Route path="/offer-information/:id" element={<OfferInformation />} />
           <Route path="/add-product" element={<AddProduct />} />
           <Route path="/update-product/:id" element={<UpdateProduct />} />
           <Route path="/myproduct-seller" element={<MyProductSeller />} />

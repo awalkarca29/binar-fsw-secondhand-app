@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import ModalNotification from './ModalNotification';
 
-const NotificationProduct = ({ label, imgSrc, productName, seller, locationSeller, date, openPrice, finalPrice }) => {
+const NotificationProduct = ({ label, imgSrc, isSold, productImg, productName, seller, locationSeller, date, description, openPrice, finalPrice }) => {
     const [modalNotificationVisible, setModalNotificationVisible] = useState(false);
     return (
         <div>
@@ -11,15 +11,15 @@ const NotificationProduct = ({ label, imgSrc, productName, seller, locationSelle
                         <img className='mt-10' src={imgSrc} />
                         <h3 class="font-semibold text-base text-grey ml-4 mt-2">{productName}</h3>
                         <p class="absolute font-semibold text-sm mt-24 ml-16">
-                            Ditawar {finalPrice}
+                            Ditawar Rp. {finalPrice}
                         </p>
-                        <p className='absolute ml-[520px] mt-24 text-grey'>{date}</p>
+                        <p className='absolute ml-[560px] text-right mt-24 text-grey'>{date}</p>
                     </div>
                     <span className="text-xs font-semibold inline-block py-1 px-2  rounded text-light-grey bg-medium-purple  last:mr-0 mr-1">
                         {label}
                     </span>
                     <p class="absolute text-sm mt-14 ml-16">
-                        {openPrice}
+                        Rp. {openPrice}
                     </p>
                 </div>
             </div>
@@ -33,11 +33,13 @@ const NotificationProduct = ({ label, imgSrc, productName, seller, locationSelle
                         width={780}
                         modalNotificationVisible={modalNotificationVisible}
                         setModalNotificationVisible={setModalNotificationVisible}
-                        imgSrc='https://images.unsplash.com/photo-1657438224944-f357bd0b0254?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=772&q=80'
+                        isSold={isSold}
+                        imgSrc={productImg}
                         productName={productName}
                         seller={seller}
                         locationSeller={locationSeller}
                         date={date}
+                        description={description}
                         openPrice={openPrice}
                         finalPrice={finalPrice}
                     />

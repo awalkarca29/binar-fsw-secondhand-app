@@ -11,6 +11,7 @@ const contentStyle = {
     lineHeight: '250px',
     textAlign: 'center',
     background: '#364d79',
+    marginTop: '48px'
 };
 
 const CarouselHeadline = ({ src }) => (

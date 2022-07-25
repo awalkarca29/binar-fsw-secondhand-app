@@ -1,14 +1,82 @@
-import React from 'react'
-import { NavbarLogin, NotificationProduct } from '../components';
+import React, { useState, useEffect, useRef } from 'react'
+import { Footer, Navbar, NotificationProduct } from '../components';
 import ImageNotifications from '../assets/il_notifications.svg';
 import Seller from '../assets/il_seller.svg';
 import Buyer from '../assets/il_buyer.svg';
 import { Tab } from '@headlessui/react';
+import axios from 'axios';
 
-function notifications() {
+const Notifications = () => {
+  const [notifSeller, setNotifSeller] = useState([{
+    Product: {
+      name: '',
+      price: '',
+      isSold: ''
+    },
+    price: '',
+    User: {
+      name: '',
+      city: ''
+    },
+    createdAt: ''
+  }]);
+
+  const [notifBuyer, setNotifBuyer] = useState([{
+    Product: {
+      name: '',
+      price: '',
+      isSold: false
+    },
+    price: '',
+    User: {
+      name: '',
+      city: ''
+    },
+    createdAt: ''
+  }]);
+
+  const getNotificationsSeller = async () => {
+    await axios({
+      url: "https://final-project-fsw-3-kel-1.herokuapp.com/notification/seller",
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`
+      }
+    })
+      .then(res => {
+        setNotifSeller(res.data.data);
+      }).catch(err => {
+        console.log(err);
+      })
+  };
+
+  const ref = useRef(getNotificationsSeller);
+
+  useEffect(() => { ref.current() }, []);
+
+  useEffect(() => {
+    const getNotificationsBuyer = async () => {
+      await axios({
+        url: "https://final-project-fsw-3-kel-1.herokuapp.com/notification/buyer",
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`
+        }
+      })
+        .then(res => {
+          setNotifBuyer(res.data.data);
+        }).catch(err => {
+          console.log(err);
+        })
+    };
+    getNotificationsBuyer();
+  }, [])
+
+  console.log('INI NOTIF: ', notifSeller);
+
   return (
     <div>
-      <NavbarLogin />
+      <Navbar />
       <div className="grid grid-cols-4 gap-2 mx-10">
         <div className="my-40 lg:ml-20 ">
           <img src={ImageNotifications} />
@@ -23,57 +91,92 @@ function notifications() {
             </Tab.List>
             <Tab.Panels>
               <Tab.Panel>
-                <NotificationProduct
-                  label='Offer Product'
-                  imgSrc={Seller}
-                  productName='Yeezy Boots'
-                  seller='Tokoku'
-                  locationSeller='Semarang'
-                  date='20 June 2022, 14:04'
-                  openPrice='5,800,000'
-                  finalPrice='5,000,000'
-                />
-                <NotificationProduct
-                  label='Offer Product'
-                  imgSrc={Buyer}
-                  productName='Yeezy Boots'
-                  seller='Tokoku'
-                  locationSeller='Semarang'
-                  date='20 June 2022, 14:04'
-                  openPrice='5,800,000'
-                  finalPrice='5,000,000'
-                />
+                {
+                  notifSeller ? (
+                    notifSeller.map((notif) => (
+                      <NotificationProduct
+                        label="Offer Product"
+                        imgSrc={Seller}
+                        isSold={notif.Product.isSold}
+                        productImg={notif.Product.image}
+                        productName={notif.Product.name}
+                        seller={notif.User.name}
+                        locationSeller={notif.User.city}
+                        date={notif.createdAt}
+                        description={notif.Product.description}
+                        openPrice={notif.Product.price}
+                        finalPrice={notif.price}
+                      />
+                    ))
+                  ) : null
+                }
+                {
+                  notifBuyer ? (
+                    notifBuyer.map((notif) => (
+                      <NotificationProduct
+                        label="Offer Product"
+                        imgSrc={Seller}
+                        productImg={notif.Product.image}
+                        productName={notif.Product.name}
+                        seller={notif.User.name}
+                        locationSeller={notif.User.city}
+                        date={notif.createdAt}
+                        description={notif.Product.description}
+                        openPrice={notif.Product.price}
+                        finalPrice={notif.price}
+                      />
+                    ))
+                  ) : null
+                }
               </Tab.Panel>
               <Tab.Panel>
-                <NotificationProduct
-                  label='Offer Product'
-                  imgSrc={Seller}
-                  productName='Yeezy Boots'
-                  seller='Tokoku'
-                  locationSeller='Semarang'
-                  date='20 June 2022, 14:04'
-                  openPrice='5,800,000'
-                  finalPrice='5,000,000'
-                />
+                {
+                  notifSeller ? (
+                    notifSeller.map((notif) => (
+                      <NotificationProduct
+                        label="Offer Product"
+                        imgSrc={Seller}
+                        isSold={notif.Product.isSold}
+                        productImg={notif.Product.image}
+                        productName={notif.Product.name}
+                        seller={notif.User.name}
+                        locationSeller={notif.User.city}
+                        date={notif.createdAt}
+                        description={notif.Product.description}
+                        openPrice={notif.Product.price}
+                        finalPrice={notif.price}
+                      />
+                    ))
+                  ) : null
+                }
               </Tab.Panel>
               <Tab.Panel>
-                <NotificationProduct
-                  label='Offer Product'
-                  imgSrc={Buyer}
-                  productName='Yeezy Boots'
-                  seller='Tokoku'
-                  locationSeller='Semarang'
-                  date='20 June 2022, 14:04'
-                  openPrice='5,800,000'
-                  finalPrice='5,000,000'
-                />
+                {
+                  notifBuyer ? (
+                    notifBuyer.map((notif) => (
+                      <NotificationProduct
+                        label="Offer Product"
+                        imgSrc={Seller}
+                        productImg={notif.Product.image}
+                        productName={notif.Product.name}
+                        seller={notif.User.name}
+                        locationSeller={notif.User.city}
+                        date={notif.createdAt}
+                        description={notif.Product.description}
+                        openPrice={notif.Product.price}
+                        finalPrice={notif.price}
+                      />
+                    ))
+                  ) : null
+                }
               </Tab.Panel>
             </Tab.Panels>
           </Tab.Group>
         </div>
       </div>
+      <Footer />
     </div>
   )
 }
 
-export default notifications
+export default Notifications
