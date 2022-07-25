@@ -3,7 +3,6 @@ const productRepository = require("../repository/product.repository.js");
 
 exports.findNotificationByUserIdSeller = async (id) => {
   try {
-    // console.log(`SERVICE User detected is `, id);
     return await bargainRepository.findByUserIdSeller(id);
   } catch (err) {
     console.error(err);
@@ -12,7 +11,6 @@ exports.findNotificationByUserIdSeller = async (id) => {
 
 exports.findNotificationByUserIdBuyer = async (id) => {
   try {
-    // console.log(`SERVICE User detected is `, id);
     return await bargainRepository.findByUserIdBuyer(id);
   } catch (err) {
     console.error(err);
@@ -21,7 +19,6 @@ exports.findNotificationByUserIdBuyer = async (id) => {
 
 exports.findBargainSoldByUserId = async (id) => {
   try {
-    // console.log(`SERVICE User detected is `, id);
     return await bargainRepository.findByUserIdSold(id);
   } catch (err) {
     console.error(err);
@@ -29,13 +26,10 @@ exports.findBargainSoldByUserId = async (id) => {
 };
 
 exports.createBargain = async (payload, buyerId) => {
-  // console.log(`SERVICE BUYER id detected is ${buyerId}`);
-
   const productById = await productRepository.findById(
     payload.fields.productId
   );
   const sellerIdProduct = productById.userId;
-  // console.log(`SERVICE PRODUCT BY ID : ${sellerId}`);
 
   const bargain = {
     price: payload.fields.price,
@@ -55,6 +49,10 @@ exports.createBargain = async (payload, buyerId) => {
 
 exports.findAllBargains = async () => {
   return await bargainRepository.findAll();
+};
+
+exports.findBargainByProductId = async (id) => {
+  return await bargainRepository.findByProductId(id);
 };
 
 exports.updateStatusAccepted = async (payload, id) => {

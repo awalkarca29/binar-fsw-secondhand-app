@@ -1,6 +1,7 @@
 const jwtUtil = require("../util/jwt.util.js");
 const cloudinaryConfig = require("../config/cloudinary.config.js");
 const productRepository = require("../repository/product.repository.js");
+const bargainRepository = require("../repository/bargain.repository.js");
 const db = require("../models");
 const User = db.user;
 
@@ -15,7 +16,7 @@ exports.findProductById = async (id) => {
 exports.findProductByUserId = async (req, id) => {
   try {
     const userId = id;
-    // console.log(`SERVICE User detected is `, userId);
+
     return await productRepository.findByUserId(userId);
   } catch (err) {
     console.error(err);
@@ -75,18 +76,21 @@ exports.deleteProduct = async (product) => {
   productRepository.delete(product);
 };
 
-exports.updateIsSold = async (payload, ids) => {
+exports.updateIsSold = async (req) => {
   try {
+    const bargainById = await bargainRepository.findById(req.params.id);
+    const productId = bargainById.productId;
+
     const product = {
       isSold: true,
     };
 
-    const productById = await productRepository.findById(ids);
+    const productById = await productRepository.findById(productId);
 
     if (productById == null) {
       return null;
     } else {
-      return await productRepository.update(product, ids);
+      return await productRepository.update(product, productId);
     }
   } catch (err) {
     console.error(err);

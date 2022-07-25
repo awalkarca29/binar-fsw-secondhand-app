@@ -42,5 +42,11 @@ router.get(
   authMiddleware.authorizationToken,
   bargainController.findBargainSold
 );
+// Find all bargain by product id
+router.get(
+  "/seller/product/:id/info",
+  authMiddleware.authorizationToken,
+  bargainController.getAllBargainByProductId
+);
 
 module.exports = router;

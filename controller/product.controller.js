@@ -28,8 +28,6 @@ exports.findProductByUserIdApi = async (req, res) => {
   const decodedToken = await jwtUtil.decodeToken(token);
   const user = await userRepository.findById(decodedToken.id);
 
-  // console.log(`CONTROLLER User detected is `, user.id);
-
   const products = await productService.findProductByUserId(req, user.id);
 
   if (products == null) {
@@ -84,7 +82,7 @@ exports.deleteProduct = (req, res) => {
 };
 
 exports.updateProductSold = async (req, res) => {
-  const products = await productService.updateIsSold(req, req.params.id);
+  const products = await productService.updateIsSold(req);
 
   if (products == null) {
     res.status(404);

@@ -56,6 +56,13 @@ exports.findById = async (id) => {
   });
 };
 
+exports.findByProductId = async (id) => {
+  return await Bargain.findAll({
+    where: { productId: id },
+    include: [{ model: User }, { model: Product }, { model: Status }],
+  });
+};
+
 exports.update = async (product, id) => {
   return await Bargain.update(product, { where: { id: id } });
 };

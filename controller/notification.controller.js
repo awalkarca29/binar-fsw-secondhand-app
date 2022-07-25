@@ -10,8 +10,6 @@ exports.findNotificationByUserIdBargained = async (req, res) => {
   const decodedToken = await jwtUtil.decodeToken(token);
   const user = await userRepository.findById(decodedToken.id);
 
-  // console.log(`CONTROLLER User detected is `, user.id);
-
   const bargain = await bargainService.findNotificationByUserIdSeller(user.id);
 
   if (bargain == null) {
@@ -30,8 +28,6 @@ exports.findNotificationByUserIdAccepted = async (req, res) => {
   );
   const decodedToken = await jwtUtil.decodeToken(token);
   const user = await userRepository.findById(decodedToken.id);
-
-  // console.log(`CONTROLLER User detected is `, user.id);
 
   const bargain = await bargainService.findNotificationByUserIdBuyer(user.id);
 

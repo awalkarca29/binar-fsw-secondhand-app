@@ -13,6 +13,10 @@
     {
       "description": "Secondhand localhost API server.",
       "url": "http://localhost:8001"
+    },
+    {
+      "description": "Secondhand backend Heroku server.",
+      "url": "https://final-project-fsw-3-kel-1.herokuapp.com"
     }
   ],
   "components": {

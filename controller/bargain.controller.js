@@ -16,8 +16,6 @@ exports.createNewBargainApi = async (req, res) => {
 
   const buyerId = user.id;
 
-  // console.log(`CONTROLLER BUYER ID : ${buyerId}`);
-
   const bargain = await bargainService.createBargain(req, buyerId);
 
   res.status(201).json({ data: bargain });
@@ -25,6 +23,14 @@ exports.createNewBargainApi = async (req, res) => {
 
 exports.findAllBargainApi = async (req, res) => {
   const bargains = await bargainService.findAllBargains();
+
+  res.json({
+    data: bargains,
+  });
+};
+
+exports.getAllBargainByProductId = async (req, res) => {
+  const bargains = await bargainService.findBargainByProductId(req.params.id);
 
   res.json({
     data: bargains,
@@ -82,8 +88,6 @@ exports.findBargainSold = async (req, res) => {
   );
   const decodedToken = await jwtUtil.decodeToken(token);
   const user = await userRepository.findById(decodedToken.id);
-
-  // console.log(`CONTROLLER User detected is `, user.id);
 
   const bargain = await bargainService.findBargainSoldByUserId(user.id);
 

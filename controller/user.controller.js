@@ -42,8 +42,6 @@ exports.updateUserApi = async (req, res) => {
   const decodedToken = await jwtUtil.decodeToken(token);
   const userId = await userRepository.findById(decodedToken.id);
 
-  // console.log(`User id detected is`, userId.id);
-
   const user = await userService.updateUser(req, userId.id);
 
   if (user == null) {
