@@ -31,6 +31,9 @@ function OfferInformation() {
       price: '',
       image: ''
     },
+    User: {
+      phone: ''
+    },
     buyerId: ''
   }]);
 
@@ -69,8 +72,6 @@ function OfferInformation() {
       getBidInfo();
     }, [])
 
-  console.log('BID INFO: ', bidInfo);
-
   return (
     <div>
       <Navbar />
@@ -80,7 +81,7 @@ function OfferInformation() {
         </Link>
         <div className="mt-36 mb-7 relative lg:mx-36 sm:mx-20 bg-light-grey lg:w-[913px] sm:w-[500px] h-24  rounded-2xl text-black p-2 shadow-md ">
           <div className="mb-6">
-            <img src={sepatu01} className="absolute ml-5 my-4 w-14 h-14 rounded-lg" alt="sepatu01" />
+            <img src={product.image} className="absolute ml-5 my-4 w-14 h-14 object-cover rounded-lg" alt="sepatu01" />
           </div>
           <h3 className="text-dark-purple absolute mx-24 -my-2">{product.name}</h3>
           <h1 className="absolute mx-24 text-base font-semibold mt-5">Rp. {product.price}</h1>
@@ -91,7 +92,7 @@ function OfferInformation() {
           <ListOffer
             imgSrc={Placeholder}
             nameOrder={info.buyerId}
-            phone='082135867887'
+            phone={info.User.phone}
             address='Jl. Hercules no.16 , Jawa Tengah'
             priceOffer={info.price}
           />

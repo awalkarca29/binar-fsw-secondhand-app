@@ -1,5 +1,14 @@
 const ButtonCustom = ({ type, text, icon, bgColor, action, isSold }) => {
   switch (type) {
+    case "accept-bargain":
+      return (
+        <button className="bg-medium-purple text-light-grey font-semibold  lg:py-2 lg:px-4 sm:py-1 sm:px-2 text-sm rounded-lg hover:text-dark-purple hover:bg-light-grey border border-dark-purple"
+          type="button"
+          onClick={action}
+        >
+          Accept
+        </button>
+      )
     case "primary-icon":
       return (
         <button className={`${type = 'light-grey' ? 'bg-medium-purple text-light-grey' : 'bg-transparent text-dark-purple'} hover:text-dark-purple hover:bg-light-grey border border-dark-purple font-semibold py-2 px-4 rounded inline-flex items-center`}>
