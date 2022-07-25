@@ -23,7 +23,7 @@ function ModalOffer({ showModal, setShowModal, buyerId, productImage, productNam
       .then(() => {
         message.success("Bargain successfully accepted!");
       }).catch(err => {
-        message.error("Failed to accept bargain!");
+        // message.error("Failed to accept bargain!");
         console.log(err);
       })
 
@@ -75,14 +75,15 @@ function ModalOffer({ showModal, setShowModal, buyerId, productImage, productNam
                 </div>
 
                 <div className="flex items-center justify-end p-6   rounded-b">
-                  <a href={`https://wa.me/${sellerPhone}`}>
+
+                  <form action={`https://wa.me/${sellerPhone}`}>
                     <button className="w-80 bg-medium-purple text-light-grey font-semibold  py-2 px-4 rounded hover:text-dark-purple hover:bg-light-grey border border-dark-purple"
-                      type="button"
+                      type="submit"
                       onClick={handleOffer}
                     >
                       Contact via whatsapp
                     </button>
-                  </a>
+                  </form>
                 </div>
               </div>
             </div>
