@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { ModalOffer, ButtonCustom } from '../components';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 
 const ListOffer = ({ imgSrc, nameOrder, phone, address, priceOffer }) => {
@@ -54,9 +54,11 @@ const ListOffer = ({ imgSrc, nameOrder, phone, address, priceOffer }) => {
                 </div>
                 <div class="flex items-center justify-end">
                     <div class="flex items-center">
-                        <button className="bg-transparent text-dark-purple font-semibold lg:py-2 lg:px-4 sm:py-1 sm:px-2 border mx-3 border-dark-purple rounded-lg text-sm hover:text-light-grey hover:bg-medium-purple">
-                            Decline
-                        </button>
+                        <Link to="/myproduct-seller">
+                            <button className="bg-transparent text-dark-purple font-semibold lg:py-2 lg:px-4 sm:py-1 sm:px-2 border mx-3 border-dark-purple rounded-lg text-sm hover:text-light-grey hover:bg-medium-purple">
+                                Decline
+                            </button>
+                        </Link>
                         <ModalOffer />
                         <ButtonCustom
                             type="accept-bargain"

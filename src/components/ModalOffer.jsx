@@ -1,8 +1,33 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { X } from "phosphor-react";
-import { Navigate } from "react-router-dom";
+import { message } from "antd";
+import { useParams } from "react-router-dom";
+import axios from "axios";
 
-export default function ModalOffer({ showModal, setShowModal, buyerId, productImage, productName, productPrice, bargainPrice, sellerPhone }) {
+function ModalOffer({ showModal, setShowModal, buyerId, productImage, productName, productPrice, bargainPrice, sellerPhone }) {
+  const [showModalVisible, setShowModalVisible] = useState(false);
+  const [bargain, setBargain] = useState(false);
+
+  let { id } = useParams();
+
+  const handleOffer = async (e) => {
+    e.preventDefault();
+
+    await axios({
+      url: `https://final-project-fsw-3-kel-1.herokuapp.com/buyer/bargain/${id}/accept`,
+      method: "PUT",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`
+      },
+    })
+      .then(() => {
+        message.success("Bargain successfully accepted!");
+      }).catch(err => {
+        message.error("Failed to accept bargain!");
+        console.log(err);
+      })
+
+  }
   return (
     <>
       {showModal ? (
@@ -50,12 +75,14 @@ export default function ModalOffer({ showModal, setShowModal, buyerId, productIm
                 </div>
 
                 <div className="flex items-center justify-end p-6   rounded-b">
-                  <button className="w-80 bg-medium-purple text-light-grey font-semibold  py-2 px-4 rounded hover:text-dark-purple hover:bg-light-grey border border-dark-purple"
-                    type="button"
-                    onClick={() => setShowModal(false)}
-                  >
-                    Contact via whatsapp
-                  </button>
+                  <a href={`https://wa.me/${sellerPhone}`}>
+                    <button className="w-80 bg-medium-purple text-light-grey font-semibold  py-2 px-4 rounded hover:text-dark-purple hover:bg-light-grey border border-dark-purple"
+                      type="button"
+                      onClick={handleOffer}
+                    >
+                      Contact via whatsapp
+                    </button>
+                  </a>
                 </div>
               </div>
             </div>
@@ -66,3 +93,5 @@ export default function ModalOffer({ showModal, setShowModal, buyerId, productIm
     </>
   );
 }
+
+export default ModalOffer;
