@@ -8,14 +8,14 @@ function ContactUs(type) {
   return (
     <div>
         <Navbar/>
-        <div className="mx-72 my-10 p-3">
+        <div className="lg:mx-72 sm:mx-14 my-10 p-3">
             <div class="grid md:grid-cols-5">
-            <div className='lg:my-20 sm:my-5 lg:w-[300px] h-auto sm:w-40 bg-light-purple'> 
+            <div className='lg:my-20 sm:my-20 lg:w-[300px] h-auto sm:w-40 bg-light-purple'> 
                 <p className='text-start font-semibold text-dark-purple mt-16 ml-7'>Contact</p>
                 <h1 className='font-bold mx-6 text-2xl text-white-normal text-start'>Get In Touch</h1>
                 <h1 className='mx-6 text-left text-white-normal'>lorem ipsum dolor sit amet consectetuer adipiscing elit sed diam nonummy nibh</h1>
                 <div className='flex flex-row justify-left my-5 mx-5 pl-3 items-center '>
-                    <img className='' src={Ic_Whatsapp} />
+                    <img  src={Ic_Whatsapp} />
                     <h1 className='font-semibold ml-4'>08218495092</h1>
                 </div>
                 <div className='flex flex-row justify-left my-5 mx-5 pl-3 items-center '>
@@ -35,7 +35,7 @@ function ContactUs(type) {
                     <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
                         First Name
                     </label>
-                    <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-first-name" type="text" placeholder="Jane"></input>
+                    <input class=" appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-first-name" type="text" placeholder="Jane"></input>
                     <p class="text-red-500 text-xs italic">Please fill out this field.</p>
                     </div>
                     <div class="w-full md:w-1/2 px-3">

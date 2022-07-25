@@ -8,7 +8,18 @@ import ButtonCustom from './ButtonCustom';
 import ic_image from '../assets/ic_image.svg';
 
 const SideNavMenu = ({ menu }) => {
-    const [history, setHistory] = useState([]);
+    // const [history, setHistory] = useState([]);
+    const [history, setHistory] = useState({
+        id: '',
+        price: '',
+        createdAt: '',
+        Product: {
+            // id: '',
+            name: '',
+            description: '',
+            image: ''
+        }
+    });
     const [user, setUser] = useState({
         name: '',
         address: '',
@@ -38,9 +49,10 @@ const SideNavMenu = ({ menu }) => {
     useEffect(() => {
         const getHistory = async () => {
             await axios({
-                url: `https://final-project-fsw-3-kel-1.herokuapp.com/history/`,
+                url: "https://final-project-fsw-3-kel-1.herokuapp.com/history/",
                 method: "GET",
                 headers: {
+                    "Content-Type": "multipart/form-data",
                     Authorization: `Bearer ${localStorage.getItem('token')}`
                 }
             })
@@ -143,14 +155,15 @@ const SideNavMenu = ({ menu }) => {
                             Rejected
                         </div>
                     </div>
-                    {history.map((products) => (
+                    {history.map((history) => (
                         <ListBuyerHistory
-                            id={products.id}
-                            imgSrc={products.image}
-                            category={products.Category.name}
-                            title={products.title}
-                            price={products.price}
-                            description={products.description}
+                            id={history.id}
+                            image={history.Product.image}
+                            // category={history.Category.name}
+                            title={history.title}
+                            price={history.price}
+                            description={history.Product.description}
+                            createdAt={history.createdAt}
                         />
                     ))
                     }
