@@ -1,18 +1,25 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import logo from '../assets/logo.png';
 import { Link } from 'react-router-dom';
-import { useState, useEffect } from 'react';
 import { Faders, List, MagnifyingGlass, X, BellRinging, Storefront } from 'phosphor-react';
 import { Transition } from "@headlessui/react";
 import Placeholder from '../assets/placeholder.svg';
 import ButtonCustom from './ButtonCustom';
 import ModalFilter from './ModalFilter';
+import axios from 'axios';
 
 function Navbar() {
   const [isLogin, setIsLogin] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [modalFilter, setModalFilter] = useState(false);
   const [searchKeyword, setSearchKeyword] = useState("");
+  const [user, setUser] = useState({
+    name: '',
+    address: '',
+    city: '',
+    phone: '',
+    image: ''
+  });
 
   useEffect(() => {
     let token = localStorage.getItem('token')
@@ -23,7 +30,26 @@ function Navbar() {
     }
   }, []);
 
+  const getUser = async () => {
+    await axios({
+      url: `https://final-project-fsw-3-kel-1.herokuapp.com/auth/profile`,
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`
+      }
+    })
+      .then(res => {
+        setUser(res.data.data);
+      }).catch(err => {
+        console.log(err);
+      })
+  };
+
+  const ref = useRef(getUser)
+  useEffect(() => { ref.current() }, []);
+
   const handleInputChange = (e) => {
+    e.preventDefault();
     setSearchKeyword(e.target.value)
     localStorage.setItem("keyword", searchKeyword)
   }
@@ -55,7 +81,7 @@ function Navbar() {
                 <BellRinging size={24} color="#fafafa" weight="fill" className='mr-5' />
               </Link>
               <Link to="/profile">
-                <img src={Placeholder} />
+                <img className="w-10 h-10 rounded-full object-cover" src={user.image} />
               </Link>
             </div>
             <div className="-mr-15 flex md:hidden">

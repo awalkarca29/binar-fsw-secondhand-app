@@ -10,7 +10,7 @@ const ListOffer= ({ imgSrc, nameOrder, phone, address, priceOffer }) => {
                 <h3 class="absolute font-semibold lg:text-base sm:text-sm text-black-normal ml-16">{nameOrder}</h3>
                 <p class="absolute lg:text-sm sm:text-xs mt-14 ml-16">{phone}</p>
                 <p class="absolute lg:text-sm sm:text-xs mt-[6rem] ml-16">{address}</p>
-                <p class="absolute lg:text-sm mt-[9rem] sm:text-xs ml-16">Ditawar {priceOffer}</p>
+                <p class="absolute lg:text-base font-semibold text-medium-purple mt-[10rem] sm:text-xs ml-16">Ditawar Rp. {priceOffer}</p>
             </div>
             <div class="flex items-center justify-end">
                 <div class="flex items-center">

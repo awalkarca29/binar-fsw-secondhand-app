@@ -1,9 +1,9 @@
-import { NavbarLogin, SideNav, Footer } from "../components";
+import { Navbar, SideNav, Footer } from "../components";
 
 const profile = () => {
     return (
         <div>
-            <NavbarLogin />
+            <Navbar />
             <SideNav />
             <Footer />
         </div>

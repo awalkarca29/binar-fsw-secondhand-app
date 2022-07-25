@@ -24,7 +24,6 @@ const Home = () => {
     return (
         <div>
             <Navbar />
-            <br /><br /><br />
             <CarouselHeadline />
             <h2 className="text-3xl text-dark-purple font-bold my-8">Explore Our Valuable Products</h2>
             <div className="flex flex-wrap justify-center">

@@ -5,7 +5,7 @@ import IconClose from '../assets/ic_close.svg';
 import IconStore from '../assets/ic_store.svg';
 import IconLocation from '../assets/ic_location.svg';
 
-const ModalNotification = ({ modalNotificationVisible, setModalNotificationVisible, imgSrc, productName, seller, locationSeller, date, openPrice, finalPrice }) => {
+const ModalNotification = ({ modalNotificationVisible, setModalNotificationVisible, isSold, imgSrc, productName, seller, locationSeller, date, description, openPrice, finalPrice }) => {
     return (
         <div>
             {modalNotificationVisible ? (
@@ -49,20 +49,24 @@ const ModalNotification = ({ modalNotificationVisible, setModalNotificationVisib
                                         </Col>
                                         <Col span="auto" className="m-4">
                                             <div>
-                                                <div className="rounded-md bg-success text-light-grey p-1 mb-2">Diterima</div>
+                                                <div className={isSold ? `rounded-md bg-success text-light-grey p-1 mb-2` : `rounded-md bg-danger text-light-grey p-1 mb-2`}>
+                                                    {isSold ?
+                                                        `Accepted` : `Declined`
+                                                    }
+                                                </div>
                                                 <p className="text-grey">{date}</p>
                                             </div>
                                         </Col>
                                     </Row>
                                     <Row>
                                         <p className="text-left leading-relaxed mt-2">
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Rhoncus purus sit adipiscing sed odio. Vel at lorem netus dolor. Rutrum a vel feugiat molestie. Scelerisque pulvinar facilisis velit dui in ridiculus aliquet eget ultrices. Diam posuere leo, faucibus pellentesque mauris non. Erat varius posuere mi, convallis urna. Pretium at egestas tincidunt blandit morbi consectetur condimentum ornare.
+                                            {description}
                                         </p>
                                     </Row>
                                     <Row>
                                         <Col className="price-detail w-full flex flex-col items-end">
-                                            <p className="line-through text-light-purple mb-2">Rp {openPrice}</p>
-                                            <p className="text-lg font-bold text-medium-purple">Rp {finalPrice}</p>
+                                            <p className="line-through text-light-purple mb-2">Rp. {openPrice}</p>
+                                            <p className="text-lg font-bold text-medium-purple">Rp. {finalPrice}</p>
                                         </Col>
                                     </Row>
                                 </div>

@@ -70,7 +70,7 @@ const ListSellerProduct = ({ id, productName, openPrice, image }) => {
                         icon={IconEdit}
                     />
                 </Link>
-                <Link to="/offer-information">
+                <Link to={`/offer-information/${id}`}>
                     <ButtonCustom
                         type="primary"
                         text="Bid Info"

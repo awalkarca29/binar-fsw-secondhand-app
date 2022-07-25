@@ -16,7 +16,9 @@ const ModalBuyer = ({ modalNotificationVisible, setModalNotificationVisible, ima
 
   const [navigate, setNavigate] = useState(false);
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
     await axios({
       url: "https://final-project-fsw-3-kel-1.herokuapp.com/buyer/bargain",
       method: "POST",
@@ -25,7 +27,6 @@ const ModalBuyer = ({ modalNotificationVisible, setModalNotificationVisible, ima
       },
       data: newBargain
     })
-
       .then(() => {
         message.success("Product successfully bargained!")
         setNavigate(true);
@@ -89,15 +90,18 @@ const ModalBuyer = ({ modalNotificationVisible, setModalNotificationVisible, ima
                         action={(e) => setNewBargain({ ...newBargain, price: Number(e.target.value) })}
                       />
                       <div className="flex items-center justify-center p-6 mt-2 rounded-b">
-                        <ButtonCustom
+                        {/* <ButtonCustom
                           type="primary-large"
                           text="Send"
-                        />
+                        /> */}
+                        <button className='bg-medium-purple text-light-grey font-semibold py-2 px-4 border border-dark-purple rounded hover:bg-light-purple text-center items-center md:w-80 w-full sm:text-sm disabled:opacity-50'>
+                          Send
+                        </button>
                       </div>
                     </form>
                   </div>
                 </div>
-                
+
               </div>
             </div>
           </div>
