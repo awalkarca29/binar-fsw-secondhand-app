@@ -61,8 +61,6 @@ function UpdateProduct() {
       })
   }
 
-  console.log("UPDATE: ", product);
-
   if (navigate) {
     return (
       <Navigate to="/myproduct-seller" />
