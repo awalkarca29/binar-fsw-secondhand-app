@@ -2,6 +2,13 @@ import React from "react";
 import { X } from "phosphor-react";
 
 const ModalFilter = ({ modalFilter, setModalFilter }) => {
+  
+  
+  // const filterItem = (category) => {
+
+  // }
+  
+  
   return (
     <div>
       {modalFilter ? (
@@ -31,13 +38,13 @@ const ModalFilter = ({ modalFilter, setModalFilter }) => {
                   <button className="relative m-2 bg-light-grey hover:bg-light-blue w-72 h-auto rounded-lg text-black-normal font-medium py-4 shadow-md">
                     Electronics
                   </button>
-                  <button className="relative m-2 bg-light-grey hover:bg-light-blue w-72 h-auto rounded-lg text-black-normal font-medium py-4 shadow-md">
+                  <button  className="relative m-2 bg-light-grey hover:bg-light-blue w-72 h-auto rounded-lg text-black-normal font-medium py-4 shadow-md">
                     Spareparts
                   </button>
-                  <button className="relative m-2 bg-light-grey hover:bg-light-blue w-72 h-auto rounded-lg text-black-normal font-medium py-4 shadow-md">
+                  <button  className="relative m-2 bg-light-grey hover:bg-light-blue w-72 h-auto rounded-lg text-black-normal font-medium py-4 shadow-md">
                     Furnitures
                   </button>
-                  <button className="relative m-2 bg-light-grey hover:bg-light-blue w-72 h-auto rounded-lg text-black-normal font-medium py-4 shadow-md">
+                  <button  className="relative m-2 bg-light-grey hover:bg-light-blue w-72 h-auto rounded-lg text-black-normal font-medium py-4 shadow-md">
                     Others
                   </button>
                 </div>
