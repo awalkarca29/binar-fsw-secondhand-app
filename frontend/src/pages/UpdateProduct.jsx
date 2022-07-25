@@ -40,8 +40,6 @@ function UpdateProduct() {
 
   useEffect(() => { ref.current() }, []);
 
-  console.log("DATA PRODUCT >> ", product);
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 

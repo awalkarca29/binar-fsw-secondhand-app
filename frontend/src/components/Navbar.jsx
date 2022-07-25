@@ -12,6 +12,7 @@ function Navbar() {
   const [isLogin, setIsLogin] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [modalFilter, setModalFilter] = useState(false);
+  const [searchKeyword, setSearchKeyword] = useState("");
 
   useEffect(() => {
     let token = localStorage.getItem('token')
@@ -21,6 +22,11 @@ function Navbar() {
       setIsLogin(false);
     }
   }, []);
+
+  const handleInputChange = (e) => {
+    setSearchKeyword(e.target.value)
+    localStorage.setItem("keyword", searchKeyword)
+  }
 
   return (
     <div>
@@ -32,10 +38,14 @@ function Navbar() {
             </Link>
             <div className="hidden cursor-pointer md:flex items-center item-center border-r border-r-dark-purple border-solid text-black-400 focus-within:text-black-400">
               <Faders class="absolute  sm:ml-3 sm:mt-[1]" size={24} color="#4d4c7d" weight="fill" onClick={() => setModalFilter(true)} />
-              <Link to="/search">
+              <Link to={`/search/${searchKeyword}`}>
                 <MagnifyingGlass class="absolute mx-[560px] my-0 top-7" size={24} color="#4d4c7d" weight="fill" />
               </Link>
-              <input className="pl-16  placeholder:text-gray-300  sm:w-[600px] px-5 py-2  rounded-md outline-none" placeholder="Placeholder" />
+              <form>
+                <input className="pl-16  placeholder:text-gray-300  sm:w-[600px] px-5 py-2  rounded-md outline-none" placeholder="Placeholder" onChange={(e) => {
+                  handleInputChange(e);
+                }} />
+              </form>
             </div>
             <div className='cursor-pointer hidden md:flex items-center' >
               <Link to="/myproduct-seller">

@@ -76,7 +76,7 @@ const ProductDetail = () => {
                                 width={40}
                                 height={40}
                                 src={product.User.image}
-                                className="object-fill rounded-full"
+                                className="object-cover rounded-full"
                             />
                             <div className="flex flex-col items-start px-4">
                                 <p className="font-bold">{product.User.name}</p>
