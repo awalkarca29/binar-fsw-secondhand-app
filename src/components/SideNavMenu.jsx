@@ -94,49 +94,6 @@ const SideNavMenu = ({ menu }) => {
     };
 
     switch (menu) {
-        case "reset":
-            return (
-                <div>
-                    <h1 className="font-bold text-xl text-left text-dark-purple mb-6">Reset Password</h1>
-                    <Form
-                        name="basic"
-                        wrapperCol={{
-                            span: 12,
-                        }}
-                        initialValues={{
-                            remember: true,
-                        }}
-                        onFinish={onFinish}
-                        onFinishFailed={onFinishFailed}
-                        autoComplete="off"
-                    >
-                        <div className="flex flex-col justify-start text-left mb-4">
-                            <label className="text-medium-purple px-2 mb-2">Old Password</label>
-                            <div className="relative flex w-full flex-wrap items-stretch mb-4">
-                                <input type="password" name="old-password" className="md:w-full md:px-3 md:py-3 bg-light-grey border border-slate-600 shadow-sm placeholder-grey block rounded-md sm:text-sm focus:ring-1 focus:ring-gray-200" placeholder="Input your old password" />
-                                <img className="pointer-events-none w-8 h-8 p-0 absolute top-1/2 transform -translate-y-1/2 right-3" src={PasswordSeen} />
-                            </div>
-                        </div>
-                        <div className="flex flex-col justify-start text-left mb-4">
-                            <label className="text-medium-purple px-2 mb-2">New Password</label>
-                            <div className="relative flex w-full flex-wrap items-stretch mb-4">
-                                <input type="password" name="new-password" className="md:w-full md:px-3 md:py-3 bg-light-grey border border-slate-600 shadow-sm placeholder-grey block rounded-md sm:text-sm focus:ring-1 focus:ring-gray-200" placeholder="Input your new password" />
-                                <img className="pointer-events-none w-8 h-8 p-0 absolute top-1/2 transform -translate-y-1/2 right-3" src={PasswordSeen} />
-                            </div>
-                        </div>
-                        <div className="flex flex-col justify-start text-left mb-4">
-                            <label className="text-medium-purple px-2 mb-2">Confirm Password</label>
-                            <div className="relative flex w-full flex-wrap items-stretch mb-4">
-                                <input type="password" name="old-password" className="md:w-full md:px-3 md:py-3 bg-light-grey border border-slate-600 shadow-sm placeholder-grey block rounded-md sm:text-sm focus:ring-1 focus:ring-gray-200" placeholder="Confirm your new password" />
-                                <img className="pointer-events-none w-8 h-8 p-0 absolute top-1/2 transform -translate-y-1/2 right-3" src={PasswordSeen} />
-                            </div>
-                        </div>
-                        <div className="flex flex-row justify-center items-center h-auto bg-medium-purple text-light-grey font-semibold my-4 py-2 px-4 rounded cursor-pointer">
-                            <p className="ml-2 mb-0">Save</p>
-                        </div>
-                    </Form>
-                </div>
-            )
         case "history":
             return (
                 <div>

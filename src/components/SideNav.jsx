@@ -65,7 +65,7 @@ const SideNav = (imgSrc) => {
             <Col span="auto">
                 <div className="container grid flex-col content-between side-nav bg-light-grey ml-12 mb-12 p-2">
                     <div>
-                        <Row>
+                        <Row className="flex flex-col justify-center items-center content-center">
                             <Col>
                                 <img src={user.image} className="rounded-full object-fit h-160 w-160 p-6" />
                             </Col>
@@ -76,14 +76,6 @@ const SideNav = (imgSrc) => {
                                 onClick={() => handleMenuClick('edit')}>
                                 <img src={IconEditProfile}></img>
                                 <p className="m-0 pl-2">Edit Profile</p>
-                            </Col>
-                        </Row>
-                        <Row className="flex flex-col justify-center">
-                            <Col className="btn-sidenav flex flex-row justify-start items-center w-56 h-2 px-4 py-6 rounded-lg cursor-pointer"
-                                style={menuOption === 'reset' && styleActive}
-                                onClick={() => handleMenuClick('reset')}>
-                                <img src={IconResetPassword} className="icon"></img>
-                                <p className="m-0 pl-2">Reset Password</p>
                             </Col>
                         </Row>
                         <Row className="flex flex-col justify-center">
