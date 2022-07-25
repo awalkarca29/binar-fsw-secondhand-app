@@ -33,9 +33,9 @@ const SideNav = (imgSrc) => {
       }
 
     return (
-        <Row className="flex flex-row my-24">
+        <Row className="flex flex-row my-32 xl:justify-start sm:justify-center">
             <Col span="auto">
-                <div className="container grid flex-col content-between side-nav bg-light-grey ml-12 p-2">
+                <div className="container grid flex-col content-between side-nav bg-light-grey ml-12 mb-12 p-2">
                     <div>
                         <Row>
                             <Col>

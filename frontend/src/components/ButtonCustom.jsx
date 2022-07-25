@@ -9,9 +9,15 @@ const ButtonCustom = ({ type, text, icon, bgColor, action, isSold }) => {
       )
     case "primary-large":
       return (
-        <button onClick={action} className='bg-medium-purple text-light-grey font-semibold py-2 px-4 border border-dark-purple rounded hover:text-light-grey hover:bg-light-purple text-center items-center md:w-80 w-full sm:text-sm disabled:opacity-50' disabled={isSold}>
+        <button onClick={action} className='bg-medium-purple text-light-grey font-semibold py-2 px-4 border border-dark-purple rounded hover:bg-light-purple text-center items-center md:w-80 w-full sm:text-sm disabled:opacity-50' disabled={isSold}>
           {text}
         </button>
+      )
+    case "primary-auto":
+      return (
+        <div className="flex flex-row justify-center items-center h-auto bg-medium-purple hover:bg-light-purple text-light-grey font-semibold my-4 py-2 px-4 rounded cursor-pointer">
+          <button type="submit" className="ml-2 mb-0">{text}</button>
+        </div>
       )
     case "primary-light":
       return (

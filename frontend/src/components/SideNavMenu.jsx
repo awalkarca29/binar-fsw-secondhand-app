@@ -1,92 +1,77 @@
-import { Form, Input } from 'antd';
 import PasswordSeen from '../assets/ic_password_seen.svg';
 import ListBuyerHistory from './ListBuyerHistory';
-import React, { useState, useEffect, useRef} from 'react';
-import { message } from "antd";
+import React, { useState, useEffect, useRef } from 'react';
+import { Form, Upload, Button, message, Spin } from "antd";
 import axios from 'axios';
+import InputForm from './InputForm';
+import ButtonCustom from './ButtonCustom';
+import ic_image from '../assets/ic_image.svg';
 
 const SideNavMenu = ({ menu }) => {
-    const [products, setHistory] = useState([]);
-    const [status, setStatus] = useState('');
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
-    const [phone, setPhone] = useState('');
-    const [city, setCity] = useState('');
-    const [address, setAddress] = useState('');
-    const [image, setImage] = useState('');
-    const [users, setUsers] = useState({
+    const [history, setHistory] = useState([]);
+    const [user, setUser] = useState({
         name: '',
-        email: '',
-        phone: '',
-        city: '',
         address: '',
+        city: '',
+        phone: '',
         image: ''
     });
 
-    const getUser = () => {
-        axios.get(`https://final-project-fsw-3-kel-1.herokuapp.com/auth/profile`, {
+    const getUser = async () => {
+        await axios({
+            url: `https://final-project-fsw-3-kel-1.herokuapp.com/auth/profile`,
+            method: "GET",
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('token')}`
             }
         })
-        .then(res => {
-            setUsers(res.data.data);
-        }).catch(err => {
-            console.log(err);
-        })
+            .then(res => {
+                setUser(res.data.data);
+            }).catch(err => {
+                console.log(err);
+            })
     };
+
     const ref = useRef(getUser)
     useEffect(() => { ref.current() }, []);
 
     useEffect(() => {
         const getHistory = async () => {
-            await axios.get('https://final-project-fsw-3-kel-1.herokuapp.com/history/')
-            // await axios({
-            //         url: `https://final-project-fsw-3-kel-1.herokuapp.com/auth/history/`,
-            //         method: "GET",
-            //         headers: {
-            //             Authorization: `Bearer ${localStorage.getItem('token')}`
-            //         },
-            //         data: products
-            //     })
-            .then(res => {
-                setHistory(res.data.data);
-            }).catch(err => {
-                console.log(err);
+            await axios({
+                url: `https://final-project-fsw-3-kel-1.herokuapp.com/history/`,
+                method: "GET",
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('token')}`
+                }
             })
+                .then(res => {
+                    setHistory(res.data.data);
+                }).catch(err => {
+                    console.log(err);
+                })
         };
         getHistory();
     }, []);
 
     const handleUpdate = async (e) => {
-        e.preventDefault()
-        const data = {
-            name: name,
-            email: email,
-            phone: phone,
-            city: city,
-            address: address,
-            image: image
-        }
-    
-        // await axios.put(`https://final-project-fsw-3-kel-1.herokuapp.com/profile/update`,data)
+        e.preventDefault();
+
         await axios({
             url: `https://final-project-fsw-3-kel-1.herokuapp.com/profile/update`,
             method: "PUT",
             headers: {
+                "Content-Type": "multipart/form-data",
                 Authorization: `Bearer ${localStorage.getItem('token')}`
             },
-            data: users
+            data: user
         })
-        .then(res => {
-            // setStatus(response.users);
-            message.success('Edit was successful')
-            console.log(res.status);
-        }).catch(err => {
-            console.log(err);
-        })
+            .then(() => {
+                message.success('Edit profile was successful!')
+            }).catch(err => {
+                message.error('Edit profile failed!')
+                console.log(err);
+            })
     }
-
 
     const onFinish = (values) => {
         console.log('Success:', values);
@@ -95,13 +80,6 @@ const SideNavMenu = ({ menu }) => {
     const onFinishFailed = (errorInfo) => {
         console.log('Failed:', errorInfo);
     };
-
-    const styleInput = {
-        width: '15%',
-        borderRadius: '0.375rem 0 0 0.375rem',
-        backgroundColor: '#F9F9F9',
-        height: '46px'
-    }
 
     switch (menu) {
         case "reset":
@@ -165,7 +143,7 @@ const SideNavMenu = ({ menu }) => {
                             Rejected
                         </div>
                     </div>
-                    {products.map((products) => (
+                    {history.map((products) => (
                         <ListBuyerHistory
                             id={products.id}
                             imgSrc={products.image}
@@ -181,43 +159,108 @@ const SideNavMenu = ({ menu }) => {
         default:
             return (
                 <div>
-                    <h1 className="font-bold text-xl text-left text-dark-purple mb-6">Edit Profile</h1>
-                    <Form 
-                        name="basic"
-                        wrapperCol={{
-                            span: 12,
-                        }}
-                        initialValues={{
-                            remember: true,
-                        }}
-                        onFinish={onFinish}
-                        onFinishFailed={onFinishFailed}
-                        autoComplete="off"
-                    >
-                        <div className="flex flex-col justify-start text-left mb-4">
+                    <h1 className="font-bold text-xl text-left text-dark-purple mb-8">Edit Profile</h1>
+                    <form onSubmit={handleUpdate}>
+                        <div className="mb-12 rounded-lg shadow-lg bg-light-grey lg:h-64 sm:h-56 lg:w-full sm:w-80">
+                            <Upload.Dragger
+                                listType="picture"
+                                maxCount={1}
+                                showUploadList={{ showRemoveIcon: true }}
+                                accept=".png, .jpeg, .jpg"
+                                beforeUpload={(file) => {
+                                    setUser({
+                                        ...user, image: file
+                                    })
+                                    return false;
+                                }}
+                                iconRender={() => {
+                                    return (
+                                        <Spin />
+                                    )
+                                }}
+                                progress={{
+                                    strokeColor: {
+                                        '0%': '#363062',
+                                        '100%': '#827397',
+                                    },
+                                    strokeWidth: 3,
+                                    style: { top: 12 }
+                                }}
+                            >
+                                <img className='mx-auto sm:w-10 my-4' src={ic_image} />
+                                <Button>Select Profile Photo</Button>
+                                <h1 className='mt-2'>Or drag photos here</h1>
+                                <p className='text-grey text-sm'>This photo will be shown as your profile picture</p>
+                            </Upload.Dragger>
+                        </div>
+                        <div className="flex flex-col justify-start text-left mb-2 sm:mt-24">
                             <label className="text-medium-purple px-2">Full Name</label>
-                            <input type="text" name="name" value={users.name} onChange={(e)=>{setUsers({...users,name:e.target.value})}} className="md:w-auto md:mt-3 md:mb-5 md:px-3 md:py-3 bg-light-grey border border-slate-600 shadow-sm placeholder-grey block rounded-md sm:text-sm focus:ring-1 focus:ring-gray-200" placeholder="John Doe" />
+                            <InputForm
+                                type="userdata"
+                                inputType="text"
+                                name="name"
+                                placeholder="John Doe"
+                                value={user.name}
+                                action={(e) => {
+                                    setUser({ ...user, name: e.target.value })
+                                }}
+                            />
                         </div>
-                        <div className="flex flex-col justify-start text-left mb-4">
+                        <div className="flex flex-col justify-start text-left mb-2">
                             <label className="text-medium-purple px-2">Email</label>
-                            <input type="email" name="email" value={users.email} onChange={(e)=>{setUsers({...users,email:e.target.value})}} className="md:w-auto md:mt-3 md:mb-5 md:px-3 md:py-3 bg-light-grey border border-slate-600 shadow-sm placeholder-grey block rounded-md sm:text-sm focus:ring-1 focus:ring-gray-200" placeholder="john.doe@mail.com" />
+                            <InputForm
+                                type="userdata"
+                                inputType="email"
+                                name="email"
+                                placeholder="john.doe@mail.com"
+                                value={user.email}
+                                disabled="true"
+                            />
                         </div>
-                        <div className="flex flex-col justify-start text-left mb-8">
-                            <label className="p-2">Phone Number</label>
-                            <input type="text" name="city" value={users.phone} onChange={(e)=>{setUsers({...users,phone:e.target.value})}} className="md:w-auto md:mt-3 md:mb-5 md:px-3 md:py-3 bg-light-grey border border-slate-600 shadow-sm placeholder-grey block rounded-md sm:text-sm focus:ring-1 focus:ring-gray-200" placeholder="08212463792" />
+                        <div className="flex flex-col justify-start text-left mb-2">
+                            <label className="px-2">Phone Number</label>
+                            <InputForm
+                                type="userdata"
+                                inputType="text"
+                                name="phone"
+                                placeholder="08212463792"
+                                value={user.phone}
+                                action={(e) => {
+                                    setUser({ ...user, phone: e.target.value })
+                                }}
+                            />
                         </div>
-                        <div className="flex flex-col justify-start text-left my-4">
+                        <div className="flex flex-col justify-start text-left mb-2">
                             <label className="text-medium-purple px-2">City</label>
-                            <input type="text" name="city" value={users.city} onChange={(e)=>{setUsers({...users,city:e.target.value})}} className="md:w-auto md:mt-3 md:mb-5 md:px-3 md:py-3 bg-light-grey border border-slate-600 shadow-sm placeholder-grey block rounded-md sm:text-sm focus:ring-1 focus:ring-gray-200" placeholder="South Jakarta" />
+                            <InputForm
+                                type="userdata"
+                                inputType="text"
+                                name="city"
+                                placeholder="South Jakarta"
+                                value={user.city}
+                                action={(e) => {
+                                    setUser({ ...user, city: e.target.value })
+
+                                }}
+                            />
                         </div>
-                        <div className="flex flex-col justify-start text-left mb-4">
-                            <label className="p-2">Address</label>
-                            <textarea value={users.address} onChange={(e)=>{setUsers({...users,address:e.target.value})}} className="md:w-auto md:h-48 md:mt-3 md:mb-5 md:px-3 md:py-3 bg-light-grey border border-slate-600 shadow-sm placeholder-grey block rounded-md sm:text-sm focus:ring-1 resize-none focus:ring-gray-200" placeholder="The Breeze BSD Bumi Serpong, Banten, Indonesia"></textarea>
+                        <div className="flex flex-col justify-start text-left mb-2">
+                            <label className="px-2">Address</label>
+                            <InputForm
+                                type="textarea-auto"
+                                name="address"
+                                placeholder="The Breeze BSD Bumi Serpong, Banten, Indonesia"
+                                value={user.address}
+                                action={(e) => {
+                                    setUser({ ...user, address: e.target.value })
+                                }}
+                            />
                         </div>
-                        <div type="button" name="update" value="update" onClick={handleUpdate} className="flex flex-row justify-center items-center h-auto bg-medium-purple text-light-grey font-semibold my-4 py-2 px-4 rounded cursor-pointer">
-                            <p className="ml-2 mb-0">Save</p>
-                        </div>
-                    </Form>
+                        <ButtonCustom
+                            type="primary-auto"
+                            text="Save"
+                        />
+                    </form>
                 </div>
             )
 

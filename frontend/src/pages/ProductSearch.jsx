@@ -30,7 +30,7 @@ const ProductSearch = () => {
         <div>
             <Navbar />
             <br /><br /><br /><br />
-            <h3 className="text-xl text-black-normal font-semibold mt-8 mx-8">This is the result of your selected category.</h3>
+            <h3 className="text-xl text-black-normal font-semibold mt-8 mx-8">This is the result for <span className="text-light-purple">"{keyword}"</span> product.</h3>
             <Row className="flex flex-wrap">
                 <Col flex="auto">
                     <MenuFilter />

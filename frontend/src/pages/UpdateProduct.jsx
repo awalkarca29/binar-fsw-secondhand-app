@@ -53,13 +53,15 @@ function UpdateProduct() {
       data: product
     })
       .then(() => {
-        message.success("Product successfully updated!")
+        message.success("Product successfully updated!");
         setNavigate(true);
       }).catch(err => {
-        message.error("Failed to update product!")
+        message.error("Failed to update product!");
         console.log(err);
       })
   }
+
+  console.log("UPDATE: ", product);
 
   if (navigate) {
     return (
@@ -104,8 +106,8 @@ function UpdateProduct() {
               <img className='mx-auto sm:w-10 my-4' src={ic_image} />
               <Button
 
-              >Select Photos</Button>
-              <h1 className='mt-2'>Or drag photos here</h1>
+              >Select Photo</Button>
+              <h1 className='mt-2'>Or drag photo here</h1>
               <p className='text-grey text-sm'>You can upload 1 photo of the product</p>
             </Upload.Dragger>
           </div>
@@ -148,10 +150,12 @@ function UpdateProduct() {
               action={(e) => setProduct({ ...product, description: e.target.value })}
             />
             <div className='my-6 mx-14 flex justify-end'>
-              <ButtonCustom
-                type="secondary"
-                text="Cancel"
-              />
+              <Link to="/myproduct-seller">
+                <ButtonCustom
+                  type="secondary"
+                  text="Cancel"
+                />
+              </Link>
               <ButtonCustom
                 type="primary"
                 text="Update Product"
