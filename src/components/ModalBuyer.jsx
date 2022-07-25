@@ -37,8 +37,6 @@ const ModalBuyer = ({ modalNotificationVisible, setModalNotificationVisible, ima
       })
   }
 
-  console.log('BARGAIN: ', newBargain);
-
   if (navigate) {
     return (
       <Navigate to="/" />

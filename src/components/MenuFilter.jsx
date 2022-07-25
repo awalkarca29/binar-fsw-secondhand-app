@@ -21,9 +21,7 @@ const items = [
 
 const MenuFilter = (category) => {
     const onClick = (e) => {
-        console.log('click ', e);
         category = e.type;
-        console.log('category: ', category);
     };
 
     return (

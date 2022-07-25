@@ -72,8 +72,6 @@ const Notifications = () => {
     getNotificationsBuyer();
   }, [])
 
-  console.log('INI NOTIF: ', notifSeller);
-
   return (
     <div>
       <Navbar />
